@@ -15,22 +15,22 @@ detectors:
       - db/
       - config/
   FeatureEnvy:
-    enabled: false
+    enabled: true
     exclude:
       - db/
       - config/
   TooManyStatements:
-    enabled: false
+    enabled: true
     exclude:
       - db/
       - config/
   UncommunicativeVariableName:
-    enabled: false
+    enabled: true
     exclude:
       - db/
       - config/
   InstanceVariableAssumption:
-    enabled: false
+    enabled: true
     exclude:
       - db/
       - config/
