@@ -1,16 +1,36 @@
 detectors:
   IrresponsibleModule:
     enabled: false
-
+    exclude:
+      - db/
+      - config/
   DuplicateMethodCall:
     enabled: false
-
+    exclude:
+      - db/
+      - config/
   UtilityFunction:
     public_methods_only: true
-
+    exclude:
+      - db/
+      - config/
+  FeatureEnvy:
+    enabled: true
+    exclude:
+      - db/
+      - config/
+  TooManyStatements:
+    enabled: true
+    exclude:
+      - db/
+      - config/
+  UncommunicativeVariableName:
+    enabled: true
+    exclude:
+      - db/
+      - config/
   InstanceVariableAssumption:
-    enabled: false
-
-exclude_paths:
-    - db
-    - config
+    enabled: true
+    exclude:
+      - db/
+      - config/
