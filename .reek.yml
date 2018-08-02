@@ -7,7 +7,7 @@ detectors:
     public_methods_only: true
 
 directories:
-  'db':
+  "nicher/db/":
     FeatureEnvy:
       enabled: false
     TooManyStatements:
@@ -18,7 +18,7 @@ directories:
       enabled: false
     IrresponsibleModule:
       enabled: false
-  'config':
+  "nicher/config/":
     FeatureEnvy:
       enabled: false
     TooManyStatements:
@@ -29,3 +29,8 @@ directories:
       enabled: false
     IrresponsibleModule:
       enabled: false
+
+exclude_paths:
+  - db/
+  - db/migrate
+  - config/
