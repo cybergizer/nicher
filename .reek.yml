@@ -1,36 +1,36 @@
 detectors:
   IrresponsibleModule:
     enabled: false
+    exclude:
+      - db/
+      - config/
   DuplicateMethodCall:
     enabled: false
+    exclude:
+      - db/
+      - config/
   UtilityFunction:
     public_methods_only: true
-
-directories:
-  "nicher/db/":
-    FeatureEnvy:
-      enabled: false
-    TooManyStatements:
-      enabled: false
-    UncommunicativeVariableName:
-      enabled: false
-    InstanceVariableAssumption:
-      enabled: false
-    IrresponsibleModule:
-      enabled: false
-  "nicher/config/":
-    FeatureEnvy:
-      enabled: false
-    TooManyStatements:
-      enabled: false
-    UncommunicativeVariableName:
-      enabled: false
-    InstanceVariableAssumption:
-      enabled: false
-    IrresponsibleModule:
-      enabled: false
-
-exclude_paths:
-  - db/
-  - db/migrate
-  - config/
+    exclude:
+      - db/
+      - config/
+  FeatureEnvy:
+    enabled: false
+    exclude:
+      - db/
+      - config/
+  TooManyStatements:
+    enabled: false
+    exclude:
+      - db/
+      - config/
+  UncommunicativeVariableName:
+    enabled: false
+    exclude:
+      - db/
+      - config/
+  InstanceVariableAssumption:
+    enabled: false
+    exclude:
+      - db/
+      - config/
