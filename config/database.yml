@@ -1,16 +1,18 @@
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: nicher_development
   pool: 5
-  username: nicher
-  password: nicher12345678
+
+development:
+  <<: *default
+  database: nicher_development
 
 test:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: nicher_test
-  pool: 5
-  username: nicher
-  password: nicher12345678
 
+production:
+  <<: *default
+  database: nicher_production
+  username: nicher
+  password: <%= ENV['NICHER_DATABASE_PASSWORD'] %>
