@@ -4,8 +4,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
       ## Database authenticatable
-      t.database_authenticatable
-      t.confirmable
+      # See this: https://github.com/plataformatec/devise/wiki/How-To%3A-Upgrade-to-Devise-2.0-migration-schema-style
+      # t.database_authenticatable
+      # t.confirmable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
