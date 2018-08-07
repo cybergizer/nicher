@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
   def edit; end
 
   def create
+    p item_params
     @item = current_user.items.create(item_params)
 
     if @item.save
@@ -43,6 +44,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:title, :description)
+    params.require(:item).permit(:title, :description, :location_id)
   end
 end
