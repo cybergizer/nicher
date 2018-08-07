@@ -1,0 +1,22 @@
+<%= form_for @user do |form| %>
+  <%= form.fields_for :user_profile do |ff| %>
+    <div class="form-group">
+      <%= ff.label :full_name %>
+      <%= ff.text_field :full_name %>
+    </div>
+
+    <div class="form-group">
+      <%= ff.label :city %>
+      <%= ff.text_field :city %>
+    </div>
+
+    <div class="form-group">
+      <%= ff.label :description %>
+      <%= ff.text_area :description %>
+    </div>
+
+    <div class="actions">
+      <%= ff.submit %>
+    </div>
+  <% end %>
+<% end %>
