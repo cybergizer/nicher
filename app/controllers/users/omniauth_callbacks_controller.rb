@@ -1,4 +1,7 @@
+# rubocop:disable Style/ClassAndModuleChildren
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  before_action :set_user
+
   def facebook
     callback_from :facebook
   end
@@ -7,17 +10,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :github
   end
 
+  # :reek:UncommunicativeMethodName
   def google_oauth2
-    callback_from :google_oath2
+    callback_from :google_oauth2
   end
 
   private
 
-  def callback_from(provider)
-    provider = provider.to_s
-
+  def set_user
     @user = User.find_for_oauth(request.env['omniauth.auth'])
+  end
 
+  def callback_from(provider)
     if @user.persisted?
       sign_in_and_redirect @user, event: %s[authentication] # this will throw if @user is not activated
       set_flash_message(:notice, :success, kind: provider.capitalize) if is_navigational_format?
@@ -27,3 +31,4 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 end
+# rubocop:enable Style/ClassAndModuleChildren

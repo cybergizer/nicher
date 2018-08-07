@@ -5,26 +5,24 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise %s[database_authenticatable], %s[registerable],
          %s[recoverable], %s[rememberable], %s[trackable], %s[validatable], %s[omniauthable],
-         omniauth_providers: [%s[facebook], %s[github], %s[google_oauth2]]
+         omniauth_providers: %i[facebook github google_oauth2]
 
   def self.find_for_oauth(auth)
-    user ||= User.where(uid: auth.uid, provider: auth.provider).first
+    user = User.where(uid: auth.uid, provider: auth.provider).first
 
-    unless user
-      user = User.create(
-        uid:      auth.uid,
-        provider: auth.provider,
-        email:    User.dummy_email(auth),
-        password: Devise.friendly_token[0, 20]
-      )
-    end
+    user ||= User.create(
+      uid:      auth.uid,
+      provider: auth.provider,
+      email:    User.dummy_email(auth),
+      password: Devise.friendly_token[0, 20]
+    )
 
     user
   end
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = (session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info'])
+      if (data = session['devise.facebook_data']) && session['devise.facebook_data']['extra']['raw_info']
         user.email = data['email'] if user.email.blank?
       end
     end
