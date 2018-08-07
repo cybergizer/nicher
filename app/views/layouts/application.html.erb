@@ -17,6 +17,22 @@
   </head>
 
   <body>
+    <div id="notify">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+    <div id="user-info">
+      <% if user_signed_in? %>
+        <%#= current_user.name %>
+        [<%= link_to 'Sign out', destroy_user_session_path, method: :delete  %>]
+      <% else %>
+        <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+        <br>
+        <%= link_to "Sign in with Github", user_github_omniauth_authorize_path %>
+        <br>
+        <%= link_to "Sign in with Google Plus", user_google_oauth2_omniauth_authorize_path %>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
