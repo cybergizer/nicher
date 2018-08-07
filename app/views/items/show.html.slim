@@ -5,6 +5,9 @@ p
 p
   strong Description:
   = @item.description
+p
+  strong Category:
+  = @item.category&.name
 = link_to 'Edit', edit_item_path(@item)
 | \
 = link_to 'Back', items_path

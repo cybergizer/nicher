@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 2018_08_09_155608) do
     t.bigint "rent_item_id"
     t.index ["niche_id"], name: "index_items_on_niche_id"
     t.index ["rent_item_id"], name: "index_items_on_rent_item_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -100,6 +102,7 @@ ActiveRecord::Schema.define(version: 2018_08_09_155608) do
 
   add_foreign_key "items", "niches"
   add_foreign_key "items", "rent_items"
+  add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
   add_foreign_key "niches", "users"
 end
