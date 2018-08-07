@@ -28,8 +28,12 @@ RSpec.describe LocationsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Location. As you add validations to Location, be sure to
   # adjust the attributes here as well.
+  let(:user) { User.create(email: 'test@example.com', password: 'password123', password_confirmation: 'password123') }
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: 'dfsdfsdf',
+      user_id: user.id
+    }
   }
 
   let(:invalid_attributes) {
@@ -137,5 +141,4 @@ RSpec.describe LocationsController, type: :controller do
       expect(response).to redirect_to(locations_url)
     end
   end
-
 end
