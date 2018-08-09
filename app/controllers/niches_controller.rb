@@ -1,10 +1,10 @@
-class LocationsController < ApplicationController
-  before_action :set_location, only: %i[show edit update destroy]
+class NichesController < ApplicationController
+  before_action :set_niche, only: %i[show edit update destroy]
 
   # GET /locations
   # GET /locations.json
   def index
-    @locations = current_user.locations.where(parent_id: nil)
+    @niches = current_user.niches
   end
 
   # GET /locations/1
@@ -13,7 +13,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/new
   def new
-    @location = current_user.locations.create
+    @niche = current_user.niches.create
   end
 
   # GET /locations/1/edit
@@ -22,10 +22,10 @@ class LocationsController < ApplicationController
   # POST /locations
   # POST /locations.json
   def create
-    @location = current_user.locations.create(location_params)
+    @niche = current_user.niches.create(niche_params)
 
-    if @location.save
-      redirect_to @location
+    if @niche.save
+      redirect_to niche_url(@niche)
     else
       render :new
     end
@@ -34,8 +34,8 @@ class LocationsController < ApplicationController
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
   def update
-    if @location.update(location_params)
-      redirect_to @location
+    if @niche.update(niche_params)
+      redirect_to niche_url(@niche)
     else
       render :edit
     end
@@ -44,19 +44,19 @@ class LocationsController < ApplicationController
   # DELETE /locations/1
   # DELETE /locations/1.json
   def destroy
-    @location.destroy
-    redirect_to locations_url
+    @niche.destroy
+    redirect_to niches_url
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_location
-    @location = Location.find(params[:id])
+  def set_niche
+    @niche = Niche.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def location_params
-    params.require(:location).permit(:name, :parent_id)
+  def niche_params
+    params.require(:niche).permit(:name)
   end
 end

@@ -1,0 +1,16 @@
+= form_with(model: niche, local: true) do |form|
+  - if niche.errors.any?
+    #error_explanation
+       h2
+         = pluralize(niche.errors.count, "error")
+         | prohibited this location from being saved:
+       ul
+         - niche.errors.full_messages.each do |message|
+           li= message
+
+  .form-group
+    = form.label :name
+    = form.text_field :name
+
+  .actions
+     = form.submit

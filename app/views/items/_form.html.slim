@@ -13,8 +13,5 @@
   .form-group
     = form.label :description
     = form.text_area :description
-  .form-group
-    = form.label :location_id
-    = form.collection_select :location_id, current_user.locations,:id,:name, include_blank: true
   .actions
     = form.submit
