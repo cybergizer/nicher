@@ -1,0 +1,17 @@
+p#notice
+  = notice
+p
+  strong
+    | Name:
+  = @user.user_profile.full_name
+p
+  strong
+    | City:
+  = @user.user_profile.city
+p
+  strong
+    | Description:
+  = @user.user_profile.description
+= link_to 'Edit', edit_user_path
+|  |
+= link_to 'Back', items_path
