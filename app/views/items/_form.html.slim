@@ -13,5 +13,8 @@
   .form-group
     = form.label :description
     = form.text_area :description
+  .form-group
+    = form.label :niche_id
+    = form.collection_select :niche_id, current_user.niches,:id,:name, include_blank: true
   .actions
     = form.submit

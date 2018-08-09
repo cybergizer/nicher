@@ -27,6 +27,26 @@ table.table
           = link_to 'Edit', edit_item_path(item)
         td
           = link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
+- if @niche.children.any?
+  h1
+    | Children Niches
+  table.table
+    thead
+      tr
+        th
+          | Name
+        th[colspan="3"]
+    tbody
+      - @niche.children.each do |niche|
+        tr
+          td
+            = niche.name
+          td
+            = link_to 'Show', niche
+          td
+            = link_to 'Edit', edit_niche_path(niche)
+          td
+            = link_to 'Destroy', niche, method: :delete, data: { confirm: 'Are you sure?' }
 = link_to 'Edit', edit_niche_path(@niche)
 |  | 
 = link_to 'Back', niches_path

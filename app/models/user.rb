@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :items, dependent: :delete_all
+  has_many :items, dependent: :destroy
   has_many :niches, class_name: 'Niche', dependent: :delete_all
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
