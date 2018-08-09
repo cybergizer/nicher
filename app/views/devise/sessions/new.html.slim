@@ -1,0 +1,26 @@
+.container
+  .login-form
+    .main-div
+      .panel
+        - if notice
+          p.alert.alert-success= notice
+        - if alert
+          p.alert.alert-danger= alert
+        h2 Log in
+        p Please enter your email and password
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .form-group
+            = f.label :email
+            br/
+            = f.email_field :email, autofocus: true, autocomplete: "email"
+          .form-group
+            = f.label :password
+            br/
+            = f.password_field :password, autocomplete: "off"
+          - if devise_mapping.rememberable?
+            .form-group
+              = f.check_box :remember_me
+              = f.label :remember_me
+          div
+            = f.submit "Log in", :class => "btn btn-primary"
+        = render "devise/shared/links"
