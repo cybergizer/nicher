@@ -1,4 +1,6 @@
 class NichesController < ApplicationController
+  include ApplicationHelper
+
   before_action :set_niche, only: %i[show edit update destroy]
 
   # GET /locations
@@ -22,10 +24,9 @@ class NichesController < ApplicationController
   # POST /locations
   # POST /locations.json
   def create
-    parent = current_user.niches.find_by(id: niche_params[:parent])
     @niche = current_user.niches.create(name: niche_params[:name], parent: parent)
     if @niche.save
-      redirect_to niche_url(@niche)
+      redirect_to @niche
     else
       render :new
     end
@@ -34,9 +35,8 @@ class NichesController < ApplicationController
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
   def update
-    parent = current_user.niches.find_by(id: niche_params[:parent])
     if @niche.update(name: niche_params[:name], parent: parent)
-      redirect_to niche_url(@niche)
+      redirect_to @niche
     else
       render :edit
     end
@@ -53,11 +53,15 @@ class NichesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_niche
-    @niche = Niche.find(params[:id])
+    @niche = set_resource
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def niche_params
-    params.require(:niche).permit(:name, :parent)
+    model_params(:niche)
+  end
+
+  def parent
+    current_user.niches.find_by(id: niche_params[:parent_id])
   end
 end

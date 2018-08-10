@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  include ApplicationHelper
+
   before_action :set_item, only: %i[show edit update destroy]
 
   def index
@@ -39,10 +41,10 @@ class ItemsController < ApplicationController
   private
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = set_resource
   end
 
   def item_params
-    params.require(:item).permit(:title, :description, :niche_id)
+    model_params(:item)
   end
 end

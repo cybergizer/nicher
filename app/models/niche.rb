@@ -1,4 +1,6 @@
 class Niche < ApplicationRecord
+  PARAMS = %i[name parent_id].freeze
+
   has_many :items, dependent: :delete_all
   belongs_to :user
   has_ancestry

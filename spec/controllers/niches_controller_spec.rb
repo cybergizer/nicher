@@ -92,7 +92,7 @@ RSpec.describe NichesController, type: :controller do
     it "returns a success response (i.e. to display the 'edit' template)" do
       niche = Niche.create! valid_attributes
       put :update, params: {id: niche.to_param, niche: invalid_attributes}, session: valid_session
-      expect(response).to_not be_successful
+      expect(response).to be_successful
     end
   end
 
