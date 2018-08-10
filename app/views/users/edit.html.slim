@@ -1,4 +1,4 @@
-= form_for @user do |form|
+= form_for current_user do |form|
   = form.fields_for :user_profile do |ff|
     .form-group
       = ff.label :full_name
