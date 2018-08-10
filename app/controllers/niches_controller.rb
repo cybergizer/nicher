@@ -24,7 +24,7 @@ class NichesController < ApplicationController
   # POST /locations
   # POST /locations.json
   def create
-    @niche = current_user.niches.create(name: niche_params[:name], parent: parent)
+    @niche = current_user.niches.create(processed_params)
     if @niche.save
       redirect_to @niche
     else
@@ -35,7 +35,7 @@ class NichesController < ApplicationController
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
   def update
-    if @niche.update(name: niche_params[:name], parent: parent)
+    if @niche.update(processed_params)
       redirect_to @niche
     else
       render :edit
@@ -58,10 +58,14 @@ class NichesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def niche_params
-    model_params(:niche)
+    @niche_params ||= model_params(:niche)
+  end
+
+  def processed_params
+    niche_params.merge(parent: parent)
   end
 
   def parent
-    current_user.niches.find_by(id: niche_params[:parent_id])
+    current_user.niches.find_by(id: niche_params.delete(:parent_id))
   end
 end

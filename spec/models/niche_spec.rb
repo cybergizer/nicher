@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Niche, type: :model do
   let(:user) { User.create(email: 'test@example.com', password: 'password123', password_confirmation: 'password123') }
   it "is valid with valid attributes" do
-    niche = Niche.create(name: 'dwe', user_id: user.id)
+    niche = Niche.create(name: 'Home', user_id: user.id)
     expect(niche).to be_valid
   end
 
