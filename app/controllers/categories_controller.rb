@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  include ApplicationHelper
+
   before_action :set_category, only: %i[show edit update destroy]
 
   def index
@@ -39,10 +41,10 @@ class CategoriesController < ApplicationController
   private
 
   def set_category
-    @category = Category.find(params[:id])
+    @category = set_resource
   end
 
   def category_params
-    params.require(:category).permit(:name, :parent_id)
+    model_params(:category)
   end
 end
