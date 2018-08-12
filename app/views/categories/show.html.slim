@@ -1,6 +1,53 @@
 p#notice
   = notice
-= render @category
+p
+  strong
+    | Name:
+  = @category.name
+- if @category.items.any?
+  h1
+    | Items
+  table.table
+    thead
+      tr
+        th
+          | Title
+        th
+          | Description
+        th[colspan="3"]
+    tbody
+      - @category.items.each do |item|
+        tr
+          td
+            = item.title
+          td
+            = item.description
+          td
+            = link_to 'Show', item
+          td
+            = link_to 'Edit', edit_item_path(item)
+          td
+            = link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
+- if @category.children.any?
+  h1
+    | Children Categories
+  table.table
+    thead
+      tr
+        th
+          | Name
+        th[colspan="3"]
+    tbody
+      - @category.children.each do |category|
+        tr
+          td
+            = category.name
+          td
+            = link_to 'Show', category
+          td
+            = link_to 'Edit', edit_category_path(category)
+          td
+            = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
 = link_to 'Edit', edit_category_path(@category)
-|  | 
+|  |
 = link_to 'Back', categories_path

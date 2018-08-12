@@ -4,19 +4,19 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[show edit update destroy]
 
   def index
-    @categories = Category.roots
+    @categories = current_user.categories.roots
   end
 
   def show; end
 
   def new
-    @category = Category.new
+    @category = current_user.categories.create
   end
 
   def edit; end
 
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.create(category_params)
 
     if @category.save
       redirect_to @category

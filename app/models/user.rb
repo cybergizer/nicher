@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :user_profile, allow_destroy: true
 
+  has_many :categories, dependent: :destroy
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

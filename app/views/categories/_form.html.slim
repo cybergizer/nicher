@@ -13,6 +13,6 @@
     = form.text_field :name
   .form-group
     = form.label :parent_id
-    = form.collection_select(:parent_id, Category.all, :id, :name, :include_blank => "Please select")
+    = form.collection_select(:parent_id, current_user.categories, :id, :name, :include_blank => "Please select")
   .actions
     = form.submit
