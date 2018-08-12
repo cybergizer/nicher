@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  PARAMS = %i[title description niche_id].freeze
+  PARAMS = %i[title description niche_id category_id].freeze
 
   belongs_to :user
 

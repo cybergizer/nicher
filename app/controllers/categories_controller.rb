@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  include ApplicationHelper
+  include ApplicationConcern
 
   before_action :set_category, only: %i[show edit update destroy]
 
