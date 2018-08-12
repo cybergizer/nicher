@@ -46,6 +46,7 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'pry'
   gem 'dotenv-rails'
+  gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
 end
 
 group :development do
@@ -68,7 +69,6 @@ group :test do
   gem 'chromedriver-helper'
   gem 'rspec-rails'
   gem 'rails-controller-testing'
-
   gem 'factory_bot_rails'
 end
 

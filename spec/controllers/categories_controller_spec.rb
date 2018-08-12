@@ -3,48 +3,64 @@ require 'rails_helper'
 RSpec.describe CategoriesController, type: :controller do
   login_user
 
-  let(:valid_attributes) {
-    {
-      name: 'Clothes',
-    }
-  }
-
-  let(:invalid_attributes) {
-    {
-      parent_id: nil
-    }
-  }
-
-  let(:valid_session) { {} }
+  let(:category) { create(:category) }
+  let(:valid_attributes) { attributes_for(:category) }
+  let(:invalid_attributes) { attributes_for(:invalid_category) }
 
   describe 'GET #index' do
-    it 'returns a success response' do
-      Category.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_successful
+    before do
+      get :index
+    end
+
+    it "populates an array of categories" do
+      category = create(:category)
+      assigns(:categories).should include category
+    end
+
+    it 'renders the :index view' do
+      expect(response).to render_template :index
     end
   end
 
   describe 'GET #show' do
-    it 'returns a success response' do
-      category = Category.create! valid_attributes
-      get :show, params: {id: category.to_param}, session: valid_session
-      expect(response).to be_successful
+    before do
+      get :show, params: { id: category }
+    end
+
+    it 'assigns the requested category to @category' do
+      assigns(:category).should eq(category)
+    end
+
+    it "renders the #show view" do
+      expect(response).to render_template :show
     end
   end
 
   describe 'GET #new' do
-    it 'returns a success response' do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_successful
+    before do
+      get :new
+    end
+
+    it 'assigns the category' do
+      assigns(:category).should be_a_new(Category)
+    end
+
+    it "renders the #new view" do
+      expect(response).to render_template :new
     end
   end
 
   describe 'GET #edit' do
-    it 'returns a success response' do
-      category = Category.create! valid_attributes
-      get :edit, params: {id: category.to_param}, session: valid_session
-      expect(response).to be_successful
+    before do
+      get :edit, params: { id: category }
+    end
+
+    it 'assigns the category' do
+      expect(assigns(:category)).to eq(category)
+    end
+
+    it "renders the @edit view" do
+      expect(response).to render_template :edit
     end
   end
 
@@ -52,50 +68,64 @@ RSpec.describe CategoriesController, type: :controller do
     context 'with valid params' do
       it 'creates a new Category' do
         expect {
-          post :create, params: {category: valid_attributes}, session: valid_session
+          post :create, params: { category: valid_attributes }
         }.to change(Category, :count).by(1)
       end
 
       it 'redirects to the created category' do
-        post :create, params: {category: valid_attributes}, session: valid_session
+        post :create, params: { category: valid_attributes }
         expect(response).to redirect_to(Category.last)
       end
     end
 
     context 'with invalid params' do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {category: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+      it "does not save the new category" do
+        expect{
+          post :create, params: { category: invalid_attributes }
+        }.to_not change(Category,:count)
+      end
+
+      it "re-renders the new method" do
+        post :create, params: { category: invalid_attributes }
+        expect(response).to render_template :new
       end
     end
   end
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) {
-        {
-          name: 'Shoes'
-        }
-      }
+      before do
+        put :update, params: { id: category, category: new_attributes }
+      end
+
+      let(:new_attributes) { attributes_for(:new_category) }
 
       it 'updates the requested category' do
-        category = Category.create! valid_attributes
-        put :update, params: {id: category.to_param, category: new_attributes}, session: valid_session
+        assigns(:category).should eq(category)
+      end
+
+      it "changes category's attributes" do
         category.reload
+        category.name.should eq("Toys")
       end
 
       it 'redirects to the category' do
-        category = Category.create! valid_attributes
-        put :update, params: {id: category.to_param, category: valid_attributes}, session: valid_session
         expect(response).to redirect_to(category)
       end
     end
 
     context 'with invalid params' do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        category = Category.create! valid_attributes
-        put :update, params: {id: category.to_param, category: invalid_attributes}, session: valid_session
-        expect(response).to_not be_successful
+      before do
+        put :update, params: { id: category, category: invalid_attributes }
+      end
+
+      it "does not change category's attributes" do
+        category.reload
+        category.name.should_not be_nil
+      end
+
+      it "re-renders the edit method " do
+        expect(response).to render_template :edit
       end
     end
   end
@@ -104,13 +134,12 @@ RSpec.describe CategoriesController, type: :controller do
     it 'destroys the requested category' do
       category = Category.create! valid_attributes
       expect {
-        delete :destroy, params: {id: category.to_param}, session: valid_session
+        delete :destroy, params: { id: category }
       }.to change(Category, :count).by(-1)
     end
 
     it 'redirects to the categories list' do
-      category = Category.create! valid_attributes
-      delete :destroy, params: {id: category.to_param}, session: valid_session
+      delete :destroy, params: { id: category }
       expect(response).to redirect_to(categories_url)
     end
   end
