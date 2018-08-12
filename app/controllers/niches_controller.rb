@@ -1,5 +1,5 @@
 class NichesController < ApplicationController
-  include ApplicationHelper
+  include ApplicationConcern
 
   before_action :set_niche, only: %i[show edit update destroy]
 

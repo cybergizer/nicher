@@ -19,7 +19,7 @@ html
     .overlay
     /! #END# Overlay For Sidebars
     /! Search Bar
-    - if @current_user
+    - if @current_user || @item
 	    .search-bar
 	      .search-icon
 	        i.material-icons search
@@ -43,8 +43,10 @@ html
 	        = render partial: "shared/footer"
 	        /! #Footer
 	      /! #END# Left Sidebar
-    section.content
-      .container-fluid
-        .block-header
-          h2 PAGE
+        section.content
+          .container-fluid
+            .block-header
+              h2 PAGE
+            = yield
+    - else
         = yield
