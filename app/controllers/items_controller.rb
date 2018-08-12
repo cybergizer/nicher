@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  include ApplicationConcern
+
   before_action :set_item, only: %i[show edit update destroy]
   helper_method :sort_column, :sort_direction
 
@@ -52,10 +54,10 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = set_resource
   end
 
   def item_params
-    params.require(:item).permit(:title, :description)
+    model_params(:item)
   end
 end
