@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  let(:user) { User.create(email: 'test@gmail.com', password: 'password', password_confirmation: 'password') }
+  let(:user) { create(:user) }
   subject { described_class.new(title: 'Watch', description: 'Apple watch', user_id: user.id) }
 
   describe 'Validations' do
