@@ -6,7 +6,7 @@ Install Postgresql: [https://www.postgresql.org/download/linux/ubuntu/](https://
 
 After, in terminal
 ```bash
-su postres
+su postgres
 psql
 ```
 

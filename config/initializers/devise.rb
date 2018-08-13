@@ -279,5 +279,11 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
-  config.reconfirmable = false
+  # Social network providers
+  config.omniauth :github,        ENV['GITHUB_API'],       ENV['GITHUB_KEY']
+  config.omniauth :facebook,      ENV['FACEBOOK_API'],     ENV['FACEBOOK_KEY']
+  config.omniauth :vkontakte,     ENV['VKONTAKTE_KEY'],    ENV['VKONTAKTE_SECRET']
+  config.omniauth :yandex,        ENV['YANDEX_API'],       ENV['YANDEX_KEY']
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+  # config.omniauth :gplus, ENV['GPLUS_KEY'], ENV['GPLUS_SECRET']
 end
