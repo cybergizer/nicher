@@ -49,7 +49,6 @@ RSpec.describe NichesController, type: :controller do
     it 'assigns the niche' do
       expect(assigns(:niche)).to be_a_new(Niche)
     end
-
     it "renders the new view page" do
       expect(response).to render_template :new
     end
