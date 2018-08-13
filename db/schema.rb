@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_08_13_092407) do
+=======
+ActiveRecord::Schema.define(version: 2018_08_13_102235) do
+>>>>>>> Add reference between item and rent_item
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
