@@ -4,112 +4,168 @@ RSpec.describe NichesController, type: :controller do
   login_user
 
   let(:user) { subject.current_user }
-  let(:valid_attributes) {
-    {
-      name: 'Home',
-      user_id: user.id
-    }
-  }
+  let(:niche) { create(:niche, user: user) }
+  let(:valid_attributes) { attributes_for(:niche).merge(user_id: user.id) }
+  let(:invalid_attributes) { attributes_for(:invalid_niche).merge(user_id: 1) }
 
-  let(:invalid_attributes) {
-    {
-      user_id: user.id
-    }
-  }
+  describe 'GET #index' do
 
-  let(:valid_session) { {} }
+    before do
+      get :index
+    end
 
-  describe "GET #index" do
-    it "returns a success response" do
-      get :index, params: {}, session: valid_session
-      expect(response).to be_successful
+    it 'renders the :index view' do
+      expect(response).to render_template :index
+    end
+
+    it "redirects to index page" do
+      expect(response).to have_http_status(200)
     end
   end
 
-  describe "GET #show" do
-    it "returns a success response" do
-      niche = Niche.create!(valid_attributes)
-      get :show, params: {id: niche.to_param}, session: valid_session
-      expect(response).to be_successful
+  describe 'GET #show' do
+    before do
+      get :show, params: { id: niche }
+    end
+
+    it 'assigns the requested niche to @niche' do
+      expect(assigns(:niche)).to eq(niche)
+    end
+
+    it "renders the #show view" do
+      expect(response).to render_template :show
+    end
+
+    it "redirects to show page" do
+      expect(response).to have_http_status(200)
     end
   end
 
-  describe "GET #new" do
-    it "returns a success response" do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_successful
+  describe 'GET #new' do
+    before do
+      get :new
+    end
+
+    it 'assigns the niche' do
+      expect(assigns(:niche)).to be_a_new(Niche)
+    end
+
+    it "renders the #new view" do
+      expect(response).to render_template :new
+    end
+
+    it "redirects to new view page" do
+      expect(response).to have_http_status(200)
     end
   end
 
-  describe "GET #edit" do
-    it "returns a success response" do
-      niche = Niche.create!(valid_attributes)
-      get :edit, params: {id: niche.to_param}, session: valid_session
-      expect(response).to be_successful
+  describe 'GET #edit' do
+    before do
+      get :edit, params: { id: niche }
+    end
+
+    it 'assigns the niche' do
+      expect(assigns(:niche)).to eq(niche)
+    end
+
+    it "renders the @edit view" do
+      expect(response).to render_template :edit
+    end
+
+    it "redirects to edit view page" do
+      expect(response).to have_http_status(200)
     end
   end
 
-  describe "POST #create" do
-    it "creates a new Niche" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Niche' do
+        expect {
+          post :create, params: { niche: valid_attributes }
+        }.to change(Niche, :count).by(1)
+      end
+
+      it 'redirects to the created niche' do
+        post :create, params: { niche: valid_attributes }
+        niche = assigns(:niche)
+        expect(response).to redirect_to(niche)
+      end
+    end
+
+    context 'with invalid params' do
+      it "does not save the new niche" do
+        expect{
+          post :create, params: { niche: invalid_attributes }
+        }.to_not change(Niche,:count)
+      end
+
+      it "re-renders the new method" do
+        post :create, params: { niche: invalid_attributes }
+        params = assigns(params)
+        expect(params['niche'].errors).to be_present
+        expect(response).to render_template :new
+      end
+
+      it "redirects to create view page" do
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+
+  describe 'PUT #update' do
+    context 'with valid params' do
+      before do
+        put :update, params: { id: niche, niche: new_attributes }
+      end
+
+      let(:new_attributes) { attributes_for(:new_niche).merge(user_id: user.id) }
+
+      it 'updates the requested niche' do
+        expect(assigns(:niche)).to eq(niche)
+      end
+
+      it "changes niche's attributes" do
+        niche.reload
+        expect(niche.name).to eq('Garage')
+      end
+
+      it 'redirects to the niche' do
+        expect(response).to redirect_to(niche)
+      end
+    end
+
+    context 'with invalid params' do
+      before do
+        put :update, params: { id: niche, niche: invalid_attributes }
+      end
+
+      it "does not change niche's attributes" do
+        niche.reload
+        expect(niche.name).to_not be_nil
+      end
+
+      it "re-renders the edit method " do
+        params = assigns(params)
+        expect(params['niche'].errors).to be_present
+        expect(response).to render_template :edit
+      end
+
+      it "redirects to update view page" do
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'destroys the requested category' do
+      niche = create(:niche, user: user)
       expect {
-        post :create, params: {niche: valid_attributes}, session: valid_session
-      }.to change(Niche, :count).by(1)
-    end
-
-    it "redirects to the created niche" do
-      post :create, params: {niche: valid_attributes}, session: valid_session
-      niche = assigns(:niche)
-      expect(response).to redirect_to(niche)
-    end
-
-    it "returns a success response (i.e. to display the 'new' template)" do
-      post :create, params: {niche: invalid_attributes}, session: valid_session
-      expect(response).to be_successful
-    end
-  end
-
-  describe "PUT #update" do
-    let(:new_attributes) {
-      {
-        name: 'Box',
-        user_id: user.id
-      }
-    }
-
-    let(:not_valid_new_attributes) {
-      {
-        name: 'Box',
-        user_id: 1
-      }
-    }
-
-    it "updates the requested niche" do
-      niche = Niche.create!(valid_attributes)
-      put :update, params: {id: niche.to_param, niche: new_attributes}, session: valid_session
-      niche.reload
-      expect(niche.name).to eq(new_attributes[:name])
-      expect(response).to redirect_to(niche)
-    end
-
-    it "check that user can not be changed" do
-      niche = Niche.create!(valid_attributes)
-      put :update, params: {id: niche.to_param, niche: not_valid_new_attributes}, session: valid_session
-      niche.reload
-      expect(niche.user_id).not_to eq(not_valid_new_attributes[:user_id])
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested niche" do
-      niche = Niche.create!(valid_attributes)
-      expect {
-        delete :destroy, params: {id: niche.to_param}, session: valid_session
+        delete :destroy, params: { id: niche }
       }.to change(Niche, :count).by(-1)
     end
 
-    it "redirects to the niches list" do
-      niche = Niche.create!(valid_attributes)
-      delete :destroy, params: {id: niche.to_param}, session: valid_session
+    it 'redirects to the categories list' do
+      delete :destroy, params: { id: niche }
       expect(response).to redirect_to(niches_url)
     end
   end
