@@ -2,8 +2,11 @@ class Niche < ApplicationRecord
   PARAMS = %i[name parent_id].freeze
 
   has_many :items, dependent: :delete_all
+
   belongs_to :user
+
   has_ancestry
+
   validates :name, presence: true
 
   def add(niche)
@@ -14,13 +17,11 @@ class Niche < ApplicationRecord
   def remove(niche)
     our_niche = self
     niche = our_niche.descendants.find_by(id: niche.id)
-    niche.parent = nil
-    niche.save
-  end
-
-  def delete(niche)
-    our_niche = self
-    niche = our_niche.descendants.find_by(id: niche.id)
-    niche.destroy
+    if niche
+      niche.parent = nil
+      niche.save
+    else
+      false
+    end
   end
 end

@@ -15,7 +15,7 @@ class NichesController < ApplicationController
 
   # GET /locations/new
   def new
-    @niche = current_user.niches.create
+    @niche = current_user.niches.build
   end
 
   # GET /locations/1/edit

@@ -9,5 +9,6 @@ FactoryBot.define do
 
   factory :new_niche, class: 'Niche' do
     name 'Garage'
+    user_id nil
   end
 end

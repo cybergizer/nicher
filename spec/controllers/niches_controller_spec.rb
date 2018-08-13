@@ -6,7 +6,7 @@ RSpec.describe NichesController, type: :controller do
   let(:user) { subject.current_user }
   let(:niche) { create(:niche, user: user) }
   let(:valid_attributes) { attributes_for(:niche).merge(user_id: user.id) }
-  let(:invalid_attributes) { attributes_for(:invalid_niche).merge(user_id: 1) }
+  let(:invalid_attributes) { attributes_for(:invalid_niche) }
 
   describe 'GET #index' do
 
@@ -18,7 +18,7 @@ RSpec.describe NichesController, type: :controller do
       expect(response).to render_template :index
     end
 
-    it "redirects to index page" do
+    it "returns a 200 status code" do
       expect(response).to have_http_status(200)
     end
   end
@@ -36,7 +36,7 @@ RSpec.describe NichesController, type: :controller do
       expect(response).to render_template :show
     end
 
-    it "redirects to show page" do
+    it "returns a 200 status code" do
       expect(response).to have_http_status(200)
     end
   end
@@ -50,11 +50,11 @@ RSpec.describe NichesController, type: :controller do
       expect(assigns(:niche)).to be_a_new(Niche)
     end
 
-    it "renders the #new view" do
+    it "renders the new view page" do
       expect(response).to render_template :new
     end
 
-    it "redirects to new view page" do
+    it "returns a 200 status code" do
       expect(response).to have_http_status(200)
     end
   end
@@ -68,11 +68,11 @@ RSpec.describe NichesController, type: :controller do
       expect(assigns(:niche)).to eq(niche)
     end
 
-    it "renders the @edit view" do
+    it "renders the edit view page" do
       expect(response).to render_template :edit
     end
 
-    it "redirects to edit view page" do
+    it "returns a 200 status code" do
       expect(response).to have_http_status(200)
     end
   end
@@ -106,7 +106,7 @@ RSpec.describe NichesController, type: :controller do
         expect(response).to render_template :new
       end
 
-      it "redirects to create view page" do
+      it "returns a 200 status code" do
         expect(response).to have_http_status(200)
       end
     end
@@ -150,7 +150,7 @@ RSpec.describe NichesController, type: :controller do
         expect(response).to render_template :edit
       end
 
-      it "redirects to update view page" do
+      it "returns a 200 status code" do
         expect(response).to have_http_status(200)
       end
     end
