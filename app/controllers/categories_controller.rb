@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   def show; end
 
   def new
-    @category = current_user.categories.create
+    @category = current_user.categories.build
   end
 
   def edit; end

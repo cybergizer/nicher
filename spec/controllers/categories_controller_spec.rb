@@ -111,7 +111,7 @@ RSpec.describe CategoriesController, type: :controller do
       it "re-renders the new method" do
         post :create, params: { category: invalid_attributes }
         category = assigns(:category)
-        expect(category.errors).to be_present
+        expect(category.errors.messages[:name]).to be_present
         expect(response).to render_template :new
       end
     end
@@ -157,7 +157,7 @@ RSpec.describe CategoriesController, type: :controller do
 
       it "re-renders the edit method " do
         category = assigns(:category)
-        expect(category.errors).to be_present
+        expect(category.errors.messages[:name]).to be_present
         expect(response).to render_template :edit
       end
     end
