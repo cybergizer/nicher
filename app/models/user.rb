@@ -1,13 +1,11 @@
 class User < ApplicationRecord
   has_many :items, dependent: :destroy
-
   has_many :niches, dependent: :delete_all
+  has_many :categories, dependent: :destroy
 
   has_one :user_profile, dependent: :destroy
 
   accepts_nested_attributes_for :user_profile, allow_destroy: true
-
-  has_many :categories, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

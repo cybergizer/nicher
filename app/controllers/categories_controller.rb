@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def create
-    @category = current_user.categories.create(category_params)
+    @category = current_user.categories.new(category_params)
 
     if @category.save
       redirect_to @category, notice: 'Category was successfully created.'
