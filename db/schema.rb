@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_09_075915) do
+ActiveRecord::Schema.define(version: 2018_08_13_112816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "title"
@@ -21,7 +29,33 @@ ActiveRecord::Schema.define(version: 2018_08_09_075915) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "niche_id"
+    t.bigint "rent_item_id"
+    t.index ["niche_id"], name: "index_items_on_niche_id"
+    t.index ["rent_item_id"], name: "index_items_on_rent_item_id"
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "niches", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_niches_on_ancestry"
+    t.index ["user_id"], name: "index_niches_on_user_id"
+  end
+
+  create_table "rent_items", force: :cascade do |t|
+    t.bigint "item_id"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "owner_id"
+    t.string "owner_type"
+    t.integer "tenant_id"
+    t.string "tenant_type"
+    t.index ["item_id"], name: "index_rent_items_on_item_id"
   end
 
   create_table "user_profiles", force: :cascade do |t|
@@ -56,5 +90,8 @@ ActiveRecord::Schema.define(version: 2018_08_09_075915) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "items", "niches"
+  add_foreign_key "items", "rent_items"
   add_foreign_key "items", "users"
+  add_foreign_key "niches", "users"
 end

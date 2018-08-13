@@ -1,0 +1,172 @@
+require 'rails_helper'
+
+RSpec.describe NichesController, type: :controller do
+  login_user
+
+  let(:user) { subject.current_user }
+  let(:niche) { create(:niche, user: user) }
+  let(:valid_attributes) { attributes_for(:niche).merge(user_id: user.id) }
+  let(:invalid_attributes) { attributes_for(:invalid_niche) }
+
+  describe 'GET #index' do
+
+    before do
+      get :index
+    end
+
+    it 'renders the :index view' do
+      expect(response).to render_template :index
+    end
+
+    it "returns a 200 status code" do
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'GET #show' do
+    before do
+      get :show, params: { id: niche }
+    end
+
+    it 'assigns the requested niche to @niche' do
+      expect(assigns(:niche)).to eq(niche)
+    end
+
+    it "renders the #show view" do
+      expect(response).to render_template :show
+    end
+
+    it "returns a 200 status code" do
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'GET #new' do
+    before do
+      get :new
+    end
+
+    it 'assigns the niche' do
+      expect(assigns(:niche)).to be_a_new(Niche)
+    end
+
+    it "renders the new view page" do
+      expect(response).to render_template :new
+    end
+
+    it "returns a 200 status code" do
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'GET #edit' do
+    before do
+      get :edit, params: { id: niche }
+    end
+
+    it 'assigns the niche' do
+      expect(assigns(:niche)).to eq(niche)
+    end
+
+    it "renders the edit view page" do
+      expect(response).to render_template :edit
+    end
+
+    it "returns a 200 status code" do
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Niche' do
+        expect {
+          post :create, params: { niche: valid_attributes }
+        }.to change(Niche, :count).by(1)
+      end
+
+      it 'redirects to the created niche' do
+        post :create, params: { niche: valid_attributes }
+        niche = assigns(:niche)
+        expect(response).to redirect_to(niche)
+      end
+    end
+
+    context 'with invalid params' do
+      it "does not save the new niche" do
+        expect{
+          post :create, params: { niche: invalid_attributes }
+        }.to_not change(Niche,:count)
+      end
+
+      it "re-renders the new method" do
+        post :create, params: { niche: invalid_attributes }
+        niche = assigns(:niche)
+        expect(niche.errors).to be_present
+        expect(response).to render_template :new
+      end
+
+      it "returns a 200 status code" do
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+
+  describe 'PUT #update' do
+    context 'with valid params' do
+      before do
+        put :update, params: { id: niche, niche: new_attributes }
+      end
+
+      let(:new_attributes) { attributes_for(:new_niche).merge(user_id: user.id) }
+
+      it 'updates the requested niche' do
+        expect(assigns(:niche)).to eq(niche)
+      end
+
+      it "changes niche's attributes" do
+        niche.reload
+        expect(niche.name).to eq('Garage')
+      end
+
+      it 'redirects to the niche' do
+        expect(response).to redirect_to(niche)
+      end
+    end
+
+    context 'with invalid params' do
+      before do
+        put :update, params: { id: niche, niche: invalid_attributes }
+      end
+
+      it "does not change niche's attributes" do
+        niche.reload
+        expect(niche.name).to_not be_nil
+      end
+
+      it "re-renders the edit method " do
+        niche = assigns(:niche)
+        expect(niche.errors).to be_present
+        expect(response).to render_template :edit
+      end
+
+      it "returns a 200 status code" do
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'destroys the requested category' do
+      niche = create(:niche, user: user)
+      expect {
+        delete :destroy, params: { id: niche }
+      }.to change(Niche, :count).by(-1)
+    end
+
+    it 'redirects to the categories list' do
+      delete :destroy, params: { id: niche }
+      expect(response).to redirect_to(niches_url)
+    end
+  end
+end

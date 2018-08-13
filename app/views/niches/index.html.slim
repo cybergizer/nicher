@@ -1,0 +1,23 @@
+p#notice
+  = notice
+h1
+  | Niches
+table.table
+  thead
+    tr
+      th
+        | Name
+      th[colspan="3"]
+  tbody
+    - @niches.each do |niche|
+      tr
+        td
+          = niche.name
+        td
+          = link_to 'Show', niche_path(niche.id)
+        td
+          = link_to 'Edit', edit_niche_path(niche)
+        td
+          = link_to 'Destroy', niche_path(niche.id), method: :delete, data: { confirm: 'Are you sure?' }
+br
+= link_to 'New Niche', new_niche_path, class: 'btn btn-default'
