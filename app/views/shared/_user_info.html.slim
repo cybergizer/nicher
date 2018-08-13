@@ -3,17 +3,17 @@
     /! <img src="https://pp.userapi.com/c834401/v834401188/18f70f/x9dYrYMoCzQ.jpg" width="48" height="48" alt="User" /
     = image_tag("user.png")
   .info-container
-    .name aria-expanded="false" aria-haspopup="true" data-toggle="dropdown"  John Doe
-    .email john.doe@example.com
+    .name aria-expanded="false" aria-haspopup="true" data-toggle="dropdown"  #{current_user&.user_profile&.full_name}
+    .email #{current_user.email}
     .btn-group.user-helper-dropdown
       i.material-icons aria-expanded="true" aria-haspopup="true" data-toggle="dropdown"  keyboard_arrow_down
       ul.dropdown-menu.pull-right
         li
-          a href="javascript:void(0);" 
+          a href= user_path(current_user.id)
             i.material-icons> person
             | Profile
-        li.divider role="separator" 
+        li.divider role="separator"
         li
-          a data-method="delete" href="/users/sign_out" 
+          a data-method="delete" href= destroy_user_session_path
             i.material-icons> input
             | Sign Out
