@@ -55,6 +55,6 @@ class UsersController < ApplicationController
   end
 
   def user_profile_params
-    params.require(:user).permit(user_profile_attributes: %i(full_name city description))
+    params.require(:user).permit(user_profile_attributes: %i(full_name city description avatar avatar_cache))
   end
 end

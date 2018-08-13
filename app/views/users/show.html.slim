@@ -1,17 +1,28 @@
-p#notice
-  = notice
-p
-  strong
-    | Name:
-  = @user_profile.full_name
-p
-  strong
-    | City:
-  = @user_profile.city
-p
-  strong
-    | Description:
-  = @user_profile.description
-= link_to 'Edit', edit_user_path
-|  |
-= link_to 'Back', items_path
+.row
+  .col-sm-12
+    .panel.panel-default
+      .panel-heading.resume-heading
+        .row
+          .col-lg-12
+            .col-xs-12.col-sm-4
+              figure
+                img.img-circle.img-responsive[src=@user_profile.avatar.thumb.url]
+            .col-xs-12.col-sm-8
+              ul.list-group
+                li.list-group-item
+                  | #{@user_profile.full_name}
+                li.list-group-item
+                  | #{@user_profile.city}
+                li.list-group-item
+                  | Some info
+                li.list-group-item
+                  |  Some info
+                li.list-group-item
+                  |  Some info
+                li.list-group-item
+                  |  #{current_user.email}
+        h4
+          |  Description:
+        p
+          |  #{@user_profile.description}
+        = link_to 'Edit profile', edit_user_path, class: 'btn btn-default'
