@@ -17,11 +17,8 @@ class Niche < ApplicationRecord
   def remove(niche)
     our_niche = self
     niche = our_niche.descendants.find_by(id: niche.id)
-    if niche
-      niche.parent = nil
-      niche.save
-    else
-      false
-    end
+    return unless niche
+    niche.parent = nil
+    niche.saver
   end
 end
