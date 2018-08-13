@@ -49,4 +49,18 @@ html
               h2 PAGE
             = yield
     - else
-        = yield
+        nav.navbar
+          .container-fluid
+            .navbar-header
+              a.navbar-toggle.collapsed aria-expanded="false" data-target="#navbar-collapse" data-toggle="collapse" href="javascript:void(0);" 
+              a.bars href="javascript:void(0);" 
+              a.navbar-brand href="https://github.com/cybergizer/nicher"  NICHER+R
+            #navbar-collapse.collapse.navbar-collapse
+                ul.nav.navbar-nav.navbar-right
+                    li
+                      a[href="/users/sign_in"]
+                        i.material-icons
+                          | exit_to_app
+
+        section.main_page_content
+            = yield

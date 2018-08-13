@@ -12,7 +12,7 @@
   -ms-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3)
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3)
   border: none
-  position: fixed
+  position: fixed !important
   top: 0
   left: 0
   z-index: 12
@@ -2364,6 +2364,13 @@ button, input, select, a
 
 section.content
   margin: 100px 15px 0 315px
+  -moz-transition: 0.5s
+  -o-transition: 0.5s
+  -webkit-transition: 0.5s
+  transition: 0.5s
+
+section.main_page_content
+  margin: 100px 15px 0 15px
   -moz-transition: 0.5s
   -o-transition: 0.5s
   -webkit-transition: 0.5s
