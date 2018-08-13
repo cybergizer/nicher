@@ -1,13 +1,11 @@
 class UsersController < ApplicationController
   def show
-    @user_profile = UserProfile.find_or_create_by(user_id: current_user.id) do |profile|
-      profile.full_name = 'Some name'
-      profile.description = 'Some description'
-      profile.city = 'Some city'
-    end
+    @user_profile = user_profile
   end
 
-  def edit; end
+  def edit
+    current_user.build_user_profile unless current_user.user_profile
+  end
 
   def update
     if current_user.update(user_profile_params)
