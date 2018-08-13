@@ -101,8 +101,8 @@ RSpec.describe NichesController, type: :controller do
 
       it "re-renders the new method" do
         post :create, params: { niche: invalid_attributes }
-        params = assigns(params)
-        expect(params['niche'].errors).to be_present
+        niche = assigns(:niche)
+        expect(niche.errors).to be_present
         expect(response).to render_template :new
       end
 
@@ -145,8 +145,8 @@ RSpec.describe NichesController, type: :controller do
       end
 
       it "re-renders the edit method " do
-        params = assigns(params)
-        expect(params['niche'].errors).to be_present
+        niche = assigns(:niche)
+        expect(niche.errors).to be_present
         expect(response).to render_template :edit
       end
 
