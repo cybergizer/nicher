@@ -73,3 +73,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Rails Admin panel
 gem 'rails_admin'
+
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
+gem 'omniauth-yandex'
+# gem 'omniauth-gplus'
+gem 'omniauth-google-oauth2'
