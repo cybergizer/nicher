@@ -19,6 +19,6 @@ class Niche < ApplicationRecord
     niche = our_niche.descendants.find_by(id: niche.id)
     return unless niche
     niche.parent = nil
-    niche.saver
+    niche.save
   end
 end
