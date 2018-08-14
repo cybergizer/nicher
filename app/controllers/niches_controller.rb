@@ -24,7 +24,7 @@ class NichesController < ApplicationController
   # POST /locations
   # POST /locations.json
   def create
-    @niche = current_user.niches.create(processed_params)
+    @niche = current_user.niches.new(processed_params)
     if @niche.save
       redirect_to @niche
     else
