@@ -16,5 +16,8 @@
   .form-group
     = form.label :niche_id
     = form.collection_select :niche_id, current_user.niches,:id,:name, include_blank: true
+  .form-group
+    = form.label :category_id
+    = form.collection_select(:category_id, current_user.categories, :id, :name, :include_blank => "Please select")
   .actions
     = form.submit
