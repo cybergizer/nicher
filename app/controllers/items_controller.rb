@@ -11,14 +11,13 @@ class ItemsController < ApplicationController
   def show; end
 
   def new
-    @item = current_user.items.create
+    @item = current_user.items.build
   end
 
   def edit; end
 
   def create
-    @item = current_user.items.create(item_params)
-
+    @item = current_user.items.new(item_params)
     if @item.save
       redirect_to @item
     else
