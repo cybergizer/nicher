@@ -16,6 +16,14 @@ class ItemsController < ApplicationController
 
   def edit; end
 
+  def rent_form
+    
+  end
+
+  def rent
+
+  end
+
   def create
     @item = current_user.items.new(item_params)
     if @item.save

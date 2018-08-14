@@ -11,6 +11,8 @@
         null,
         1,
         null,
+        1,
+        1,
         null,
         null,
         1,
@@ -200,6 +202,68 @@
         null,
         null
       ],
+      "/Users/vadimserebrennikov/Desktop/nicher/app/controllers/rent_items_controller.rb": [
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
       "/Users/vadimserebrennikov/Desktop/nicher/app/controllers/users_controller.rb": [
         1,
         1,
@@ -229,13 +293,19 @@
         null,
         null
       ],
+      "/Users/vadimserebrennikov/Desktop/nicher/app/models/contact.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
       "/Users/vadimserebrennikov/Desktop/nicher/app/models/item.rb": [
         1,
         1,
         null,
         1,
         1,
-        null,
+        1,
         1,
         null
       ],
@@ -263,6 +333,14 @@
         1,
         1,
         null,
+        null
+      ],
+      "/Users/vadimserebrennikov/Desktop/nicher/app/models/rent_item.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
         null
       ],
       "/Users/vadimserebrennikov/Desktop/nicher/app/models/user_profile.rb": [
@@ -309,6 +387,6 @@
         0
       ]
     },
-    "timestamp": 1534245504
+    "timestamp": 1534249291
   }
 }
