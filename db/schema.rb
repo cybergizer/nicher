@@ -100,7 +100,6 @@ ActiveRecord::Schema.define(version: 2018_08_13_112816) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-
   create_table "versions", force: :cascade do |t|
     t.string "item_type", null: false
     t.integer "item_id", null: false
@@ -111,10 +110,10 @@ ActiveRecord::Schema.define(version: 2018_08_13_112816) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "categories", "users"
+  add_foreign_key "items", "categories"
   add_foreign_key "items", "niches"
   add_foreign_key "items", "rent_items"
   add_foreign_key "items", "users"
   add_foreign_key "niches", "users"
-  add_foreign_key "categories", "users"
-  add_foreign_key "items", "categories"
 end
