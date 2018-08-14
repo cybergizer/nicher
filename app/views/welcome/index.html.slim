@@ -3,102 +3,86 @@ nav.navbar
     .navbar-header
       a.navbar-toggle.collapsed aria-expanded="false" data-target="#navbar-collapse" data-toggle="collapse" href="javascript:void(0);" 
       a.bars href="javascript:void(0);" 
-      a.navbar-brand href="https://github.com/cybergizer/nicher"  NICHER+R
+      a.navbar-brand href="http://lmgtfy.com/?q=nicher%2Br"  NICHER+R
+      = ENV['RAILS_ENV']
     #navbar-collapse.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right
+            li
+              a[href="/items#index"]
+                i.material-icons
+                  | apps
+                small My Items
             li
               a[href="/users/sign_in"]
                 i.material-icons
                   | exit_to_app
-
-
-form[action="/items#index"]
-  button[type="submit" value="home"]
-    | Home
+                small Sign in
 
 body
-  section.main_page_ccontent
-    .container-fluid
-        .col-lg-3.col-md-3.col-sm-6.col-xs-12
-          .info-box.bg-pink.hover-zoom-effect
-            .icon
-              i.material-icons
-                | email
-            .content
-              .text
-                | MESSAGES
-              .number
-                | 15
-        .col-lg-3.col-md-3.col-sm-6.col-xs-12
-          .info-box.bg-blue.hover-zoom-effect
-            .icon
-              i.material-icons
-                | devices
-            .content
-              .text
-                | CPU USAGE
-              .number
-                | 92%
-        .col-lg-3.col-md-3.col-sm-6.col-xs-12
-          .info-box.bg-light-blue.hover-zoom-effect
-            .icon
-              i.material-icons
-                | access_alarm
-            .content
-              .text
-                | ALARM
-              .number
-                | 07:00 AM
-        .col-lg-3.col-md-3.col-sm-6.col-xs-12
-          .info-box.bg-cyan.hover-zoom-effect
-            .icon
-              i.material-icons
-                | gps_fixed
-            .content
-              .text
-                | LOCATION
-              .number
-                | Turkey
-    .row.clearfix
-      .col-lg-12.col-md-12.col-sm-12.col-xs-12
-        .card
-          .header
-            h2
-              |  BASIC TABLES 
-              small
-                | Basic example without any additional modification classes
-            ul.header-dropdown.m-r--5
-              li.dropdown
-                a.dropdown-toggle[href="javascript:void(0);" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"]
-                  i.material-icons
-                    | more_vert
-                ul.dropdown-menu.pull-right
-                  li
-                    a[href="javascript:void(0);"]
-                      | Action
-                  li
-                    a[href="javascript:void(0);"]
-                      | Another action
-                  li
-                    a[href="javascript:void(0);"]
-                      | Something else here
-          .body.table-responsive
-            table.table
-              thead
+  .container-fluid
+      .col-lg-3.col-md-3.col-sm-6.col-xs-12
+        .info-box.bg-pink.hover-zoom-effect
+          .icon
+            i.material-icons
+              | email
+          .content
+            .text
+              | MESSAGES
+            .number
+              | 15
+      .col-lg-3.col-md-3.col-sm-6.col-xs-12
+        .info-box.bg-blue.hover-zoom-effect
+          .icon
+            i.material-icons
+              | devices
+          .content
+            .text
+              | CPU USAGE
+            .number
+              | 92%
+      .col-lg-3.col-md-3.col-sm-6.col-xs-12
+        .info-box.bg-light-blue.hover-zoom-effect
+          .icon
+            i.material-icons
+              | access_alarm
+          .content
+            .text
+              | ALARM
+            .number
+              | 07:00 AM
+      .col-lg-3.col-md-3.col-sm-6.col-xs-12
+        .info-box.bg-orange.hover-zoom-effect
+          .icon
+            i.material-icons
+              |  local_pizza
+          .content
+            .text
+              | PIZZA
+            a[href="https://pzz.by"]
+              | pizza
+  .container-fluid
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .card
+        .header
+          h2
+            |  ALL ITEMS
+        .body.table-responsive
+          table.table
+            thead
+              tr
+                th
+                  | TITLE
+                th
+                  | DESCRIPTION
+                th
+                  | DATE OF ADDING
+            tbody
+              - @items.each do |item|
                 tr
-                  th
-                    | TITLE
-                  th
-                    | DESCRIPTION
-                  th
-                    | DATE OF ADDING
-              tbody
-                - @items.each do |item|
-                  tr
-                    td = item.title
-                    td = item.description
-                    td = item.created_at
-              = will_paginate @items
+                  td = item.title
+                  td = item.description
+                  td = item.created_at
+          = will_paginate @items
 
 
 section.main_page_content
