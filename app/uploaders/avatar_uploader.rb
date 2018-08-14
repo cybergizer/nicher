@@ -3,11 +3,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  storage :fog
-  # storage :fog
-
   def store_dir
-    "#{model.id}"
+    model.id.to_s
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
