@@ -55,7 +55,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'reek', '~> 4.8.1'
+  gem 'reek', '>= 5.0'
   gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
 end
 

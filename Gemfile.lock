@@ -152,6 +152,7 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
+    kwalify (0.7.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -237,9 +238,10 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    reek (4.8.2)
+    reek (5.0.2)
       codeclimate-engine-rb (~> 0.4.0)
-      parser (>= 2.5.0.0, < 2.6)
+      kwalify (~> 0.7.0)
+      parser (>= 2.5.0.0, < 2.6, != 2.5.1.1)
       rainbow (>= 2.0, < 4.0)
     remotipart (1.4.2)
     responders (2.4.0)
@@ -355,7 +357,7 @@ DEPENDENCIES
   rails (~> 5.2.1)
   rails-controller-testing
   rails_admin
-  reek (~> 4.8.1)
+  reek (>= 5.0)
   rspec-rails
   rubocop (~> 0.54.0)
   sass-rails (~> 5.0)
