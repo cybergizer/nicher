@@ -42,10 +42,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'jquery-rails'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'pry'
-  gem 'dotenv-rails'
 end
 
 group :development do
