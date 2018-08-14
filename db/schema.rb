@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2018_08_27_074930) do
     t.index ["item_id"], name: "index_item_histories_on_item_id"
   end
 
+  create_table "identities", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "provider"
+    t.string "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_identities_on_user_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -132,6 +141,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_074930) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.string "first_name"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -150,6 +160,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_074930) do
 
   add_foreign_key "categories", "users"
   add_foreign_key "item_histories", "items"
+  add_foreign_key "identities", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "free_item_requests"
   add_foreign_key "items", "niches"

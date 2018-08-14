@@ -26,8 +26,11 @@ Rails.application.routes.draw do
     end
   end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', sessions: 'users/sessions' }
+  # devise_for :users, :controllers => { :confirmations => 'omniauth_callbacks' }
   resources :users
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: %i[get patch], :as => :finish_signup
+  match '/users/:id/settings' => 'users#settings', via: %i[get patch], :as => :settings
   root to: 'welcome#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
