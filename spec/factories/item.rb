@@ -6,4 +6,8 @@ FactoryBot.define do
   factory :invalid_item, class: 'Item' do
     title nil
   end
+
+  factory :new_item, class: 'Item' do
+    title 'Watch'
+  end
 end
