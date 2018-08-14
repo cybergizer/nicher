@@ -1474,7 +1474,7 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   CountComments: false  # count full line comments?
-  Max: 25
+  Max: 40
   ExcludedMethods: []
 
 Metrics/BlockNesting:

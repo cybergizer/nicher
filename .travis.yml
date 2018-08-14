@@ -1,17 +1,12 @@
 language: ruby
 services:
   - postgresql
-rvm:
-  - 2.5.1
 cache:
-  directories:
-  - /home/travis/.rvm/
   bundler: true
   yarn: true
 before_install:
-  - gem install bundler -v 1.16.2
+  - gem install bundler -v 1.16.1
   - cp config/database.yml.travis config/database.yml
-  - cp config/secrets.yml.example config/secrets.yml
   - bundle install
   - bundle exec rake db:create
   - bundle exec rake db:migrate
