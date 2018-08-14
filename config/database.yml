@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: nicher
+  password: <%= ENV['NICHER_DATABASE_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: nicher_development
+
+test:
+  <<: *default
+  database: nicher_test
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
