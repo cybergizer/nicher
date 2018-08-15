@@ -25,12 +25,16 @@ p
               th DATE
           tbody
             - @versions.each do |v|
-							tr
-								td= v.title
-         						        td= Niche.all.find {|niche| niche.id == v.niche_id}.name
-								td= User.all.find {|user| user.id == v.user_id}.first_name
-								td= v.updated_at
+              tr
+                td= v.title
+                - if v.niche_id.nil?
+                  td somewhere
+                - else
+                  td= Niche.all.find {|niche| niche.id == v.niche_id}.name
+                td= User.all.find {|user| user.id == v.user_id}.first_name
+                td= v.updated_at
 br/
 = link_to 'Edit', edit_item_path(@item)
 | \
 = link_to 'Back', items_path
+
