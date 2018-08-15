@@ -113,6 +113,7 @@ RSpec.describe ItemsController, type: :controller do
     end
   end
 
+<<<<<<< 12f12d5f6bcac6e42b06cca8de34da8edba24b9e
   describe 'PUT #update' do
     context 'with valid params' do
       before do
@@ -171,6 +172,19 @@ RSpec.describe ItemsController, type: :controller do
       delete :destroy, params: { id: item }
       expect(response).to redirect_to(items_url)
       expect(flash[:notice]).to match(/Item was successfully destroyed\./)
+=======
+   describe 'GET #show' do
+    before do
+      get :show, params: { id: item }
+    end
+
+    it "renders the #show view" do
+      expect(response).to render_template :show
+    end
+
+    it "returns a 200 status code" do
+      expect(response).to have_http_status(200)
+>>>>>>> Add test for item_controller
     end
   end
 end
