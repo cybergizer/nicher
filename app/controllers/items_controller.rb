@@ -1,11 +1,13 @@
 class ItemsController < ApplicationController
   include ApplicationConcern
 
-  before_action :set_item, only: %i[show edit update destroy]
+  before_action :set_item, only: %i[show edit update destroy rent_form]
   helper_method :sort_column, :sort_direction
 
   def index
-    @items = current_user.items.order("#{sort_column} #{sort_direction}").paginate(page: params[:page], per_page: 3)
+    @items = current_user.items.order("#{sort_column} #{sort_direction}")
+                         .paginate(page: params[:page], per_page: 3).where(rent_item_id: nil)
+    @lend_items = current_user.lend_items
   end
 
   def show; end
@@ -17,11 +19,31 @@ class ItemsController < ApplicationController
   def edit; end
 
   def rent_form
-    
+    @id = params[:id]
+    @rent_item = RentItem.new
+    @rent_item.tenant = Contact.new
+    render partial: 'items/popups/rent_form'
   end
 
   def rent
+    item = current_user.items.find(params[:id])
+    @rent_item = RentItem.new(rent_item_params)
+    @rent_item.item = item
+    @rent_item.owner = current_user
+    if @rent_item.save
+      redirect_to items_url
+    else
+      @id = params[:id]
+      render partial: 'items/popups/rent_form'
+    end
+  end
 
+  def repay
+    rent_item = RentItem.find(params[:id])
+    rent_item.item = nil
+    rent_item.save
+    rent_item.destroy
+    redirect_to items_url
   end
 
   def create
@@ -62,6 +84,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = set_resource
+  end
+
+  def rent_item_params
+    params.require(:rent_item).permit(tenant_attributes: :name)
   end
 
   def item_params

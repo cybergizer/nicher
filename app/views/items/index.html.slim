@@ -15,6 +15,7 @@ table.table
         td= item.description
         td= item.category&.name
         td= item.created_at.strftime "%B %e, %Y"
+        td= link_to 'Lend', nil, class: 'lend_item', data: {id: item.id}
         td= link_to 'Show', item
         td= link_to 'Edit', edit_item_path(item)
         td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
@@ -22,3 +23,15 @@ br/
 = will_paginate @items
 br/
 = link_to 'New Item', new_item_path, class: 'btn btn-default'
+h1 Lend Items
+table.table
+  thead
+    tr
+      th = 'Title'
+      th colspan="3"
+  tbody
+    - @lend_items.each do |item|
+      - if item.item
+        tr
+          td= item.item.title
+          td= link_to 'Returned', repay_item_path(item), method: :delete, data: { confirm: 'Are you sure that it was returned?' }

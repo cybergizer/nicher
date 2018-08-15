@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2018_08_13_092407) do
-=======
-ActiveRecord::Schema.define(version: 2018_08_13_102235) do
->>>>>>> Add reference between item and rent_item
-=======
 ActiveRecord::Schema.define(version: 2018_08_13_112816) do
->>>>>>> Create Contact model, add owners and tenants to rentitems
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,16 +25,26 @@ ActiveRecord::Schema.define(version: 2018_08_13_112816) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.bigint "category_id"
     t.bigint "niche_id"
+    t.bigint "rent_item_id"
+    t.bigint "category_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["niche_id"], name: "index_items_on_niche_id"
+    t.index ["rent_item_id"], name: "index_items_on_rent_item_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -54,6 +56,16 @@ ActiveRecord::Schema.define(version: 2018_08_13_112816) do
     t.string "ancestry"
     t.index ["ancestry"], name: "index_niches_on_ancestry"
     t.index ["user_id"], name: "index_niches_on_user_id"
+  end
+
+  create_table "rent_items", force: :cascade do |t|
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "owner_id"
+    t.string "owner_type"
+    t.integer "tenant_id"
+    t.string "tenant_type"
   end
 
   create_table "user_profiles", force: :cascade do |t|
@@ -91,6 +103,7 @@ ActiveRecord::Schema.define(version: 2018_08_13_112816) do
   add_foreign_key "categories", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "niches"
+  add_foreign_key "items", "rent_items"
   add_foreign_key "items", "users"
   add_foreign_key "niches", "users"
 end

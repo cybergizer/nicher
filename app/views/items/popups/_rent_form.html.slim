@@ -1,0 +1,13 @@
+= form_with(model: @rent_item, local: true, id: 'save_rent_item', url: rent_item_url(@id)) do |form|
+  = form.fields_for :tenant, @rent_item.tenant do |tenant|
+    .form-group
+      = tenant.label :name
+      = tenant.text_field :name
+    .form-group
+      = tenant.label :email
+      = tenant.email_field :email
+    .form-group
+      = tenant.label :phone_number
+      = tenant.text_field :phone_number
+  .actions
+    = form.submit
