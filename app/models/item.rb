@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
-  PARAMS = %i[title description niche_id category_id].freeze
+  PARAMS = %i[title description free niche_id category_id].freeze
+
   has_paper_trail
 
   has_one :shared_item, dependent: :destroy

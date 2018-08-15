@@ -19,5 +19,8 @@
   .form-group
     = form.label :category_id
     = form.collection_select(:category_id, current_user.categories, :id, :name, :include_blank => "Please select")
+	.form-group
+    = form.check_box :free
+    = form.label :free
   .actions
     = form.submit
