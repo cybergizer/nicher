@@ -2,15 +2,16 @@ $(document).ready(function() {
     $(document).on('click','.lend_item', function(e) {
       e.preventDefault();
       var id = $(this).attr('data-id');
-      $(document.body).append('<div id="rent_form">Fake </div>');
+      $(document.body).append('<div id="rent_form">No content</div>');
       $('#rent_form').dialog({
           open: function(){
             fetchRentFormContent(id);
-          }
+          },
       });
       var $dialog = $(".ui-dialog");
       $dialog.addClass("modal-content");
-      $dialog.find(".ui-dialog-titlebar").addClass("modal-header").find(".ui-button").addClass("close").text("x");
+      $dialog.addClass("sweet-alert show-input showSweetAlert visible")
+      $dialog.find(".ui-dialog-titlebar").addClass("modal-header").find(".ui-dialog-titlebar-close").addClass("close").text("x");
       $dialog.find(".ui-dialog-content").addClass("modal-body");
   });
   
@@ -31,6 +32,7 @@ $(document).ready(function() {
     }).success(function(data){
         if (data.status == 'ok') {
             $('#rent_form').dialog('destroy')
+            $('#rent_form').remove();
             window.location = '/items'
         } 
     });

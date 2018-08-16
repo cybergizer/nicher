@@ -6,4 +6,8 @@ FactoryBot.define do
   factory :new_contact, class: 'Contact' do
     name 'John'
   end
+
+  factory :invalid_contact, class: 'Contact' do
+    name nil
+  end
 end
