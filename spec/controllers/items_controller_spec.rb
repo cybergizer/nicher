@@ -103,7 +103,7 @@ RSpec.describe ItemsController, type: :controller do
       it "re-renders the new method" do
         post :create, params: { item: invalid_attributes }
         item = assigns(:item)
-        expect(item.errors.messages[:title]).to be_present
+        expect(item.errors.messages[:title]).to include "can't be blank"
         expect(response).to render_template :new
       end
 
@@ -153,7 +153,7 @@ RSpec.describe ItemsController, type: :controller do
 
       it "re-renders the edit method " do
         item = assigns(:item)
-        expect(item.errors.messages[:title]).to be_present
+        expect(item.errors.messages[:title]).to include "can't be blank"
         expect(response).to render_template :edit
       end
     end
