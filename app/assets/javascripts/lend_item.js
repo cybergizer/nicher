@@ -13,22 +13,37 @@ $(document).ready(function() {
       $dialog.find(".ui-dialog-titlebar").addClass("modal-header").find(".ui-button").addClass("close").text("x");
       $dialog.find(".ui-dialog-content").addClass("modal-body");
   });
-  $('#save_rent_item').submit(function() {  
-    var valuesToSubmit = $(this).serialize();
+  
+  $(document).on('click','form#save_rent_item input[type="submit"]', function(e) {
+    e.preventDefault();
+    var button = this;
+    var form = $(this).parents('form#save_rent_item');
+    var data = $(form).serialize();
+    if (!validateRentForm(form)) {
+        $('#error_explanation').html('Please input name for contact!');
+        return;
+    }
     $.ajax({
         type: "POST",
-        url: $(this).attr('action'),
-        data: valuesToSubmit,
-        dataType: "JSON" 
-    }).success(function(json){
-        console.log("success", json);
+        url: $(form).attr('action'),
+        data: data,
+        dataType: "JSON"
+    }).success(function(data){
+        if (data.status == 'ok') {
+            $('#rent_form').dialog('destroy')
+            window.location = '/items'
+        } 
     });
     return false;
 });
 
+function validateRentForm(form){
+    var name_input = $(form).find('#rent_item_tenant_attributes_name');
+    return name_input.val() != ''
+}
   function fetchRentFormContent(id){
     $.ajax({
-        url: '/items/rent_form',
+        url: '/rent_form',
         data: { id: id},
         success: function(data){
             $('#rent_form').html(data);

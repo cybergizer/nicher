@@ -1,10 +1,6 @@
-= form_with(model: @rent_item, local: true, id: 'save_rent_item', url: rent_item_url(@id)) do |form|
+= form_for(@rent_item, :html=>{ :id=>'save_rent_item', :multipart => true}, url: rent_path(id: @rent_item.item.id)) do |form|
   = form.fields_for :tenant, @rent_item.tenant do |tenant|
-    - if @rent_item.tenant.errors.any?
-      #error_explanation
-      ul
-        - @rent_item.tenant.errors.full_messages.each do |message|
-          li= message
+    #error_explanation
     .form-group
       = tenant.label :name
       = tenant.text_field :name
@@ -13,6 +9,6 @@
       = tenant.email_field :email
     .form-group
       = tenant.label :phone_number
-      = tenant.text_field :phone_number
+      = tenant.telephone_field :phone_number
   .actions
     = form.submit
