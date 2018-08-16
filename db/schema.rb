@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_13_112816) do
+ActiveRecord::Schema.define(version: 2018_08_16_152107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 2018_08_13_112816) do
     t.string "tenant_type"
   end
 
+  create_table "shared_items", force: :cascade do |t|
+    t.bigint "item_id"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_shared_items_on_item_id"
+  end
+
   create_table "user_profiles", force: :cascade do |t|
     t.bigint "user_id"
     t.string "full_name"
@@ -106,4 +114,5 @@ ActiveRecord::Schema.define(version: 2018_08_13_112816) do
   add_foreign_key "items", "rent_items"
   add_foreign_key "items", "users"
   add_foreign_key "niches", "users"
+  add_foreign_key "shared_items", "items"
 end
