@@ -35,3 +35,14 @@ br/
               th colspan="3"
           tbody
             = render partial: 'lend_item_table', collection: @lend_items, as: :item
+h1 Borrowed Items
+table.table
+  thead
+    tr
+      th = 'Title'
+      th colspan="3"
+  tbody
+    - @borrowed_items.each do |item|
+      - if item.item
+        tr
+          td= item.item.title
