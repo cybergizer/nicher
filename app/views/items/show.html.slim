@@ -8,31 +8,31 @@ p
 p
   strong Category:
   = @item.category&.name
-
-.row.clearfix
-  .col-lg-12.col-md-12.col-sm-12.col-xs-12
-    .card
-      .header
-        h2
-          | HISTORY
-      .body.table-responsive
-        table.table.table-striped
-          thead
-            tr
-              th TITLE
-              th NICHE
-              th USER
-              th DATE
-          tbody
-            - @versions.each do |v|
+- unless @item.created_at == @item.updated_at
+  .row.clearfix
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .card
+        .header
+          h2
+            | HISTORY
+        .body.table-responsive
+          table.table.table-striped
+            thead
               tr
-                td= v.title
-                - if v.niche_id.nil?
-                  td somewhere
-                - else
-                  td= Niche.all.find {|niche| niche.id == v.niche_id}.name
-                td= User.all.find {|user| user.id == v.user_id}.first_name
-                td= v.updated_at
+                th TITLE
+                th NICHE
+                th USER
+                th DATE
+            tbody
+              - @versions.each do |v|
+                tr
+                  td= v.title
+                  - if v.niche_id.nil?
+                    td somewhere
+                  - else
+                    td= Niche.all.find {|niche| niche.id == v.niche_id}.name
+                  td= User.all.find {|user| user.id == v.user_id}.first_name
+                  td= v.updated_at
 br/
 = link_to 'Edit', edit_item_path(@item)
 | \
