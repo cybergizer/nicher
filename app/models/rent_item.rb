@@ -4,6 +4,7 @@ class RentItem < ApplicationRecord
   belongs_to :tenant, polymorphic: true
   enum status: { borrowed: 0, lend: 1 }
   accepts_nested_attributes_for :tenant
+  validates :item, presence: true  
 
   def attributes=(attributes = {})
     self.tenant_type = Contact

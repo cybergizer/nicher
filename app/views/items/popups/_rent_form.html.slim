@@ -1,5 +1,10 @@
 = form_with(model: @rent_item, local: true, id: 'save_rent_item', url: rent_item_url(@id)) do |form|
   = form.fields_for :tenant, @rent_item.tenant do |tenant|
+    - if @rent_item.tenant.errors.any?
+      #error_explanation
+      ul
+        - @rent_item.tenant.errors.full_messages.each do |message|
+          li= message
     .form-group
       = tenant.label :name
       = tenant.text_field :name

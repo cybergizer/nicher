@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('.lend_item').click(function(e) {
+    $(document).on('click','.lend_item', function(e) {
       e.preventDefault();
       var id = $(this).attr('data-id');
       $(document.body).append('<div id="rent_form">Fake </div>');

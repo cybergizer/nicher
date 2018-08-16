@@ -87,7 +87,7 @@ class ItemsController < ApplicationController
   end
 
   def rent_item_params
-    params.require(:rent_item).permit(tenant_attributes: :name)
+    params.require(:rent_item).permit(tenant_attributes: %i[name email phone_number])
   end
 
   def item_params

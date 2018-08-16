@@ -28,10 +28,12 @@ table.table
   thead
     tr
       th = 'Title'
+      th = 'To Whom'
       th colspan="3"
   tbody
     - @lend_items.each do |item|
       - if item.item
         tr
           td= item.item.title
+          td= item.tenant.name
           td= link_to 'Returned', repay_item_path(item), method: :delete, data: { confirm: 'Are you sure that it was returned?' }
