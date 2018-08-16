@@ -3,17 +3,16 @@ nav.navbar
     .navbar-header
       a.navbar-toggle.collapsed aria-expanded="false" data-target="#navbar-collapse" data-toggle="collapse" href="javascript:void(0);" 
       a.bars href="javascript:void(0);" 
-      a.navbar-brand href="http://lmgtfy.com/?q=nicher%2Br"  NICHER+R
-      = ENV['RAILS_ENV']
+      a.navbar-brand  NICHER+R
     #navbar-collapse.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right
             li
-              a[href="/items#index"]
+              a[href=items_path]
                 i.material-icons
                   | apps
                 small My Items
             li
-              a[href="/users/sign_in"]
+              a[href=new_user_session_path]
                 i.material-icons
                   | exit_to_app
                 small Sign in
@@ -24,42 +23,39 @@ body
         .info-box.bg-pink.hover-zoom-effect
           .icon
             i.material-icons
-              | email
+              | person_add
           .content
             .text
-              | MESSAGES
+              | NEW USERS
             .number
               | 15
       .col-lg-3.col-md-3.col-sm-6.col-xs-12
-        .info-box.bg-blue.hover-zoom-effect
+        .info-box.bg-light-green.hover-zoom-effect
           .icon
             i.material-icons
-              | devices
+              | widgets
           .content
             .text
-              | CPU USAGE
-            .number
-              | 92%
+              | ITEMS
+            .number =@item_stats
       .col-lg-3.col-md-3.col-sm-6.col-xs-12
-        .info-box.bg-light-blue.hover-zoom-effect
+        .info-box.bg-cyan.hover-zoom-effect
           .icon
             i.material-icons
-              | access_alarm
+              | assignment
           .content
             .text
-              | ALARM
-            .number
-              | 07:00 AM
+              | NICHES
+            .number =@niche_stats
       .col-lg-3.col-md-3.col-sm-6.col-xs-12
-        .info-box.bg-orange.hover-zoom-effect
+        .info-box.bg-deep-orange.hover-zoom-effect
           .icon
             i.material-icons
-              |  local_pizza
+              |  access_time
           .content
             .text
-              | PIZZA
-            a[href="https://pzz.by"]
-              | pizza
+              | TODAY
+            .number =@today
   .container-fluid
     .col-lg-12.col-md-12.col-sm-12.col-xs-12
       .card
