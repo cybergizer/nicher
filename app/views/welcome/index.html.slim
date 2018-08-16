@@ -7,79 +7,27 @@ nav.navbar
     #navbar-collapse.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right
             li
-              a[href=items_path]
-                i.material-icons
-                  | apps
-                small My Items
+              = link_to items_path
+                  i.material-icons
+                    | apps
+                  span.icon-name
+                    | MY ITEMS
             li
-              a[href=new_user_session_path]
+              = link_to new_user_session_path
                 i.material-icons
                   | exit_to_app
-                small Sign in
-
-body
-  .container-fluid
+                span.icon-name
+                    | SIGN IN
+section.main_page_content
+  .row.clearfix
+     - Item.all.each do |item|
       .col-lg-3.col-md-3.col-sm-6.col-xs-12
-        .info-box.bg-pink.hover-zoom-effect
-          .icon
-            i.material-icons
-              | person_add
-          .content
-            .text
-              | NEW USERS
-            .number
-              | 15
-      .col-lg-3.col-md-3.col-sm-6.col-xs-12
-        .info-box.bg-light-green.hover-zoom-effect
-          .icon
-            i.material-icons
-              | widgets
-          .content
-            .text
-              | ITEMS
-            .number =@item_stats
-      .col-lg-3.col-md-3.col-sm-6.col-xs-12
-        .info-box.bg-cyan.hover-zoom-effect
-          .icon
-            i.material-icons
-              | assignment
-          .content
-            .text
-              | NICHES
-            .number =@niche_stats
-      .col-lg-3.col-md-3.col-sm-6.col-xs-12
-        .info-box.bg-deep-orange.hover-zoom-effect
-          .icon
-            i.material-icons
-              |  access_time
-          .content
-            .text
-              | TODAY
-            .number =@today
-  .container-fluid
-    .col-lg-12.col-md-12.col-sm-12.col-xs-12
-      .card
-        .header
-          h2
-            |  ALL ITEMS
-        .body.table-responsive
-          table.table
-            thead
-              tr
-                th
-                  | TITLE
-                th
-                  | DESCRIPTION
-                th
-                  | DATE OF ADDING
-            tbody
-              - @items.each do |item|
-                tr
-                  td = item.title
-                  td = item.description
-                  td = item.created_at
-          = will_paginate @items
-
+        .card
+          .header.bg
+            h2 =item.title
+              small =item.description
+          .body
+            | photo
 
 section.main_page_content
     = yield
