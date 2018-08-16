@@ -1,23 +1,9 @@
-= form_with(model: item, local: true) do |form|
-  - if item.errors.any?
-    #error_explanation
-      h2
-        = pluralize(item.errors.count, "error")
-        | prohibited this item from being saved:
-      ul
-        - item.errors.full_messages.each do |message|
-          li= message
-  .form-group
-    = form.label :title
-    = form.text_field :title
-  .form-group
-    = form.label :description
-    = form.text_area :description
-  .form-group
-    = form.label :niche_id
-    = form.collection_select :niche_id, current_user.niches,:id,:name, include_blank: true
-  .form-group
-    = form.label :category_id
-    = form.collection_select(:category_id, current_user.categories, :id, :name, :include_blank => "Please select")
-  .actions
-    = form.submit
+.panel-body
+  = simple_form_for item, html: { class: 'form-group' } do |form|
+    = form.input :title, required: false, placeholder: 'Write title for your item'
+    = form.input :description
+    = form.input :niche_id, collection: current_user.niches, label_method: :name, value_method: :id, label: 'Niche', include_blank: 'Please select'
+    = form.input :category_id, collection: current_user.categories, label_method: :name, value_method: :id, label: 'Category', include_blank: 'Please select'
+    = form.button :submit, class: 'btn btn-primary'
+    | &nbsp
+    = link_to 'Back', items_path, class: 'btn btn-primary'
