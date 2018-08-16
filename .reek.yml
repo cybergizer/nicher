@@ -35,3 +35,4 @@ directories:
 exclude_paths:
   - db/migrate
   - vendor
+  - config
