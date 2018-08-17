@@ -16,4 +16,7 @@
 //= require jquery
 //= require jquery-ui
 //= require bootstrap-sprockets
+//= require adminbsb-materialdesign
+//= require waves
+//= require sweetalert
 //= require_tree .

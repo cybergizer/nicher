@@ -1,21 +1,25 @@
-= form_for(@rent_item, :html=>{ :id=>'save_rent_item', :multipart => true}, url: rent_path(id: @rent_item.item.id)) do |form|
-  = form.fields_for :tenant, @rent_item.tenant do |tenant|
-    #error_explanation
-    .form-group.form-line
-      .p
-         = tenant.label :name
-      .p
-        = tenant.text_field :name, class: 'form-control'
-    .form-group.form-line
-      .p
+.card
+  .header
+    h2
+      | Rent your Item
+  .body
+    = form_for(@rent_item, :html=>{ :id=>'save_rent_item', :multipart => true}, url: rent_path(id: @rent_item.item.id)) do |form|
+      = form.fields_for :tenant, @rent_item.tenant do |tenant|
+        #error_explanation
+        = tenant.label :name
+        .form-group
+          .form-line
+            = tenant.text_field :name, class: 'form-control'
         = tenant.label :email
-      .p
-        = tenant.email_field :email, class: 'form-control'
-    .form-group.form-line
-      .p
+        .form-group
+          .form-line  
+            = tenant.email_field :email, class: 'form-control'
         = tenant.label :phone_number
-      .p
-        = tenant.telephone_field :phone_number, class: 'form-control'
-  .sa-button-container
-    .actions
-      = form.submit 'Rent', class: 'confirm', style: 'display: inline-block; background-color: rgb(140, 212, 245); box-shadow: rgba(140, 212, 245, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset;', tabindex: '2'
+        .form-group
+          .form-line
+            = tenant.telephone_field :phone_number, class: 'form-control'
+      br
+      .button-demo
+        button#close.btn.btn-danger.waves-effect
+          | Cancel    
+        = form.button 'Rent', type: :submit, class: 'btn btn-primary waves-effect'

@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
+gem 'bundler', '>= 1.8.4'
 
 gem 'ancestry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -48,6 +49,12 @@ gem 'jquery-ui-rails'
 group :development, :test do
   gem 'pry'
 end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-adminbsb-materialdesign'
+  gem 'rails-assets-waves'
+end
+gem 'sweetalert-rails'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
