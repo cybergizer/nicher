@@ -10,25 +10,14 @@ class UsersController < ApplicationController
     current_user.build_user_profile unless current_user.user_profile
   end
 
-  # PATCH/PUT /users/:id.:format
-  # rubocop:disable Metrics/AbcSize
   def update
-    # authorize! :update, @user
-    respond_to do |format|
-      if @user.update(user_params || user_profile)
-        # redirect_to_current_user
-        sign_in(@user == current_user ? @user : current_user, bypass: true)
-        format.html { redirect_to @user, notice: 'Your profile was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if current_user.update(user_profile_params)
+      redirect_to current_user, notice: 'Your profile was successfully updated.'
+    else
+      render :edit
     end
   end
-  # rubocop:enable Metrics/AbcSize
 
-  # GET/PATCH /users/:id/finish_signup
   def finish_signup
     # authorize! :update, @user
     return unless request.patch? && params[:user] # && params[:user][:email]
@@ -41,14 +30,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/:id.:format
   def destroy
-    # authorize! :delete, @user
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to root_url }
-      format.json { head :no_content }
-    end
+    redirect_to root_url
   end
 
   def settings
