@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 2018_08_13_112816) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "category_id"
     t.bigint "niche_id"
     t.bigint "rent_item_id"
-    t.bigint "category_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["niche_id"], name: "index_items_on_niche_id"
     t.index ["rent_item_id"], name: "index_items_on_rent_item_id"

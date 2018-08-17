@@ -1,5 +1,6 @@
 class RentItemsController < ApplicationController
   before_action :set_rent_item, only: %i[repay]
+  before_action :create_rent_item, only: %i[rent]
 
   def rent_form
     @rent_item = RentItem.new(item: item)
@@ -8,9 +9,6 @@ class RentItemsController < ApplicationController
   end
 
   def rent
-    @rent_item = RentItem.new(rent_item_params)
-    @rent_item.item = item
-    @rent_item.owner = current_user
     if @rent_item.save
       render json: { status: 'ok' }
     else
@@ -19,8 +17,6 @@ class RentItemsController < ApplicationController
   end
 
   def repay
-    @rent_item.item = nil
-    @rent_item.save
     @rent_item.destroy
     redirect_to items_url
   end
@@ -29,6 +25,12 @@ class RentItemsController < ApplicationController
 
   def set_rent_item
     @rent_item = RentItem.find(params[:id])
+  end
+
+  def create_rent_item
+    @rent_item = RentItem.new(rent_item_params)
+    @rent_item.item = item
+    @rent_item.owner = current_user
   end
 
   def rent_item_params
