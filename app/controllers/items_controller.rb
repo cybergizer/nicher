@@ -2,11 +2,10 @@ class ItemsController < ApplicationController
   include ApplicationConcern
 
   before_action :set_item, only: %i[show edit update destroy]
+  before_action :set_items, only: %i[index]
   helper_method :sort_column, :sort_direction
 
-  def index
-    @items = current_user.items.order("#{sort_column} #{sort_direction}").paginate(page: params[:page], per_page: 3)
-  end
+  def index; end
 
   def show; end
 
@@ -59,5 +58,11 @@ class ItemsController < ApplicationController
 
   def item_params
     model_params(:item)
+  end
+
+  def set_items
+    @items = current_user.items.order("#{sort_column} #{sort_direction}")
+                         .paginate(page: params[:page], per_page: 3).where(rent_item_id: nil)
+    @lend_items = current_user.lend_items
   end
 end

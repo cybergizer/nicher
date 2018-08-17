@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :user_profile, allow_destroy: true
 
+  has_many :lend_items, class_name: 'RentItem', as: :owner
+  has_many :borrowed_items, class_name: 'RentItem', as: :tenant
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

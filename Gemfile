@@ -41,12 +41,19 @@ gem 'will_paginate'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
-gem 'jquery-rails'
 gem 'dotenv-rails'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'pry'
 end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-adminbsb-materialdesign'
+  gem 'rails-assets-waves'
+end
+gem 'sweetalert-rails'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
