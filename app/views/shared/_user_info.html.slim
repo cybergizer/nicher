@@ -1,7 +1,7 @@
 .user-info
-  .image
-    /! <img src="https://pp.userapi.com/c834401/v834401188/18f70f/x9dYrYMoCzQ.jpg" width="48" height="48" alt="User" /
-    = image_tag(current_user.user_profile.avatar.icon.url, alt: 'Image') if current_user.user_profile.avatar?
+  figure
+    - unless current_user.user_profile.avatar.url.nil?
+      img.img-circle.img-responsive[src=current_user.user_profile.avatar.small.url width="50" height="50"]
   .info-container
     .name aria-expanded="false" aria-haspopup="true" data-toggle="dropdown"  #{current_user&.user_profile&.full_name}
     .email #{current_user.email}

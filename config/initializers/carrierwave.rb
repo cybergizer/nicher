@@ -1,3 +1,5 @@
+require 'carrierwave/orm/activerecord'
+
 if Rails.env.test? || Rails.env.cucumber?
   CarrierWave.configure do |config|
     config.permissions = 0o666
