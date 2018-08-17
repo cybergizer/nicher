@@ -32,4 +32,10 @@ RSpec.describe User, type: :model do
     expect(user.niches.size).to eq 0
     expect(user.niches).not_to be_nil
   end
+
+  it "is valid with valid oauth attributes" do
+    user = User.find_for_oauth(auth = OpenStruct.new({'uid': 'user_uid', 'provider': 'provider_name', 'info': OpenStruct.new({'email': 'user_email@example.com'}), 'extra': OpenStruct.new({'raw_info': OpenStruct.new({'email': 'user_email@example.com', 'name': 'Shizuku Tsukishima'})})}), signed_in_resource = nil)
+    expect(user).to be_valid
+  end
+
 end
