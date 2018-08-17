@@ -9,4 +9,14 @@ class Item < ApplicationRecord
   belongs_to :rent_item, optional: true
 
   validates :title, presence: true
+
+
+
+	def self.search(search)
+	  if search
+	    self.where("title like ?", "%#{search}%")
+	  else
+	    self.all
+	  end
+	end
 end

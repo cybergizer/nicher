@@ -1,3 +1,12 @@
+
+.search-bar
+  .search-icon
+    i.material-icons search
+  input placeholder=("START TYPING...") type="text" /
+  .close-search
+    i.material-icons close
+
+
 nav.navbar
   .container-fluid
     .navbar-header
@@ -6,28 +15,44 @@ nav.navbar
       a.navbar-brand  NICHER+R
     #navbar-collapse.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right
-            li
-              = link_to items_path
-                  i.material-icons
-                    | apps
-                  span.icon-name
-                    | MY ITEMS
-            li
-              = link_to new_user_session_path
+          li
+            = form_tag root_path, :method => 'get' do
+                = text_field_tag :search, params[:search]
+                = submit_tag "Search", :name => nil
+          li
+            = link_to items_path
                 i.material-icons
-                  | exit_to_app
+                  | apps
                 span.icon-name
-                    | SIGN IN
+                  | MY ITEMS
+          li
+            = link_to new_user_session_path
+              i.material-icons
+                | exit_to_app
+              span.icon-name
+                  | SIGN IN
+
+
+
+ 
+
+
 section.main_page_content
   .row.clearfix
-     - Item.all.each do |item|
+     - @searching_items.each do |item|
       .col-lg-3.col-md-3.col-sm-6.col-xs-12
         .card
           .header.bg
             h2 =item.title
-              small =item.description
+            small =item.description
           .body
             | photo
+
+
+
+
+
+
 
 section.main_page_content
     = yield

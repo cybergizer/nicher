@@ -5,6 +5,6 @@ class WelcomeController < ApplicationController
     @item_stats = Item.all.count
     @niche_stats = Niche.all.count
     @today = DateTime.now.strftime "%B %e, %Y"
-    @colour = "%06x" % (rand * 0xffffff)
+    @searching_items = Item.search(params[:search])
   end
 end
