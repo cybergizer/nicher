@@ -10,7 +10,7 @@ $(document).ready(function() {
       });
       var $dialog = $(".ui-dialog");
       $dialog.addClass("modal-content");
-      $dialog.addClass("sweet-alert show-input showSweetAlert visible")
+      $dialog.addClass("sweet-alert show-input showSweetAlert visible");
       $dialog.find(".ui-dialog-titlebar").addClass("modal-header").find(".ui-dialog-titlebar-close").addClass("close").text("x");
       $dialog.find(".ui-dialog-content").addClass("modal-body");
   });
@@ -31,9 +31,9 @@ $(document).ready(function() {
         dataType: "JSON"
     }).success(function(data){
         if (data.status == 'ok') {
-            $('#rent_form').dialog('destroy')
+            $('#rent_form').dialog('destroy');
             $('#rent_form').remove();
-            window.location = '/items'
+            window.location = '/items';
         } 
     });
     return false;
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 function validateRentForm(form){
     var name_input = $(form).find('#rent_item_tenant_attributes_name');
-    return name_input.val() != ''
+    return name_input.val() != '';
 }
   function fetchRentFormContent(id){
     $.ajax({

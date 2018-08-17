@@ -41,12 +41,12 @@ gem 'will_paginate'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'dotenv-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'pry'
-  gem 'dotenv-rails'
 end
 
 group :development do

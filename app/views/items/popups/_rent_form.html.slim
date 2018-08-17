@@ -16,5 +16,6 @@
         = tenant.label :phone_number
       .p
         = tenant.telephone_field :phone_number, class: 'form-control'
-  .actions
-    = form.submit 'Rent', class: 'btn btn-primary m-t-15 waves-effect'
+  .sa-button-container
+    .actions
+      = form.submit 'Rent', class: 'confirm', style: 'display: inline-block; background-color: rgb(140, 212, 245); box-shadow: rgba(140, 212, 245, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset;', tabindex: '2'
