@@ -17,13 +17,7 @@ $(document).ready(function() {
       $dialog.addClass("modal-content");
       $dialog.find(".ui-dialog-titlebar").find(".ui-dialog-titlebar-close").hide();
       $dialog.find(".ui-dialog-content").addClass("sweet-alert");
-      $dialog.find('.ui-resizable-handle.ui-resizable-n').hide();
-      $dialog.find('.ui-resizable-handle.ui-resizable-e').hide();
-      $dialog.find('.ui-resizable-handle.ui-resizable-s').hide();
-      $dialog.find('.ui-resizable-handle.ui-resizable-w').hide();
-      $dialog.find('.ui-resizable-handle.ui-resizable-sw').hide();
-      $dialog.find('.ui-resizable-handle.ui-resizable-ne').hide();
-      $dialog.find('.ui-resizable-handle.ui-resizable-nw').hide();
+      $dialog.children('.ui-resizable-handle').hide();
     });
 
     $(document).on('click','form#save_rent_item #close', function(){
@@ -36,7 +30,7 @@ $(document).ready(function() {
       var form = $(this).parents('form#save_rent_item');
       var data = $(form).serialize();
       if (!validateRentForm(form)) {
-        $('#error_explanation').addClass('alert alert-warning').html('Please input name for contact!').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+        $('#error_explanation').addClass('alert alert-warning').html('Please input name for contact!').fadeIn().fadeOut(10000);
         return;
       }
       $.ajax({
