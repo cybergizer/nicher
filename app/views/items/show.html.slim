@@ -8,6 +8,33 @@ p
 p
   strong Category:
   = @item.category&.name
+- unless @item.created_at == @item.updated_at
+  .row.clearfix
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .card
+        .header
+          h2
+            | HISTORY
+        .body.table-responsive
+          table.table.table-striped
+            thead
+              tr
+                th TITLE
+                th NICHE
+                th USER
+                th DATE
+            tbody
+              - @versions.each do |v|
+                tr
+                  td= v.title
+                  - if v.niche_id.nil?
+                    td somewhere
+                  - else
+                    td= @niche.search(v).name
+                  td= @user.search(v).first_name
+                  td= v.updated_at
+br/
 = link_to 'Edit', edit_item_path(@item)
 | \
 = link_to 'Back', items_path
+

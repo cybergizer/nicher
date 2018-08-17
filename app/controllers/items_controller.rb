@@ -7,7 +7,11 @@ class ItemsController < ApplicationController
 
   def index; end
 
-  def show; end
+  def show
+    @versions = @item.versions.map(&:reify)[1..-1]
+    @user = User
+    @niche = Niche
+  end
 
   def new
     @item = current_user.items.build

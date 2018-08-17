@@ -21,4 +21,8 @@ class Niche < ApplicationRecord
     niche.parent = nil
     niche.save
   end
+
+  def self.search(version)
+    all.find { |element| element.id == version.niche_id }
+  end
 end

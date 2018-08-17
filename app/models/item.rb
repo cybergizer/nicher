@@ -9,4 +9,5 @@ class Item < ApplicationRecord
   belongs_to :rent_item, optional: true
 
   validates :title, presence: true
+  has_paper_trail
 end
