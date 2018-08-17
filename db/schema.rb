@@ -33,15 +33,6 @@ ActiveRecord::Schema.define(version: 2018_08_16_161259) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "invites", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "owner_id"
-    t.integer "tenant_id"
-    t.string "token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "items", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -82,7 +73,7 @@ ActiveRecord::Schema.define(version: 2018_08_16_161259) do
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "expiration"
+    t.datetime "expiration"
     t.index ["item_id"], name: "index_shared_items_on_item_id"
   end
 

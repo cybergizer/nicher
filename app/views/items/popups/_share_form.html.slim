@@ -1,3 +1,11 @@
-input#generatedLink type="text" value="#{@link}"
-
-button#copyButton Copy text
+.card
+  .header
+    h2
+      | Share Item
+  .body
+    input#generatedLink.form-control type="text" value="#{@link}"
+    br
+    .button-demo
+      button#close.btn.btn-danger.waves-effect
+        | Cancel
+      button#copyButton.btn.btn-primary.waves-effect Copy text
