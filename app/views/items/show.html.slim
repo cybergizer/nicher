@@ -30,8 +30,8 @@ p
                   - if v.niche_id.nil?
                     td somewhere
                   - else
-                    td= Niche.all.find {|niche| niche.id == v.niche_id}.name
-                  td= User.all.find {|user| user.id == v.user_id}.first_name
+                    td= @niche.search(v).name
+                  td= @user.search(v).first_name
                   td= v.updated_at
 br/
 = link_to 'Edit', edit_item_path(@item)

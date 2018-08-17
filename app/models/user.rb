@@ -13,4 +13,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+
+	def self.search(version)
+    self.all.find { |el| el.id == version.user_id }
+  end
 end

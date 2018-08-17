@@ -9,6 +9,8 @@ class ItemsController < ApplicationController
 
   def show
     @versions = @item.versions.map(&:reify)[1..-1]
+    @user = User
+    @niche = Niche
   end
 
   def new
