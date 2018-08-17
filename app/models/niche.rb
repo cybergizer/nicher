@@ -23,6 +23,6 @@ class Niche < ApplicationRecord
   end
 
   def self.search(version)
-    self.all.find { |el| el.id == version.niche_id }
+    self.all.find { |element| element.id == version.niche_id }
   end
 end

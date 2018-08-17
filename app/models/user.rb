@@ -15,6 +15,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 	def self.search(version)
-    self.all.find { |el| el.id == version.user_id }
+    self.all.find { |element| element.id == version.user_id }
   end
 end
