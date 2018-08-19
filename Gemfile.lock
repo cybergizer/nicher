@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/plataformatec/simple_form.git
+  revision: 1411dc3349ea03d4f3e902b9340187e4133067e8
+  branch: master
+  specs:
+    simple_form (4.0.1)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+
+GIT
   remote: https://github.com/stympy/faker.git
   revision: 6fabcbb20a536ba23782069a3dd651279935469d
   branch: master
@@ -377,6 +386,7 @@ DEPENDENCIES
   rubocop (~> 0.54.0)
   sass-rails (~> 5.0)
   selenium-webdriver
+  simple_form (~> 4.0.1)!
   simplecov
   slim
   spring

@@ -1,18 +1,7 @@
-= form_with(model: niche, local: true) do |form|
-  - if niche.errors.any?
-    #error_explanation
-       h2
-         = pluralize(niche.errors.count, "error")
-         | prohibited this location from being saved:
-       ul
-         - niche.errors.full_messages.each do |message|
-           li= message
-
-  .form-group
-    = form.label :name
-    = form.text_field :name
-  .form-group
-    = form.label :parent
-    = form.collection_select :parent_id, current_user.niches, :id, :name, include_blank: true
-  .actions
-     = form.submit
+.panel-body
+  = simple_form_for niche, html: { class: 'form-group' } do |form|
+    = form.input :name, required: false, placeholder: 'Write name for your niche'
+    = form.input :parent_id, collection: current_user.niches, label_method: :name, value_method: :id, label: 'Parent', include_blank: 'Please select'
+    = form.button :submit, class: 'btn btn-primary'
+    | &nbsp
+    = link_to 'Back', niches_path, class: 'btn btn-primary'
