@@ -16,7 +16,7 @@ describe 'User registration' do
     click_button 'Sign up'
   end
 
-  it "shows message with instructions" do
-    expect(page).to have_content("You need to sign in or sign up before continuing.")
+  it "redirects to welcome_page" do
+    visit root_path
   end
 end
