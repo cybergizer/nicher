@@ -14,7 +14,7 @@ class SharedItemsController < ApplicationController
       @shared_item.destroy
       redirect_to items_url, notice: "You've rent #{item.title} from #{item.user.full_name}."
     else
-      redirect_to items_url, notice: 'Invalid Link'
+      redirect_to items_url, notice: 'Invalid Link.'
     end
   end
 
