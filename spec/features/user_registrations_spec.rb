@@ -17,6 +17,6 @@ describe 'User registration' do
   end
 
   it "redirects to welcome_page" do
-    visit root_path
+    expect(page).to have_text("NICHER+R")
   end
 end

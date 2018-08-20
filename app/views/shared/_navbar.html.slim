@@ -1,13 +1,18 @@
 nav.navbar
   .container-fluid
     .navbar-header
-      a.navbar-toggle.collapsed aria-expanded="false" data-target="#navbar-collapse" data-toggle="collapse" href="javascript:void(0);" 
-      a.bars href="javascript:void(0);" 
-      a.navbar-brand href="/"  NICHER+R
+      a.navbar-toggle.collapsed aria-expanded="false" data-target="#navbar-collapse" data-toggle="collapse" href="javascript:void(0);"
+      a.bars href="javascript:void(0);"
+      a.navbar-brand  NICHER+R
     #navbar-collapse.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
-        /! Call Search
         li
-          a.js-search data-close="true" href="javascript:void(0);" 
+          a.js-search data-close="true" href="javascript:void(0);"
             i.material-icons search
-        /! #END# Call Search
+        - unless user_session
+          li
+            = link_to new_user_session_path
+              i.material-icons
+                | exit_to_app
+              span.icon-name
+                | SIGN IN
