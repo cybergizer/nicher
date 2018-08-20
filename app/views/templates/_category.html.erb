@@ -1,0 +1,8 @@
+<li class='dd-item dd-collapsed'>
+  <div class = 'dd3-content'>
+    <div class = 'box'>
+      <%= link_to object.name, object %>
+      <%= link_to 'Edit', edit_category_path(object) %>
+      <%= link_to 'Destroy', category_path(object.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
