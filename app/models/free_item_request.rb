@@ -1,0 +1,2 @@
+class FreeItemRequest < ApplicationRecord
+end
