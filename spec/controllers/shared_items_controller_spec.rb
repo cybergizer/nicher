@@ -10,31 +10,41 @@ RSpec.describe SharedItemsController, type: :controller do
   end
 
   describe 'GET #shared_form' do
-    subject { get :generate_link,  params: { id: item.id } }
+    let(:item_params) { { id: item.id } }
+    subject { get :generate_link, params: item_params }
 
-    it 'renders the :index view' do
-      expect(subject).to render_template "items/popups/_share_form"
+    context 'with valid params' do
+      it 'renders the share_form' do
+        expect(subject).to render_template "items/popups/_share_form"
+      end
+
+      it 'creates a new SharedItem' do
+        expect { subject }.to change(SharedItem, :count).by(1)
+      end
+
+      it "returns http success" do
+        expect(subject).to have_http_status(:success)
+      end
     end
 
-    it 'creates a new SharedItem' do
-      expect { subject }.to change(SharedItem, :count).by(1)
-    end
+    context 'with invalid params' do
+      let(:item_params) { { } }
 
-    it "returns a 200 status code" do
-      expect(subject).to have_http_status(:success)
+      it "doesn't create a SharedItem" do
+        expect { subject }.to_not change(SharedItem, :count)
+      end
+
+      it "redirects to the items" do
+        expect(subject).to have_http_status(:redirect)
+        expect(flash[:notice]).to match(/You don't have this item\./)
+      end
     end
   end
 
   describe 'get #rent_item' do
-    let(:user_profile) { create(:user_profile, user: user_2) }
     let(:item) { create(:item, user: user_2) }
     let(:shared_item) { create(:shared_item, item: item) }
-    subject { get :rent_item, params: token }
-
-    before do
-      user_profile.save
-      shared_item.save
-    end
+    subject { get :share, params: token }
 
     context 'with valid params' do
       let(:token) { { token: shared_item.token } }
@@ -44,6 +54,7 @@ RSpec.describe SharedItemsController, type: :controller do
       end
 
       it 'destroy a SharedItem' do
+        shared_item.save
         expect { subject }.to change(SharedItem, :count).by(-1)
       end
 

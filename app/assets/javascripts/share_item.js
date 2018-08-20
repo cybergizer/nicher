@@ -8,12 +8,7 @@ $(document).ready(function() {
         fetchShareFormContent(id);
       }
     });
-    var $dialog = $(".ui-dialog");
-    $dialog.addClass("modal-content");
-    $dialog.find(".ui-dialog-titlebar").find(".ui-dialog-titlebar-close").hide();
-    $dialog.find(".ui-dialog-content").addClass("sweet-alert");
-    $dialog.children('.ui-resizable-handle').hide();
-
+    addStylesToDialog();
   });
 
   $(document).on('click','#close', function(){
@@ -31,12 +26,11 @@ $(document).ready(function() {
     });
   }
 
+  $(document).on('click','#copy', copyText);
 
-  $(document).on('click','#copyButton', myFunction);
-
-  function myFunction() {
-    var copyText = $('#generatedLink');
-    copyText.select();
+  function copyText() {
+    var textLink = $('#generatedLink');
+    textLink.select();
     document.execCommand("copy");
     $('#share_form').dialog('destroy');
     $('#share_form').remove();

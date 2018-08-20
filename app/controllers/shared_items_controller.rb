@@ -1,13 +1,20 @@
 class SharedItemsController < ApplicationController
-  before_action :set_shared_item, only: %i[rent_item]
+  include SharedItemsConcern
+
+  before_action :set_shared_item, only: %i[share]
+  before_action :remove_expired_links, only: %i[share]
 
   def generate_link
-    @shared_item = SharedItem.create(item: item)
-    @link = rent_item_url(token: @shared_item.token)
-    render partial: 'items/popups/share_form'
+    if item
+      @shared_item = SharedItem.create(item: item)
+      @link = share_url(token: @shared_item.token)
+      render partial: 'items/popups/share_form'
+    else
+      redirect_to items_url, notice: "You don't have this item."
+    end
   end
 
-  def rent_item
+  def share
     if valid_params?
       item = @shared_item.item
       RentItem.create(item: item, owner: item.user, tenant: current_user)
@@ -25,7 +32,7 @@ class SharedItemsController < ApplicationController
   end
 
   def item
-    current_user.items.find(params[:id])
+    current_user.items.find_by(id: params[:id])
   end
 
   def correct_members?

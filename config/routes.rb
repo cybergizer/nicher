@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   delete 'repay', controller: 'rent_items'
 
   get 'generate_link', action: :generate_link, controller: 'shared_items'
-  get 'rent_item', action: :rent_item, controller: 'shared_items'
+  get 'share', action: :share, controller: 'shared_items'
 
   resources :categories
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
