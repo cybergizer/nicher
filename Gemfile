@@ -44,7 +44,7 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'dotenv-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
+gem 'nestable-rails'
 group :development, :test do
   gem 'pry'
 end

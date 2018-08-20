@@ -21,4 +21,5 @@
 //= require sweetalert
 //= require alert
 //= require dialog
+//= require nestable-rails
 //= require_tree .
