@@ -12,8 +12,6 @@ p
   strong
   - if @item.free
     strong THIS ITEM IS FREE
-  - else
-    strong this item is NOT free
 = link_to 'Edit', edit_item_path(@item)
 | \
 = link_to 'Back', items_path
