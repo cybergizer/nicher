@@ -4,6 +4,7 @@ RSpec.describe CategoriesController, type: :controller do
   login_user
 
   let(:category) { create(:category, user: subject.current_user) }
+  let(:parent_category) { create(:category, user: subject.current_user) }
   let(:valid_attributes) { attributes_for(:category) }
   let(:invalid_attributes) { attributes_for(:invalid_category) }
 
@@ -164,6 +165,17 @@ RSpec.describe CategoriesController, type: :controller do
       delete :destroy, params: { id: category }
       expect(response).to redirect_to(categories_url)
       expect(flash[:notice]).to match(/Category was successfully destroyed\./)
+    end
+  end
+
+  describe 'POST #move' do
+    before do
+      post :move, params: { id: category.id, parent_id: parent_category.id }
+    end
+
+    it 'change parent for category' do
+      category.reload
+      expect(category.parent).to eq(parent_category)
     end
   end
 end

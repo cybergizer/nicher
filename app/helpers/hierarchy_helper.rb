@@ -9,6 +9,6 @@ module HierarchyHelper
   private
 
   def children_output(children, output)
-    output << (children.any? ? "<ol class='dd-list'>#{hierarchy_output(children)}</ol>" : '')
+    output << (children.any? ? "<ol class='dd-list'>#{hierarchy_output(children)}</ol>" : "<ol class='dd-list'></ol>")
   end
 end

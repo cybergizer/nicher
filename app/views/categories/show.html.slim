@@ -29,15 +29,15 @@ p
           td
             = link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
       - @category.rent_items.each do |rent_item|
-      tr
-        td
-          = rent_item.item.title
-        td
-          = rent_item.item.description
-        td
-          = link_to 'Show', rent_item
-        td
-          = link_to 'Edit', edit_rent_item_path(rent_item)
+        tr
+          td
+            = rent_item.item.title
+          td
+            = rent_item.item.description
+          td
+            = link_to 'Show', rent_item
+          td
+            = link_to 'Edit', edit_rent_item_path(rent_item)
 = link_to 'Edit', edit_category_path(@category)
 |  |
 = link_to 'Back', categories_path
