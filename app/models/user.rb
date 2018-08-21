@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  PARAMS = [{ user_profile_attributes: %i(full_name city description avatar avatar_cache) }].freeze
   has_many :items, dependent: :destroy
   has_many :niches, dependent: :delete_all
   has_many :categories, dependent: :destroy

@@ -1,7 +1,6 @@
 .user-info
   figure
-    - unless current_user.user_profile.avatar.url.nil?
-      img.img-circle.img-responsive[src=current_user.user_profile.avatar.small.url width="50" height="50"]
+    img.img-circle.img-responsive[src=current_user.user_profile.avatar.small.url width="50" height="50"]
   .info-container
     .name aria-expanded="false" aria-haspopup="true" data-toggle="dropdown"  #{current_user&.user_profile&.full_name}
     .email #{current_user.email}

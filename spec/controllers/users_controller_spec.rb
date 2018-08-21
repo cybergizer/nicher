@@ -29,7 +29,7 @@ RSpec.describe UsersController, type: :controller do
     }
 
     it 'updates the requested user profile' do
-      put :update, params: { id: subject.current_user.id, user: { user_profile: new_attributes } }, session: valid_session
+      put :update, params: { id: subject.current_user.id, user: { user_profile_attributes: new_attributes }}, session: valid_session
       expect(response).to redirect_to(subject.current_user)
     end
   end
