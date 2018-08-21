@@ -28,7 +28,7 @@ class SharedItemsController < ApplicationController
   private
 
   def valid_params?
-    @shared_item && correct_members? && active_token?
+    @shared_item && correct_members?
   end
 
   def item
@@ -37,10 +37,6 @@ class SharedItemsController < ApplicationController
 
   def correct_members?
     @shared_item.item.user != current_user
-  end
-
-  def active_token?
-    @shared_item.expiration > Time.zone.now
   end
 
   def set_shared_item

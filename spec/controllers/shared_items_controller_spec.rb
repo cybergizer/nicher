@@ -41,7 +41,7 @@ RSpec.describe SharedItemsController, type: :controller do
     end
   end
 
-  describe 'get #rent_item' do
+  describe 'get #share' do
     let(:item) { create(:item, user: user_2) }
     let(:shared_item) { create(:shared_item, item: item) }
     subject { get :share, params: token }
@@ -66,18 +66,43 @@ RSpec.describe SharedItemsController, type: :controller do
     end
 
     context 'with invalid params' do
-      let(:item) { create(:item, user: user) }
-      let(:shared_item) { create(:shared_item, item: item) }
-      let(:token) { { token: shared_item.token } }
+      context 'when owner and tenant are the same' do
+        let(:item) { create(:item, user: user) }
+        let(:shared_item) { create(:shared_item, item: item) }
+        let(:token) { { token: shared_item.token } }
 
-      it "does not save the new RentItem" do
-        expect{ subject }.to_not change(RentItem,:count)
+        it "does not save the new RentItem" do
+          expect{ subject }.to_not change(RentItem, :count)
+        end
+
+        it 'redirects to the items' do
+          expect(subject).to have_http_status(:redirect)
+          expect(subject).to redirect_to(items_path)
+          expect(flash[:notice]).to match(/Invalid Link\./)
+        end
       end
 
-      it 'redirects to the items' do
-        expect(subject).to have_http_status(:redirect)
-        expect(subject).to redirect_to(items_path)
-        expect(flash[:notice]).to match(/Invalid Link\./)
+      context 'when the link is expired' do
+        let(:expired_shared_item) { create(:shared_item, item: item, expiration: Time.zone.now - 1.minute) }
+        let(:token) { { token: expired_shared_item.token } }
+
+        before do
+          SharedItem.skip_callback(:create, :before, :set_expiration_date)
+        end
+
+        after do
+          SharedItem.set_callback(:create, :before, :set_expiration_date)
+        end
+
+        it "does not save the new RentItem" do
+          expect{ subject }.to_not change(RentItem, :count)
+        end
+
+        it 'redirects to the items' do
+          expect(subject).to have_http_status(:redirect)
+          expect(subject).to redirect_to(items_path)
+          expect(flash[:notice]).to match(/Invalid Link\./)
+        end
       end
     end
   end

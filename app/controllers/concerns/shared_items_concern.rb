@@ -6,6 +6,8 @@ module SharedItemsConcern
   end
 
   def remove_expired_links
-    @shared_item.destroy if @shared_item && @shared_item.expiration < Time.zone.now
+    return unless @shared_item && @shared_item.expiration < Time.zone.now
+    @shared_item.destroy
+    @shared_item = nil
   end
 end
