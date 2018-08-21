@@ -79,15 +79,8 @@ ActiveRecord::Schema.define(version: 2018_08_21_084217) do
     t.bigint "category_id"
     t.index ["category_id"], name: "index_rent_items_on_category_id"
     t.index ["niche_id"], name: "index_rent_items_on_niche_id"
-  end
-
-  create_table "shared_items", force: :cascade do |t|
-    t.bigint "item_id"
-    t.string "token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "expiration"
-    t.index ["item_id"], name: "index_shared_items_on_item_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_rent_items_on_deleted_at"
   end
 
   create_table "shared_items", force: :cascade do |t|
