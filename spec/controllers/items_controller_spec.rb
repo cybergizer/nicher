@@ -127,7 +127,7 @@ RSpec.describe ItemsController, type: :controller do
 
       it "changes item's attributes" do
         item.reload
-        expect(item.title).to eq("Watch")
+        expect(item.description).to eq("It's socks")
       end
 
       it 'redirects to the item' do

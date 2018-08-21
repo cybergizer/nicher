@@ -8,6 +8,6 @@ FactoryBot.define do
   end
 
   factory :new_item, class: 'Item' do
-    title 'Watch'
+    description "It's socks"
   end
 end
