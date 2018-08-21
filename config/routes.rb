@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :niches
+  resources :niches do
+    collection do
+      post :move
+    end
+  end
   resources :items
-
+  resources :rent_items, only: %i[show edit update]
   get 'rent_form', controller: 'rent_items'
   post 'rent', action: :rent, controller: 'rent_items'
   delete 'repay', controller: 'rent_items'

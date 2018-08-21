@@ -2,6 +2,7 @@ class Category < ActiveRecord::Base
   PARAMS = %i[name parent_id].freeze
 
   has_many :items, dependent: :nullify
+  has_many :rent_items, dependent: :nullify
 
   belongs_to :user
 

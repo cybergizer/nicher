@@ -3,8 +3,13 @@ $(function () {
 
   $('.dd').on('change', function () {
       var $this = $(this);
-      var serializedData = window.JSON.stringify($($this).nestable('serialize'));
-
-      $this.parents('div.body').find('textarea').val(serializedData);
+      var data = window.JSON.stringify($($this).nestable('serialize'));
+      alert(data)
+      $.ajax({
+        type: "POST",
+        url: 'niches/move',
+        data: {tree: data},
+        dataType: "JSON"
+      });
   });
 });

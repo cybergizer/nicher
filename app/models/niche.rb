@@ -1,7 +1,8 @@
 class Niche < ApplicationRecord
   PARAMS = %i[name parent_id].freeze
 
-  has_many :items, dependent: :delete_all
+  has_many :items, dependent: :nullify
+  has_many :rent_items, dependent: :nullify
 
   belongs_to :user
 

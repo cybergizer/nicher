@@ -27,6 +27,16 @@ table.table
           = link_to 'Edit', edit_item_path(item)
         td
           = link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
+    - @niche.rent_items.each do |rent_item|
+      tr
+        td
+          = rent_item.item.title
+        td
+          = rent_item.item.description
+        td
+          = link_to 'Show', rent_item
+        td
+          = link_to 'Edit', edit_rent_item_path(rent_item)
 = link_to 'Edit', edit_niche_path(@niche)
 |  | 
 = link_to 'Back', niches_path
