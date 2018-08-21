@@ -11,6 +11,6 @@ class Item < ApplicationRecord
   validates :title, presence: true
   def self.search(search)
     return all unless search
-    where('title like ?', "%#{search}%")
+    where('title ilike ?', "%#{search}%")
   end
 end
