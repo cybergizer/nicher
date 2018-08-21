@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   include ApplicationConcern
 
   before_action :set_category, only: %i[show edit update destroy]
+  skip_before_action :verify_authenticity_token, only: %i[move]
 
   def index
     @categories = current_user.categories.roots
@@ -38,6 +39,13 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     redirect_to categories_url, notice: 'Category was successfully destroyed.'
+  end
+
+  def move
+    category = current_user.categories.find_by!(id: params[:id])
+    parent = current_user.categories.find_by(id: params[:parent_id])
+    category.parent = parent
+    category.save
   end
 
   private

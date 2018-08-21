@@ -1,6 +1,8 @@
 p#notice
   = notice
-.dd
+h1
+  | Niches
+.dd.niches
   ol.dd-list
     = niches_output(@niches).html_safe
 = link_to 'New Niche', nil, id: 'new_niche', class: 'btn btn-default'

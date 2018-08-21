@@ -54,7 +54,10 @@ class NichesController < ApplicationController
   end
 
   def move
-    p JSON.parse(params[:tree])[0]
+    niche = current_user.niches.find_by!(id: params[:id])
+    parent = current_user.niches.find_by(id: params[:parent_id])
+    niche.parent = parent
+    niche.save
   end
 
   private

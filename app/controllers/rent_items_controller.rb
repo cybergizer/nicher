@@ -30,11 +30,8 @@ class RentItemsController < ApplicationController
   def edit; end
 
   def update
-    if @rent_item.update(update_params)
-      redirect_to @rent_item, notice: 'Item was successfully updated.'
-    else
-      render :edit
-    end
+    @rent_item.update(update_params)
+    redirect_to @rent_item, notice: 'Item was successfully updated.'
   end
 
   private

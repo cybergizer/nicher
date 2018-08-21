@@ -53,13 +53,13 @@ $(document).ready(function() {
     return name_input.val() != '';
   }
 
-  function fetchRentFormContent(id){
-    $.ajax({
-      url: '/rent_form',
-      data: { id: id },
-      success: function(data){
-        $('#rent_form').html(data);
-      }
-    });
-  }
+    function fetchRentFormContent(id){
+      $.ajax({
+        url: '/rent_items/rent_form',
+        data: { id: id},
+        success: function(data){
+          $('#rent_form').html(data);
+        }
+      });
+    }
 });
