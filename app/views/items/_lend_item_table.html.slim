@@ -1,4 +1,5 @@
-- if item.item
+- if lend_item.item
   tr
-    td= item.item.title
-    td= link_to 'Returned', repay_path(id: item.id), method: :delete, data: { confirm: 'Are you sure that it was returned?' }
+    td= lend_item.title
+    td= link_to repay_path(id: lend_item.id), method: :delete, data: { confirm: 'Are you sure that it was returned?' } do
+      i.material-icons keyboard_return

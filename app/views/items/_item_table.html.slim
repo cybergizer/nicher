@@ -1,9 +1,13 @@
 tr
-  td= item.title
+  td= link_to item.title, item
   td= item.description
   td= item.category&.name
   td= item.display_created_at
-  td= link_to 'Lend', nil, class: 'lend_item', data: { id: item.id }
-  td= link_to 'Show', item
-  td= link_to 'Edit', edit_item_path(item)
-  td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
+  td= link_to nil, class: 'lend_item', data: { id: item.id } do
+    i.material-icons swap_horiz
+  td= link_to nil, class: 'share_item', data: { id: item.id } do
+    i.material-icons share
+  td= link_to edit_item_path(item) do
+    i.material-icons edit
+  td= link_to item, method: :delete, data: { confirm: 'Are you sure?' } do
+    i.material-icons delete
