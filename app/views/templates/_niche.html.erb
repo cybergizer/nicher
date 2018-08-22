@@ -1,6 +1,7 @@
-<li class='dd-item dd-collapsed' data-id='<%= object.id %>'>
+<li class='dd-item dd-collapsed' data-id='<%= object.id %>' data-parent='<%= object.parent_id %>'>
   <div class = 'dd-handle'>
     <%= link_to object.name, object, class: 'dd-nodrag' %>
     <%= link_to 'Edit', edit_niche_path(object), class: 'dd-nodrag' %>
     <%= link_to 'Destroy', niche_path(object.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dd-nodrag' %>
   </div>
+  

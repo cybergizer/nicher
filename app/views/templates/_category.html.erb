@@ -1,4 +1,4 @@
-<li class='dd-item dd-collapsed' data-id='<%= object.id %>'>
+<li class='dd-item dd-collapsed' data-id='<%= object.id %>' data-parent='<%= object.parent_id %>'>
   <div class = 'dd-handle'>
     <%= link_to object.name, object, class: 'dd-nodrag' %>
     <%= link_to 'Edit', edit_category_path(object), class: 'dd-nodrag' %>

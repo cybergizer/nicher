@@ -2,7 +2,9 @@ p#notice
   = notice
 h1
   | Niches
-.dd.niches
-  ol.dd-list
-    = niches_output(@niches).html_safe
-= link_to 'New Niche', nil, id: 'new_niche', class: 'btn btn-default'
+.clearfix.m-b-20
+  .dd.niches
+    ol.dd-list
+      = hierarchy_output(@niches).html_safe
+br
+= link_to 'New Niche', new_niche_path, class: 'btn btn-default'
