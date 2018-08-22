@@ -144,6 +144,9 @@ ActiveRecord::Schema.define(version: 2018_08_30_094805) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar"
+    t.string "sex"
+    t.string "phone"
+    t.date "birthday"
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 

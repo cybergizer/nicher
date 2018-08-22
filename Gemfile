@@ -50,6 +50,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'paranoia', '~> 2.2'
 gem 'audited', '~> 4.7'
+gem 'date_validator'
 
 group :development, :test do
   gem 'pry'

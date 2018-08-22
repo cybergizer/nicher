@@ -111,6 +111,9 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    date_validator (0.9.0)
+      activemodel
+      activesupport
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (4.5.0)
@@ -436,6 +439,7 @@ DEPENDENCIES
   carrierwave
   chromedriver-helper
   coffee-rails (~> 4.2)
+  date_validator
   devise
   dotenv-rails
   factory_bot_rails

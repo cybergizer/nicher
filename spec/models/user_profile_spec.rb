@@ -14,10 +14,6 @@ RSpec.describe UserProfile, type: :model do
     expect(user_profile_without_a_full_name).to_not be_valid
   end
 
-  it "when we create user model, it hasn't an user profile" do
-    expect(user.user_profile).to be_nil
-  end
-
   it 'is actual contained in UserProfile table' do
     user.user_profile = user_profile
     expect(UserProfile.all).to contain_exactly(user.user_profile)
