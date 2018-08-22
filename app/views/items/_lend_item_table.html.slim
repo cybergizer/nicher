@@ -1,0 +1,5 @@
+- if item.item
+  tr
+    td= item.item.title
+    td= item.tenant.name
+    td= link_to 'Returned', repay_path(id: item.id), method: :delete, data: { confirm: 'Are you sure that it was returned?' }

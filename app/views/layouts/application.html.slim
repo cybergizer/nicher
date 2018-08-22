@@ -15,11 +15,11 @@ html
       .search-icon
         i.material-icons
           | search
-      = form_tag root_path, :method => 'get' do
+      = form_tag root_path, method: 'get' do
         .search-icon
           i.material-icons search
         = text_field_tag :search, params[:search]
-        = submit_tag "", :name => nil, :class => 'btn', :style => "visibility: hidden;"
+        = submit_tag "", name: nil, class: 'btn', style: "visibility: hidden;"
       .close-search
         i.material-icons close
     = render partial: "shared/navbar"

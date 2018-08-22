@@ -17,6 +17,6 @@ describe 'User registration' do
   end
 
   it "redirects to welcome_page" do
-    expect(page).to have_text("NICHER+R")
+    expect(page).to have_selector("section.main_page_content")
   end
 end

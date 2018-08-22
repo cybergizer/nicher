@@ -22,7 +22,7 @@ RSpec.describe Item, type: :model do
     end
   end
 
-  describe 'Search' do
+  describe '#search' do
     it 'finds the item' do
       item = subject
       result = Item.search('Watch').first
@@ -33,6 +33,14 @@ RSpec.describe Item, type: :model do
       item = subject
       result = Item.search(nil)
       expect(result).to eq(Item.all)
+    end
+
+    describe '#display_created_at' do
+      it 'displays time' do
+        item = subject
+        result = item.display_created_at
+        expect(result).to eq (item.created_at.strftime "%B %e, %Y")
+      end
     end
   end
 end

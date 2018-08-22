@@ -9,8 +9,13 @@ class Item < ApplicationRecord
   belongs_to :rent_item, optional: true
 
   validates :title, presence: true
+
   def self.search(search)
     return all unless search
     where('title ilike ?', "%#{search}%")
+  end
+
+  def display_created_at
+    created_at.strftime '%B %e, %Y'
   end
 end
