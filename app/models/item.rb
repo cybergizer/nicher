@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
   PARAMS = %i[title description niche_id category_id].freeze
 
+  has_one :shared_item, dependent: :destroy
+
   belongs_to :user
   belongs_to :niche, optional: true
 
