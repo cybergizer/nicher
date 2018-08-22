@@ -57,7 +57,7 @@ RSpec.describe CategoriesController, type: :controller do
     end
 
     it "renders the #new view" do
-      expect(response).to render_template :new
+      expect(response).to render_template(partial: 'categories/_form')
     end
   end
 
@@ -75,7 +75,7 @@ RSpec.describe CategoriesController, type: :controller do
     end
 
     it "renders the #edit view" do
-      expect(response).to render_template :edit
+      expect(response).to render_template(partial: 'categories/_form')
     end
   end
 
@@ -90,9 +90,7 @@ RSpec.describe CategoriesController, type: :controller do
       it 'redirects to the created category' do
         post :create, params: { category: valid_attributes }
         category = assigns(:category)
-        expect(response).to have_http_status(:redirect)
-        expect(response).to redirect_to(category)
-        expect(flash[:notice]).to match(/Category was successfully created\./)
+        expect(response.body).to eq("{\"status\":\"ok\"}")
       end
     end
 
@@ -111,8 +109,7 @@ RSpec.describe CategoriesController, type: :controller do
       it "re-renders the new method" do
         post :create, params: { category: invalid_attributes }
         category = assigns(:category)
-        expect(category.errors.messages[:name]).to be_present
-        expect(response).to render_template :new
+        expect(response.body).to eq("{\"status\":\"error\"}")
       end
     end
   end
@@ -135,9 +132,7 @@ RSpec.describe CategoriesController, type: :controller do
       end
 
       it 'redirects to the category' do
-        expect(response).to have_http_status(:redirect)
-        expect(response).to redirect_to(category)
-        expect(flash[:notice]).to match(/Category was successfully updated\./)
+        expect(response.body).to eq("{\"status\":\"ok\"}")
       end
     end
 
@@ -146,19 +141,13 @@ RSpec.describe CategoriesController, type: :controller do
         put :update, params: { id: category, category: invalid_attributes }
       end
 
-      it 'returns http success' do
-        expect(response).to have_http_status(:success)
-      end
-
       it "does not change category's attributes" do
         category.reload
         expect(category.name).to_not be_nil
       end
 
       it "re-renders the edit method " do
-        category = assigns(:category)
-        expect(category.errors.messages[:name]).to be_present
-        expect(response).to render_template :edit
+        expect(response.body).to eq("{\"status\":\"error\"}")
       end
     end
   end
