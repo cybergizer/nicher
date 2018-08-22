@@ -6,6 +6,8 @@ class RentItem < ApplicationRecord
   accepts_nested_attributes_for :tenant
   validates :item, presence: true
 
+  delegate :title, to: :item
+
   def tenant_attributes=(attributes)
     self.tenant = Contact.create(attributes)
   end

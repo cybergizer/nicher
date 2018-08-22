@@ -64,5 +64,6 @@ class ItemsController < ApplicationController
     @items = current_user.items.order("#{sort_column} #{sort_direction}")
                          .paginate(page: params[:page], per_page: 3).where(rent_item_id: nil)
     @lend_items = current_user.lend_items
+    @borrowed_items = current_user.borrowed_items
   end
 end
