@@ -13,7 +13,7 @@ class Item < ApplicationRecord
 
   validates :title, presence: true
 
-  has_many :item_histories
+  has_many :item_histories, dependent: :destroy
 
   def self.search(search)
     return all unless search
