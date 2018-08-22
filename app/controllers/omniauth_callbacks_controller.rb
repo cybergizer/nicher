@@ -3,7 +3,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def self.provides_callback_for(provider)
     class_eval %{
       def #{provider}
-        @user = User.find_for_oauth(request.env["omniauth.auth"], current_user)
+        @user = AuthService.new(request.env["omniauth.auth"], current_user).find_for_oauth
         if @user.persisted?
           sign_in_and_redirect @user, event: :authentication
           set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
@@ -14,6 +14,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
     }, __FILE__, __LINE__ - 11
   end
+  # rubocop:enable Metrics/MethodLength
 
   %i[github facebook vkontakte yandex google_oauth2].each do |provider|
     provides_callback_for provider
@@ -26,5 +27,4 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       finish_signup_path(resource)
     end
   end
-  # rubocop:enable Metrics/MethodLength
 end

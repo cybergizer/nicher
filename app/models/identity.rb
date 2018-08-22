@@ -6,4 +6,10 @@ class Identity < ApplicationRecord
   def self.find_for_oauth(auth)
     find_or_create_by(uid: auth.uid, provider: auth.provider)
   end
+
+  def add_identity(user)
+    return if self.user == user
+    self.user = user
+    save!
+  end
 end
