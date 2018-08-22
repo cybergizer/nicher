@@ -5,48 +5,34 @@ html
     = csrf_meta_tags
     = csp_meta_tag
     title NICHER+R
-    /! Favicon
     link href="favicon.ico" rel="icon" type="image/x-icon" /
-    /! Google Fonts
-    /! <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css"
-    /! <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons', media: 'all', 'data-turbolinks-track': 'reload'
   body.theme-blue
-    /! Overlay For Sidebars
     .overlay
-    /! #END# Overlay For Sidebars
-    /! Search Bar
-    - if @current_user || @item
-	    .search-bar
-	      .search-icon
-	        i.material-icons search
-	      input placeholder=("START TYPING...") type="text" /
-	      .close-search
-	        i.material-icons close
-	    /! #END# Search Bar
-	    /! Top Bar
-	    = render partial: "shared/navbar"
-	    /! #Top Bar
+    .search-bar
+      .search-icon
+        i.material-icons
+          | search
+      = form_tag root_path, method: 'get' do
+        .search-icon
+          i.material-icons search
+        = text_field_tag :search, params[:search]
+        = submit_tag "", name: nil, class: 'btn', style: "visibility: hidden;"
+      .close-search
+        i.material-icons close
+    = render partial: "shared/navbar"
+    - if user_session
 	    section
-	      /! Left Sidebar
 	      aside#leftsidebar.sidebar
-	        /! User Info
 	        = render partial: "shared/user_info"
-	        /! #User Info
-	        /! Menu
 	        = render partial: "shared/menu"
-	        /! #Menu
-	        /! Footer
 	        = render partial: "shared/footer"
-	        /! #Footer
-	      /! #END# Left Sidebar
         section.content
           .container-fluid
-            .block-header
-              h2 PAGE
             = yield
     - else
+      section.main_page_content
         = yield
+  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
