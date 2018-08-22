@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 2018_08_21_084217) do
     t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
+  create_table "item_histories", force: :cascade do |t|
+    t.bigint "item_id"
+    t.integer "rent_item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_histories_on_item_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -138,6 +146,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_084217) do
 
   add_foreign_key "categories", "users"
   add_foreign_key "identities", "users"
+  add_foreign_key "item_histories", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "niches"
   add_foreign_key "items", "rent_items"

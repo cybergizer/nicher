@@ -9,9 +9,11 @@ class Item < ApplicationRecord
 
   belongs_to :category, optional: true
 
-  belongs_to :rent_item, -> { with_deleted }, optional: true
+  belongs_to :rent_item, optional: true
 
   validates :title, presence: true
+
+  has_many :item_histories
 
   def self.search(search)
     return all unless search
@@ -22,5 +24,3 @@ class Item < ApplicationRecord
     created_at.strftime '%B %e, %Y'
   end
 end
-
-Item.includes(:rent_item).all

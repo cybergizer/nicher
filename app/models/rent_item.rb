@@ -14,11 +14,14 @@ class RentItem < ApplicationRecord
 
   delegate :title, to: :item
 
+  after_create :create_history
+
   def tenant_attributes=(attributes)
     self.tenant = Contact.create(attributes)
   end
 
-  def rent_item
-    RentItem.unscoped { super }
+  private
+  def create_history
+    ItemHistory.create(item: self.item, rent_item_id: self.id)
   end
 end
