@@ -16,19 +16,22 @@ class NichesController < ApplicationController
   # GET /locations/new
   def new
     @niche = current_user.niches.build
+    render partial: 'niches/form'
   end
 
   # GET /locations/1/edit
-  def edit; end
+  def edit
+    render partial: 'niches/form'
+  end
 
   # POST /locations
   # POST /locations.json
   def create
     @niche = current_user.niches.new(processed_params)
     if @niche.save
-      redirect_to @niche
+      render json: { status: 'ok' }
     else
-      render :new
+      render json: { status: 'error' }
     end
   end
 
@@ -36,9 +39,9 @@ class NichesController < ApplicationController
   # PATCH/PUT /locations/1.json
   def update
     if @niche.update(processed_params)
-      redirect_to @niche
+      render json: { status: 'ok' }
     else
-      render :edit
+      render json: { status: 'error' }
     end
   end
 

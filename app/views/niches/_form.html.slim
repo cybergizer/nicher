@@ -1,18 +1,20 @@
-= form_with(model: niche, local: true) do |form|
-  - if niche.errors.any?
-    #error_explanation
-       h2
-         = pluralize(niche.errors.count, "error")
-         | prohibited this location from being saved:
-       ul
-         - niche.errors.full_messages.each do |message|
-           li= message
-
-  .form-group
-    = form.label :name
-    = form.text_field :name
-  .form-group
-    = form.label :parent
-    = form.collection_select :parent_id, current_user.niches, :id, :name, include_blank: true
-  .actions
-     = form.submit
+.card
+  .header
+    h2
+      | Rent your Item
+  .body
+    = form_for(@niche, :html=>{ :id=>'save_niche', :multipart => true}) do |form|
+      #error_explanation
+      = form.label :name
+      .form-group
+        .form-line
+          = form.text_field :name, class: 'form-control'
+      = form.label :parent
+      .form-group
+        .form-line  
+          = form.collection_select :parent_id, current_user.niches, :id, :name, include_blank: true, class: 'form-control'
+      br
+      .button-demo
+        button#close.btn.btn-danger.waves-effect
+          | Cancel    
+        = form.button 'Save', type: :submit, class: 'btn btn-primary waves-effect'
