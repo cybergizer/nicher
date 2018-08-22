@@ -11,25 +11,27 @@ class CategoriesController < ApplicationController
 
   def new
     @category = current_user.categories.build
+    render partial: 'categories/form'
   end
 
-  def edit; end
+  def edit
+    render partial: 'categories/form'
+  end
 
   def create
     @category = current_user.categories.new(category_params)
-
     if @category.save
-      redirect_to @category, notice: 'Category was successfully created.'
+      render json: { status: 'ok' }
     else
-      render :new
+      render json: { status: 'error' }
     end
   end
 
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: 'Category was successfully updated.'
+      render json: { status: 'ok' }
     else
-      render :edit
+      render json: { status: 'error' }
     end
   end
 
