@@ -1,5 +1,5 @@
 module UsersHelper
-  def user_save(user)
+  def self.user_save(user)
     user.skip_confirmation!
     user.save!
     user
