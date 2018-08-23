@@ -12,10 +12,12 @@ class CategoriesController < ApplicationController
 
   def new
     @category = current_user.categories.build
+    @categories = current_user.categories
     render partial: 'categories/form'
   end
 
   def edit
+    @categories = current_user.categories - [@category]
     render partial: 'categories/form'
   end
 

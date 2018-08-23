@@ -7,7 +7,7 @@ class NichesController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @niches = current_user.niches.reject(&:parent)
+    @niches = current_user.niches.roots
   end
 
   # GET /locations/1
@@ -17,11 +17,13 @@ class NichesController < ApplicationController
   # GET /locations/new
   def new
     @niche = current_user.niches.build
+    @niches = current_user.niches
     render partial: 'niches/form'
   end
 
   # GET /locations/1/edit
   def edit
+    @niches = current_user.niches - [@niche]
     render partial: 'niches/form'
   end
 

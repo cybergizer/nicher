@@ -12,7 +12,7 @@
       = form.label :parent
       .form-group
         .form-line
-          = form.collection_select(:parent_id, current_user.niches, :id, :name, { include_blank: 'None' }, { class: "bootstrap-select form-control show-tick" })
+          = form.collection_select(:parent_id, @niches, :id, :name, { include_blank: 'None' }, { class: "bootstrap-select form-control show-tick" })
       br
       .button-demo
         button#close.btn.btn-danger.waves-light

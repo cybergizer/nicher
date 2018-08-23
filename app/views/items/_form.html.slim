@@ -9,10 +9,7 @@
           li= message
   .form-group
     = form.label :title
-    - if item.new_record?
-      = form.text_field :title
-    - else
-      = form.text_field :title, disabled: true
+    = form.text_field :title
   .form-group
     = form.label :description
     = form.text_area :description
