@@ -26,7 +26,7 @@ class AuthService
 
   def user_create
     user = User.new(fill_user_fields)
-    UsersHelper.user_save(user)
+    user_save(user)
   end
 
   def fill_user_fields
