@@ -8,9 +8,7 @@ class ItemsController < ApplicationController
 
   def index; end
 
-  def show
-    @history = @item.item_histories
-  end
+  def show;  end
 
   def new
     @item = current_user.items.build

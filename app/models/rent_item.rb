@@ -21,10 +21,9 @@ class RentItem < ApplicationRecord
   end
 
   private
+
   def create_history
-    history = ItemHistory.new(item: self.item, rent_item_id: self.id)
-    if self.item.valid?
-      history.save
-    end
+    history = ItemHistory.new(item: item, rent_item_id: id)
+    history.save if item.valid?
   end
 end

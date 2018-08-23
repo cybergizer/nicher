@@ -12,7 +12,7 @@ p
 | \
 = link_to 'Back', items_path
 
-- unless @history.empty?
+- unless @item.item_histories.empty?
   .row.clearfix
     .col-lg-12.col-md-12.col-sm-12.col-xs-12
       .card
@@ -27,7 +27,7 @@ p
                 th lent
                 th returned
             tbody
-              - @history.each do |history|
+              - @item.item_histories.each do |history|
                 tr
                   - if history.find
                     - if history.find.tenant.class == Contact

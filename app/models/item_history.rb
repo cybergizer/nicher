@@ -3,6 +3,6 @@ class ItemHistory < ApplicationRecord
   validates :item, presence: true
 
   def find
-    RentItem.only_deleted.find_by_id(self.rent_item_id)
+    RentItem.only_deleted.find_by_id(rent_item_id)
   end
 end
