@@ -1,0 +1,15 @@
+tr
+  - if history.find
+    - if history.find.tenant.class == Contact
+      td
+        = history.find.tenant.name
+        - if history.find.tenant.email
+          br/
+          = history.find.tenant.email
+    - else
+      td
+        = history.find.tenant.first_name
+        br/
+        = history.find.tenant.email
+    td = history.find.created_at.strftime '%e %b %Y %k:%M'
+    td = history.find.deleted_at.strftime '%e %b %Y %k:%M'
