@@ -3,7 +3,7 @@
     h2
       | Niche
   .body
-    = form_for(@niche, :html=>{ :id=>'save_niche', :multipart => true}) do |form|
+    = form_for(@niche, html: { id: 'save_niche', multipart: true }) do |form|
       #error_explanation
       = form.label :name
       .form-group

@@ -3,7 +3,7 @@
     h2
       | Category
   .body
-    = form_for(@category, :html=>{ :id=>'save_category', :multipart => true}) do |form|
+    = form_for(@category, html: { id: 'save_category', multipart: true }) do |form|
       #error_explanation
       = form.label :name
       .form-group

@@ -21,12 +21,16 @@ $(document).ready(function() {
     $('#rent_form').remove();
   });
 
+  $(document).on('submit','form#save_rent_item', function(e) {
+    e.preventDefault();
+  });
+
   $(document).on('click','form#save_rent_item button[type="submit"]', function(e) {
     e.preventDefault();
     var form = $(this).parents('form#save_rent_item');
     var data = $(form).serialize();
     if (!validateRentForm(form)) {
-      $('#error_explanation').addClass('alert alert-warning').html('Please input name for contact!').fadeIn().fadeOut(10000);
+      alertCreate('Please input name for contact!');
       return;
     }
     $.ajax({

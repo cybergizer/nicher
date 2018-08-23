@@ -90,7 +90,7 @@ RSpec.describe CategoriesController, type: :controller do
       it 'redirects to the created category' do
         post :create, params: { category: valid_attributes }
         category = assigns(:category)
-        expect(response.body).to eq("{\"status\":\"ok\"}")
+        expect(response_to_json).to eq({ 'status' => 'ok' })
       end
     end
 
@@ -109,7 +109,7 @@ RSpec.describe CategoriesController, type: :controller do
       it "re-renders the new method" do
         post :create, params: { category: invalid_attributes }
         category = assigns(:category)
-        expect(response.body).to eq("{\"status\":\"error\"}")
+        expect(response_to_json).to eq({ 'status' => 'error' })
       end
     end
   end
@@ -132,7 +132,7 @@ RSpec.describe CategoriesController, type: :controller do
       end
 
       it 'redirects to the category' do
-        expect(response.body).to eq("{\"status\":\"ok\"}")
+        expect(response_to_json).to eq({ 'status' => 'ok' })
       end
     end
 
@@ -143,11 +143,11 @@ RSpec.describe CategoriesController, type: :controller do
 
       it "does not change category's attributes" do
         category.reload
-        expect(category.name).to_not be_nil
+        expect(response_to_json).to_not be_nil
       end
 
       it "re-renders the edit method " do
-        expect(response.body).to eq("{\"status\":\"error\"}")
+        expect(response_to_json).to eq({ 'status' => 'error' })
       end
     end
   end

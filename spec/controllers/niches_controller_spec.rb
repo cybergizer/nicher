@@ -80,7 +80,7 @@ RSpec.describe NichesController, type: :controller do
       it 'redirects to the created niche' do
         post :create, params: { niche: valid_attributes }
         niche = assigns(:niche)
-        expect(response.body).to eq("{\"status\":\"ok\"}")
+        expect(response_to_json).to eq({ 'status' => 'ok' })
       end
     end
 
@@ -94,7 +94,7 @@ RSpec.describe NichesController, type: :controller do
       it "re-renders the new method" do
         post :create, params: { niche: invalid_attributes }
         niche = assigns(:niche)
-        expect(response.body).to eq("{\"status\":\"error\"}")
+        expect(response_to_json).to eq({ 'status' => 'error' })
       end
     end
   end
@@ -130,7 +130,7 @@ RSpec.describe NichesController, type: :controller do
       it "re-renders the edit method " do
         niche = assigns(:niche)
         expect(niche.errors).to be_present
-        expect(response.body).to eq("{\"status\":\"error\"}")
+        expect(response_to_json).to eq({ 'status' => 'error' })
       end
     end
   end

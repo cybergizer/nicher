@@ -4,14 +4,14 @@ $(document).ready(function() {
     var id = $(this).data('id');
     $(document.body).append('<div id="category_form">No content</div>');
     $('#category_form').dialog({
-        modal: true,
-        open: function(){
-          fetchCategoryFormContent(id);
-        },
-        close: function(){
-          $(this).dialog('destroy');
-          $(this).remove();     
-        }
+      modal: true,
+      open: function(){
+        fetchCategoryFormContent(id);
+      },
+      close: function(){
+        $(this).dialog('destroy');
+        $(this).remove();     
+      }
     });
     addStylesToDialog();
   });
@@ -21,14 +21,14 @@ $(document).ready(function() {
     var id = $(this).data('id');
     $(document.body).append('<div id="category_form">No content</div>');
     $('#category_form').dialog({
-        modal: true,
-        open: function(){
-          fetchUpdateCategoryContent(id);
-        },
-        close: function(){
-          $(this).dialog('destroy');
-          $(this).remove();     
-        }
+      modal: true,
+      open: function(){
+        fetchUpdateCategoryContent(id);
+      },
+      close: function(){
+        $(this).dialog('destroy');
+        $(this).remove();     
+      }
     });
     addStylesToDialog();
   });
@@ -43,7 +43,7 @@ $(document).ready(function() {
     var form = $(this).parents('form#save_category');
     var data = $(form).serialize();
     if (!validateCategoryForm(form)) {
-      $('#error_explanation').addClass('alert alert-warning').html('Please input name for category!').fadeIn().fadeOut(10000);
+      alertCreate('Please input name for category!');
       return;
     }
     $.ajax({
@@ -52,16 +52,20 @@ $(document).ready(function() {
       data: data,
       dataType: "JSON"
     }).success(function(data){
-      if (data.status == 'ok') {
-        $('#category_form').dialog('destroy');
-        $('#category_form').remove();
-        window.location = '/categories';
-      }else{
-        $('#error_explanation').addClass('alert alert-warning').html('Category cannot be a descendant of itself!').fadeIn().fadeOut(10000);
-      }
+      categoryStatusCheck(data);
     });
     return false;
   });
+
+  function categoryStatusCheck(data){
+    if (data.status == 'ok') {
+      $('#category_form').dialog('destroy');
+      $('#category_form').remove();
+      window.location = '/categories';
+    }else{
+      alertCreate('Category cannot be a descendant of itself!');
+    }
+  }
 
   function validateCategoryForm(form){
     var name_input = $(form).find('#category_name');
