@@ -2,28 +2,21 @@ $(document).ready(function() {
   $(document).on('click','#new_category', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    $(document.body).append('<div id="category_form">No content</div>');
-    $('#category_form').dialog({
-      modal: true,
-      open: function(){
-        fetchCategoryFormContent(id);
-      },
-      close: function(){
-        $(this).dialog('destroy');
-        $(this).remove();     
-      }
-    });
-    addStylesToDialog();
+    createCategoryDialog(fetchCategoryFormContent, id);
   });
 
   $(document).on('click','.edit_category_button', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
+    createCategoryDialog(fetchUpdateCategoryContent, id);
+  });
+
+  function createCategoryDialog(fetchMethod, id){
     $(document.body).append('<div id="category_form">No content</div>');
     $('#category_form').dialog({
       modal: true,
       open: function(){
-        fetchUpdateCategoryContent(id);
+        fetchMethod(id);
       },
       close: function(){
         $(this).dialog('destroy');
@@ -31,7 +24,7 @@ $(document).ready(function() {
       }
     });
     addStylesToDialog();
-  });
+  }
 
   $(document).on('click','form#save_category #close', function(){
     $('#category_form').dialog('destroy');
@@ -62,7 +55,7 @@ $(document).ready(function() {
       $('#category_form').dialog('destroy');
       $('#category_form').remove();
       window.location = '/categories';
-    }else{
+    } else {
       alertCreate('Category cannot be a descendant of itself!');
     }
   }
@@ -75,7 +68,7 @@ $(document).ready(function() {
   function fetchCategoryFormContent(id){
     $.ajax({
       url: '/categories/new',
-      data: { id: id},
+      data: { id: id },
       success: function(data){
         $('#category_form').html(data);
       }
@@ -85,7 +78,7 @@ $(document).ready(function() {
   function fetchUpdateCategoryContent(id){
     $.ajax({
       url: '/categories/' + id + '/edit',
-      data: { id: id},
+      data: { id: id },
       success: function(data){
         $('#category_form').html(data);
       }

@@ -2,28 +2,21 @@ $(document).ready(function() {
   $(document).on('click','#new_niche', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    $(document.body).append('<div id="niche_form">No content</div>');
-    $('#niche_form').dialog({
-      modal: true,
-      open: function(){
-        fetchNicheFormContent(id);
-      },
-      close: function(){
-        $(this).dialog('destroy');
-        $(this).remove();     
-      }
-    });
-    addStylesToDialog();
+    createNicheDialog(fetchNicheFormContent, id);
   });
 
   $(document).on('click','.edit_niche_button', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
+    createNicheDialog(fetchUpdateNicheContent, id);
+  });
+
+  function createNicheDialog(fetchMethod, id){
     $(document.body).append('<div id="niche_form">No content</div>');
     $('#niche_form').dialog({
       modal: true,
       open: function(){
-        fetchUpdateNicheContent(id);
+        fetchMethod(id);
       },
       close: function(){
         $(this).dialog('destroy');
@@ -31,7 +24,7 @@ $(document).ready(function() {
       }
     });
     addStylesToDialog();
-  });
+  }
 
   $(document).on('click','form#save_niche #close', function(){
     $('#niche_form').dialog('destroy');
@@ -62,7 +55,7 @@ $(document).ready(function() {
       $('#niche_form').dialog('destroy');
       $('#niche_form').remove();
       window.location = '/niches';
-    }else{
+    } else {
       alertCreate('Niche cannot be a descendant of itself!');
     }
   }
