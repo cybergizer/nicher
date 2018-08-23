@@ -1,3 +1,5 @@
 - if borrowed_item.item
   tr
-    td= borrowed_item.title
+    td= link_to borrowed_item.title, rent_item_path(borrowed_item.id)
+    td= link_to edit_rent_item_path(borrowed_item) do
+      i.material-icons edit

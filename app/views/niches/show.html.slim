@@ -37,6 +37,6 @@ table.table
           = link_to 'Show', rent_item
         td
           = link_to 'Edit', edit_rent_item_path(rent_item)
-= link_to 'Edit', edit_niche_path(@niche)
+= link_to 'Edit', nil, class: 'edit_niche_button', data: { id: niche.id }
 |  | 
 = link_to 'Back', niches_path

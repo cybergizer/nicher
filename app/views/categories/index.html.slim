@@ -1,9 +1,12 @@
 p#notice
   = notice
-h1
-  | Categories
-.dd
-  ol.dd-list
-    = hierarchy_output(@categories, template: 'category').html_safe
-br
-= link_to 'New Category', new_category_path, class: 'btn btn-default'
+.card
+  .header
+    h1
+      | Categories
+  .body
+    .clearfix.m-b-20
+      .dd
+        ol.dd-list
+          = hierarchy_output(@categories, template: 'category').html_safe
+    = link_to 'New Category', nil, id: 'new_category', class: 'btn btn-primary waves-light'

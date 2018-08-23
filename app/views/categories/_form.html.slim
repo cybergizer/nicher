@@ -12,9 +12,9 @@
       = form.label :parent
       .form-group
         .form-line  
-          = form.collection_select :parent_id,  current_user.categories, :id, :name, include_blank: true, class: 'form-control'
+          = form.collection_select(:parent_id,  current_user.categories, :id, :name, { include_blank: 'None' }, { class: "bootstrap-select form-control show-tick" })
       br
       .button-demo
-        button#close.btn.btn-danger.waves-effect
+        button#close.btn.btn-danger.waves-light
           | Cancel    
-        = form.button 'Save', type: :submit, class: 'btn btn-primary waves-effect'
+        = form.button 'Save', type: :submit, class: 'btn btn-primary waves-light'

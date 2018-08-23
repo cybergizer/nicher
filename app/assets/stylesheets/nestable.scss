@@ -1,3 +1,12 @@
+.service-links {
+  display: flex;
+  float: right;
+}
+
+.edit-link {
+  cursor:pointer;
+}
+
 .dd {
   position: relative;
   display: block;

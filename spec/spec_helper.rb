@@ -15,7 +15,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'simplecov'
 SimpleCov.start 'rails'
-SimpleCov.minimum_coverage 77.78
+SimpleCov.minimum_coverage 97.12
 RSpec.configure do |config|
   config.before(:each, type: :system) do
     driven_by :rack_test

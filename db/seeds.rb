@@ -1,4 +1,4 @@
-puts 'Create User'
+puts 'Create users'
 
 User.destroy_all
 User.create(
@@ -33,19 +33,19 @@ Category.destroy_all
 
 CATEGORIES_ROOTS = %w[Technique Sport Instruments Clothes].freeze
 
-CATEGORIES_MODELS = []
+categories_models = []
 
 CATEGORIES_ROOTS.each do |category|
-  CATEGORIES_MODELS << Category.create(name: category, user: User.first)
+  categories_models << Category.create(name: category, user: User.first)
 end
 
 NESTED_CATEGORY = {
-  'Socks' => { parent: CATEGORIES_MODELS[3] },
-  'Apple' => { parent: CATEGORIES_MODELS[0] }
+  'Socks' => { parent: categories_models[3] },
+  'Apple' => { parent: categories_models[0] }
 }.freeze
 
 NESTED_CATEGORY.each do |category, data|
-  CATEGORIES_MODELS << Category.create(name: category, user: User.first, parent: data[:parent])
+  categories_models << Category.create(name: category, user: User.first, parent: data[:parent])
 end
 
 puts 'Create niches'
@@ -54,24 +54,24 @@ Niche.destroy_all
 
 NICHES = %w[Home Balcony Garage].freeze
 
-NICHES_MODELS = []
+niches_models = []
 
 NICHES.each do |niche|
-  NICHES_MODELS << Niche.create(name: niche, user: User.first)
+  niches_models << Niche.create(name: niche, user: User.first)
 end
 
 puts 'Create items'
 
 ITEMS = {
-  'Watch' => { description: 'My favorite apple watch.', category: CATEGORIES_MODELS[5], niche: NICHES_MODELS[0] },
-  'Mac' => { description: 'My favorite mac.', category: CATEGORIES_MODELS[5], niche: NICHES_MODELS[0] },
-  'PC' => { description: 'My acer 5407.', category: CATEGORIES_MODELS[0], niche: NICHES_MODELS[0] },
-  'Ball' => { description: 'League champions ball', category: CATEGORIES_MODELS[1], niche: NICHES_MODELS[1] },
-  'Socks' => { description: 'Red socks', category: CATEGORIES_MODELS[4], niche: NICHES_MODELS[0] },
-  'Jeans' => { description: 'Colins jeans', category: CATEGORIES_MODELS[3], niche: NICHES_MODELS[0] },
-  'Back' => { description: 'DC Shoes back', category: CATEGORIES_MODELS[3], niche: NICHES_MODELS[1] },
-  'Snickers' => { description: 'Nike snickers', category: CATEGORIES_MODELS[3], niche: NICHES_MODELS[1] },
-  'Gas wrench' => { description: 'My key on 13', category: CATEGORIES_MODELS[2], niche: NICHES_MODELS[2] }
+  'Watch' => { description: 'My favorite apple watch.', category: categories_models[5], niche: niches_models[0] },
+  'Mac' => { description: 'My favorite mac.', category: categories_models[5], niche: niches_models[0] },
+  'PC' => { description: 'My acer 5407.', category: categories_models[0], niche: niches_models[0] },
+  'Ball' => { description: 'League champions ball', category: categories_models[1], niche: niches_models[1] },
+  'Socks' => { description: 'Red socks', category: categories_models[4], niche: niches_models[0] },
+  'Jeans' => { description: 'Colins jeans', category: categories_models[3], niche: niches_models[0] },
+  'Back' => { description: 'DC Shoes back', category: categories_models[3], niche: niches_models[1] },
+  'Snickers' => { description: 'Nike snickers', category: categories_models[3], niche: niches_models[1] },
+  'Gas wrench' => { description: 'My key on 13', category: categories_models[2], niche: niches_models[2] }
 }.freeze
 
 Item.destroy_all
