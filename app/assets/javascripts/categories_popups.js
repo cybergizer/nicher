@@ -56,6 +56,8 @@ $(document).ready(function() {
         $('#category_form').dialog('destroy');
         $('#category_form').remove();
         window.location = '/categories';
+      }else{
+        $('#error_explanation').addClass('alert alert-warning').html('Category cannot be a descendant of itself!').fadeIn().fadeOut(10000);
       }
     });
     return false;

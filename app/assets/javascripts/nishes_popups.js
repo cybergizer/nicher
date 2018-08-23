@@ -60,6 +60,8 @@ $(document).ready(function() {
         $('#niche_form').dialog('destroy');
         $('#niche_form').remove();
         window.location = '/niches';
+      }else{
+        $('#error_explanation').addClass('alert alert-warning').html('Niche cannot be a descendant of itself!').fadeIn().fadeOut(10000);
       }
     });
     return false;
