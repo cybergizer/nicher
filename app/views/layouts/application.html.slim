@@ -9,30 +9,30 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons', media: 'all', 'data-turbolinks-track': 'reload'
-  body.theme-blue
-    .overlay
-    .search-bar
-      .search-icon
-        i.material-icons
-          | search
-      = form_tag root_path, method: 'get' do
+  - if user_session
+    body.theme-blue
+      .overlay
+      .search-bar
         .search-icon
-          i.material-icons search
-        = text_field_tag :search, params[:search]
-        = submit_tag "", name: nil, class: 'btn', style: "visibility: hidden;"
-      .close-search
-        i.material-icons close
-    = render partial: "shared/navbar"
-    - if user_session
-	    section
-	      aside#leftsidebar.sidebar
-	        = render partial: "shared/user_info"
-	        = render partial: "shared/menu"
-	        = render partial: "shared/footer"
+          i.material-icons
+            | search
+        = form_tag root_path, method: 'get' do
+          .search-icon
+            i.material-icons search
+          = text_field_tag :search, params[:search]
+          = submit_tag "", name: nil, class: 'btn', style: "visibility: hidden;"
+        .close-search
+          i.material-icons close
+      = render partial: "shared/navbar"
+      section
+        aside#leftsidebar.sidebar
+          = render partial: "shared/user_info"
+          = render partial: "shared/menu"
+          = render partial: "shared/footer"
         section.content
           .container-fluid
             = yield
-    - else
-      section.main_page_content
-        = yield
+  - else
+    body.login-page.ls-closed
+      = yield
   = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
