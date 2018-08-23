@@ -19,4 +19,6 @@
 //= require adminbsb-materialdesign
 //= require waves
 //= require sweetalert
+//= require alert
+//= require dialog
 //= require_tree .

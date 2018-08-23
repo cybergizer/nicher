@@ -44,7 +44,7 @@ table.table
           td
             = link_to 'Show', niche
           td
-            = link_to 'Edit', edit_niche_path(niche)
+            = link_to 'Edit', nil, class: 'edit_niche_button', data: { id: niche.id }
           td
             = link_to 'Destroy', niche, method: :delete, data: { confirm: 'Are you sure?' }
 = link_to 'Edit', edit_niche_path(@niche)

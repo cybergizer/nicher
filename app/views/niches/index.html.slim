@@ -21,8 +21,8 @@ p#notice
                 td
                   = link_to 'Show', niche_path(niche.id)
                 td
-                  = link_to 'Edit', edit_niche_path(niche)
+                  = link_to 'Edit', nil, class: 'edit_niche_button', data: { id: niche.id }
                 td
                   = link_to 'Destroy', niche_path(niche.id), method: :delete, data: { confirm: 'Are you sure?' }
 br/
-= link_to 'New Niche', new_niche_path, class: 'btn btn-default'
+= link_to 'New Niche', nil, id: 'new_niche', class: 'btn btn-default'

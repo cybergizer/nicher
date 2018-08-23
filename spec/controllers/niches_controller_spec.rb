@@ -49,12 +49,9 @@ RSpec.describe NichesController, type: :controller do
     it 'assigns the niche' do
       expect(assigns(:niche)).to be_a_new(Niche)
     end
-    it "renders the new view page" do
-      expect(response).to render_template :new
-    end
 
-    it "returns a 200 status code" do
-      expect(response).to have_http_status(200)
+    it "renders the new view page" do
+      expect(response).to render_template(partial: 'niches/_form')
     end
   end
 
@@ -68,11 +65,7 @@ RSpec.describe NichesController, type: :controller do
     end
 
     it "renders the edit view page" do
-      expect(response).to render_template :edit
-    end
-
-    it "returns a 200 status code" do
-      expect(response).to have_http_status(200)
+      expect(response).to render_template(partial: 'niches/_form')
     end
   end
 
@@ -87,7 +80,7 @@ RSpec.describe NichesController, type: :controller do
       it 'redirects to the created niche' do
         post :create, params: { niche: valid_attributes }
         niche = assigns(:niche)
-        expect(response).to redirect_to(niche)
+        expect(response_to_json).to eq({ 'status' => 'ok' })
       end
     end
 
@@ -101,12 +94,7 @@ RSpec.describe NichesController, type: :controller do
       it "re-renders the new method" do
         post :create, params: { niche: invalid_attributes }
         niche = assigns(:niche)
-        expect(niche.errors).to be_present
-        expect(response).to render_template :new
-      end
-
-      it "returns a 200 status code" do
-        expect(response).to have_http_status(200)
+        expect(response_to_json).to eq({ 'status' => 'error' })
       end
     end
   end
@@ -127,10 +115,6 @@ RSpec.describe NichesController, type: :controller do
         niche.reload
         expect(niche.name).to eq('Garage')
       end
-
-      it 'redirects to the niche' do
-        expect(response).to redirect_to(niche)
-      end
     end
 
     context 'with invalid params' do
@@ -146,11 +130,7 @@ RSpec.describe NichesController, type: :controller do
       it "re-renders the edit method " do
         niche = assigns(:niche)
         expect(niche.errors).to be_present
-        expect(response).to render_template :edit
-      end
-
-      it "returns a 200 status code" do
-        expect(response).to have_http_status(200)
+        expect(response_to_json).to eq({ 'status' => 'error' })
       end
     end
   end
