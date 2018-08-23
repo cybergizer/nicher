@@ -4,8 +4,9 @@
       .panel
         h2 Change your password
         = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-          .alert.alert-danger
-            = devise_error_messages!
+          - if devise_error_messages! != ''
+            .alert.alert-danger
+              = devise_error_messages!
           = f.hidden_field :reset_password_token
           .field
             = f.label :password, "New password"
