@@ -1,4 +1,5 @@
 class AuthService
+  include UsersHelper
   attr_reader :auth, :signed_in_resource
   attr_reader :user
   TEMP_EMAIL_PREFIX = 'change@me'.freeze
@@ -20,13 +21,11 @@ class AuthService
   private
 
   def user_select(identity)
-    @signed_in_resource ? @signed_in_resource : identity.user
+    @signed_in_resource || identity.user
   end
 
   def user_create
-    # user = User.where(email: email).first if email
-    # return if User.where(email: email).first.present?
-    user = User.new fill_user_fields
+    user = User.new(fill_user_fields)
     UsersHelper.user_save(user)
   end
 
@@ -40,6 +39,6 @@ class AuthService
   end
 
   def email_from_auth
-    ([@auth.info.email, @auth.extra.raw_info.email] - ['', nil]).first
+    @auth.info.email || @auth.extra.raw_info.email
   end
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include DeviseConcern
-  before_action :set_user, only: %i[show edit update destroy finish_signup]
+  before_action :set_user, only: :finish_signup
 
   def show
     @user_profile = user_profile
@@ -21,7 +21,6 @@ class UsersController < ApplicationController
   def finish_signup
     return unless request.patch? && params[:user]
     if @user.update(user_params)
-      # @user.skip_reconfirmation!
       sign_in(@user, bypass: true)
       redirect_to new_user_session_url, notice: 'Your profile was successfully updated.'
     else

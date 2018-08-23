@@ -34,8 +34,9 @@ RSpec.describe User, type: :model do
   end
 
   it "is valid with valid oauth attributes" do
-    user = AuthService.new(auth = OpenStruct.new({'uid': 'user_uid', 'provider': 'provider_name', 'info': OpenStruct.new({'email': 'user_email@example.com'}), 'extra': OpenStruct.new({'raw_info': OpenStruct.new({'email': 'user_email@example.com', 'name': 'Shizuku Tsukishima'})})}), signed_in_resource = nil).find_for_oauth
+    mock_auth_hash[:yandex]
+    auth = to_recursive_ostruct(OmniAuth.config.mock_auth[:yandex])
+    user = AuthService.new(auth, signed_in_resource = nil).find_for_oauth
     expect(user).to be_valid
   end
-
 end

@@ -1,20 +1,14 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  # rubocop:disable Metrics/MethodLength
   def self.provides_callback_for(provider)
-    class_eval %{
-      def #{provider}
-        @user = AuthService.new(request.env["omniauth.auth"], current_user).find_for_oauth
-        if @user.persisted?
-          sign_in_and_redirect @user, event: :authentication
-          set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
-        else
-          session["devise.#{provider}_data"] = request.env["omniauth.auth"]
-          redirect_to new_user_registration_url
-        end
+    define_method(provider.to_s) do
+      @user = AuthService.new(request.env['omniauth.auth'], current_user).find_for_oauth
+      if @user.persisted?
+        access_granted(provider)
+      else
+        access_denied
       end
-    }, __FILE__, __LINE__ - 11
+    end
   end
-  # rubocop:enable Metrics/MethodLength
 
   %i[github facebook vkontakte yandex google_oauth2].each do |provider|
     provides_callback_for provider
@@ -26,5 +20,15 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       finish_signup_path(resource)
     end
+  end
+
+  def access_granted(provider)
+    sign_in_and_redirect @user, event: :authentication
+    set_flash_message(:notice, :success, kind: provider.to_s.capitalize) if is_navigational_format?
+  end
+
+  def access_denied
+    session["devise.#{provider}_data"] = request.env['omniauth.auth']
+    redirect_to new_user_registration_url
   end
 end

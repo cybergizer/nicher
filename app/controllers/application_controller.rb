@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  before_action :ensure_signup_complete, only: %i[new create update destroy]
+  before_action :ensure_signup_complete, except: %i[finish_signup]
 
   def ensure_signup_complete
     return unless action_name == 'finish_signup'
