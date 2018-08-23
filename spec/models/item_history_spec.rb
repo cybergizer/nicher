@@ -14,11 +14,11 @@ RSpec.describe ItemHistory, type: :model do
     end
   end
 
-  describe '#find' do
+  describe '#rent_item' do
     it 'finds deleted rent_item' do
       rent_item.destroy
       result = RentItem.only_deleted.find_by_id(subject.rent_item_id)
-      expect(result).to eq(subject.find)
+      expect(result).to eq(subject.rent_item)
     end
   end
 end

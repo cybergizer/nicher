@@ -1,15 +1,15 @@
 tr
-  - if history.find
-    - if history.find.tenant.class == Contact
+  - if history.rent_item
+    - if history.rent_item.tenant.class == Contact
       td
-        = history.find.tenant.name
-        - if history.find.tenant.email
+        = history.rent_item.tenant.name
+        - if history.rent_item.tenant.email
           br/
-          = history.find.tenant.email
+          = history.rent_item.tenant.email
     - else
       td
-        = history.find.tenant.first_name
+        = history.rent_item.tenant.first_name
         br/
-        = history.find.tenant.email
-    td = history.find.created_at.strftime '%e %b %Y %k:%M'
-    td = history.find.deleted_at.strftime '%e %b %Y %k:%M'
+        = history.rent_item.tenant.email
+    td = history.rent_item.created_at.strftime '%e %b %Y %k:%M'
+    td = history.rent_item.deleted_at.strftime '%e %b %Y %k:%M'
