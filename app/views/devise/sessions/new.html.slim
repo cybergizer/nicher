@@ -1,33 +1,26 @@
-.login-box
-  .logo
-    h1
-      |Nicher
-  .card
-    .body
-      .panel
-        - if notice
-          p.alert.alert-success= notice
-        - if alert
-          p.alert.alert-danger= alert
-        h2 Log in
-        p Please enter your email and password
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          .input-group
-            span.input-group-addon
-              i.material-icons person
-            .form-line
-              = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
-          .input-group
-            span.input-group-addon
-              i.material-icons lock
-            .form-line
-              = f.password_field :password, autocomplete: "off", class: 'form-control'
-          .row
-            .col-xs-8.p-t-5
-              - if devise_mapping.rememberable?
-                .form-group
-                  = f.check_box :remember_me
-                  = f.label :remember_me
-            .col-xs-4
-              = f.submit "Log in", class: "btn btn-block bg-pink waves-effect"
-        = render "devise/shared/links"
+- if notice
+  p.alert.alert-success= notice
+- if alert
+  p.alert.alert-danger= alert
+h2 Log in
+p Please enter your email and password
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .input-group
+    span.input-group-addon
+      i.material-icons person
+    .form-line
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+  .input-group
+    span.input-group-addon
+      i.material-icons lock
+    .form-line
+      = f.password_field :password, autocomplete: "off", class: 'form-control'
+  .row
+    .col-xs-8.p-t-5
+      - if devise_mapping.rememberable?
+        .form-group
+          = f.check_box :remember_me
+          = f.label :remember_me
+    .col-xs-4
+      = f.submit "Log in", class: "btn btn-block bg-pink waves-effect"
+= render "devise/shared/links"
