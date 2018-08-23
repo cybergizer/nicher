@@ -9,7 +9,7 @@ class Niche < ApplicationRecord
   has_ancestry
 
   validates :name, presence: true
-  validates :url, format: { with: /[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_:%&;\?\#\/.=]+/,
+  validates :url, format: { with: %r{[A-Za-z]+://[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_:%&;\?\#/.=]+},
                             message: 'Invalid url.',
                             allow_blank: true }
 

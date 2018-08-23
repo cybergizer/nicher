@@ -12,9 +12,13 @@
  *
  *= require waves
  *= require jquery-ui
- *= require_tree .
+ *= require themes/theme-blue
+ *= require login
+ *= require materialize
+ *= require nestable
+ *= require sass-random-color
  *= require_self
  */
 
 @import "bootstrap";
-@import 'style';
+@import "style";

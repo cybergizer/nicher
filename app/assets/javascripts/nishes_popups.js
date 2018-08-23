@@ -35,8 +35,10 @@ $(document).ready(function() {
     e.preventDefault();
     var form = $(this).parents('form#save_niche');
     var data = $(form).serialize();
-    if (!validateNicheForm(form)) {
-      alertCreate('Please input name for niche!');
+    var errors = validateNicheForm(form);
+    if (!$.isEmptyObject(errors)) {
+      var alert_text = createAlertText(errors);
+      alertCreate(alert_text, '#error_explanation', 'warning', 10000);
       return;
     }
     $.ajax({
@@ -60,13 +62,36 @@ $(document).ready(function() {
       closeNicheDialog();
       window.location = '/niches';
     } else {
-      alertCreate('Niche cannot be a descendant of itself!');
+      alertCreate('Niche cannot be a descendant of itself!', '#error_explanation', 'warning', 10000);
     }
   }
 
   function validateNicheForm(form) {
+    var errors = [];
+    validateNicheName(form, errors);
+    validateNicheUrl(form, errors);
+    return errors;
+  }
+
+  function validateNicheName(form, errors) {
     var name_input = $(form).find('#niche_name');
-    return name_input.val() != '';
+    if (name_input.val() == '') {
+      errors.push('Please input name for niche!');
+    }
+    return errors;
+  }
+
+  function validateNicheUrl(form, errors) {
+    var url_pattern = /[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_:%&;\?\#\/.=]+/;
+    var url_text = $(form).find('#niche_url').val();
+    if (!($.isEmptyObject(url_text) || url_pattern.test(url_text))) {
+      errors.push('Invalid url for niche!');
+    }
+    return errors;
+  }
+
+  function createAlertText(errors) {
+    return errors.join('<br>');
   }
 
   function fetchNicheFormContent(id, url) {

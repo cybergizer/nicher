@@ -86,16 +86,36 @@ RSpec.describe NichesController, type: :controller do
     end
 
     context 'with invalid params' do
-      it "does not save the new niche" do
-        expect{
+      context 'when empty name' do
+        it "does not save the new niche" do
+          expect{
+            post :create, params: { niche: invalid_attributes }
+          }.to_not change(Niche, :count)
+        end
+
+        it "re-renders the new method" do
           post :create, params: { niche: invalid_attributes }
-        }.to_not change(Niche,:count)
+          niche = assigns(:niche)
+          expect(niche.errors.messages[:name]).to be_present
+          expect(response_to_json).to eq({ 'status' => 'error' })
+        end
       end
 
-      it "re-renders the new method" do
-        post :create, params: { niche: invalid_attributes }
-        niche = assigns(:niche)
-        expect(response_to_json).to eq({ 'status' => 'error' })
+      context 'when invalid url' do
+        let(:invalid_attributes) { { name: 'Garage', url: 'invalid/url' } }
+
+        it "does not save the new niche" do
+          expect{
+            post :create, params: { niche: invalid_attributes }
+          }.to_not change(Niche, :count)
+        end
+
+        it "re-renders the new method" do
+          post :create, params: { niche: invalid_attributes }
+          niche = assigns(:niche)
+          expect(niche.errors.messages[:url]).to be_present
+          expect(response_to_json).to eq({ 'status' => 'error' })
+        end
       end
     end
   end
@@ -119,19 +139,40 @@ RSpec.describe NichesController, type: :controller do
     end
 
     context 'with invalid params' do
-      before do
-        put :update, params: { id: niche, niche: invalid_attributes }
+      context 'when empty name' do
+        before do
+          put :update, params: { id: niche, niche: invalid_attributes }
+        end
+
+        it "does not change niche's attributes" do
+          niche.reload
+          expect(niche.name).to_not be_nil
+        end
+
+        it "re-renders the edit method " do
+          niche = assigns(:niche)
+          expect(niche.errors.messages[:name]).to be_present
+          expect(response_to_json).to eq({ 'status' => 'error' })
+        end
       end
 
-      it "does not change niche's attributes" do
-        niche.reload
-        expect(niche.name).to_not be_nil
-      end
+      context 'when invalid url' do
+        let(:invalid_attributes) { { name: 'Garage', url: 'invalid/url' } }
 
-      it "re-renders the edit method " do
-        niche = assigns(:niche)
-        expect(niche.errors).to be_present
-        expect(response_to_json).to eq({ 'status' => 'error' })
+        before do
+          put :update, params: { id: niche, niche: invalid_attributes }
+        end
+
+        it "does not change niche's attributes" do
+          niche.reload
+          expect(niche.url).to_not eq('invalid/url')
+        end
+
+        it "re-renders the edit method " do
+          niche = assigns(:niche)
+          expect(niche.errors.messages[:url]).to be_present
+          expect(response_to_json).to eq({ 'status' => 'error' })
+        end
       end
     end
   end
@@ -158,6 +199,16 @@ RSpec.describe NichesController, type: :controller do
     it 'change parent for niche' do
       niche.reload
       expect(niche.parent).to eq(parent_niche)
+    end
+  end
+
+  describe 'Get #highlight' do
+    let(:niche) { create(:niche, user: user, url: 'https://www.google.com/') }
+
+    it 'return http success' do
+      get :highlight, params: { id: niche.id }
+      expect(response_to_json).to eq('status' => 'ok')
+      expect(response).to have_http_status(:success)
     end
   end
 end

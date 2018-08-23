@@ -25,7 +25,7 @@ $(document).ready(function() {
     var form = $(this).parents('form#save_rent_item');
     var data = $(form).serialize();
     if (!validateRentForm(form)) {
-      alertCreate('Please input name for contact!');
+      alertCreate('Please input name for contact!', '#error_explanation', 'warning', 10000);
       return;
     }
     $.ajax({

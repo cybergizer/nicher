@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :niches do
     collection do
       post :move
+      get :highlight
     end
   end
   resources :items
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
   get 'generate_link', action: :generate_link, controller: 'shared_items'
   get 'share', action: :share, controller: 'shared_items'
   resources :rent_items, only: %i[show edit update] do
-    collection do 
+    collection do
       get 'rent_form'
       post 'rent'
       delete 'repay'
