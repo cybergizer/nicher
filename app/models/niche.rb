@@ -1,5 +1,5 @@
 class Niche < ApplicationRecord
-  PARAMS = %i[name parent_id].freeze
+  PARAMS = %i[name url parent_id].freeze
 
   has_many :items, dependent: :nullify
   has_many :rent_items, dependent: :nullify
@@ -9,6 +9,9 @@ class Niche < ApplicationRecord
   has_ancestry
 
   validates :name, presence: true
+  validates :url, format: { with: /[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_:%&;\?\#\/.=]+/,
+                            message: 'Invalid url.',
+                            allow_blank: true }
 
   def add(niche)
     niche.parent = self
