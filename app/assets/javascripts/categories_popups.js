@@ -2,34 +2,35 @@ $(document).ready(function() {
   $(document).on('click','#new_category', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    createCategoryDialog(fetchCategoryFormContent, id);
+    url = 'new'
+    createCategoryDialog(id, url);
   });
 
   $(document).on('click','.edit_category_button', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    createCategoryDialog(fetchUpdateCategoryContent, id);
+    url = id + '/edit'
+    createCategoryDialog(id, url);
   });
 
-  function createCategoryDialog(fetchMethod, id){
-    $(document.body).append('<div id="category_form">No content</div>');
+  function createCategoryDialog(id, url){
+    $(document.body).append('<div id="category_form"></div>');
     $('#category_form').dialog({
       modal: true,
       open: function(){
-        fetchMethod(id);
+        addStylesToDialog();
+        fetchCategoryFormContent(id, url);
       },
-      close: function(){
-        $(this).dialog('destroy');
-        $(this).remove();     
-      }
+      close: closeCategoryDialog
     });
-    addStylesToDialog();
   }
 
-  $(document).on('click','form#save_category #close', function(){
+  $(document).on('click','form#save_category #close',closeCategoryDialog);
+
+  function closeCategoryDialog() {
     $('#category_form').dialog('destroy');
     $('#category_form').remove();
-  });
+  }
 
   $(document).on('click','form#save_category button[type="submit"]', function(e) {
     e.preventDefault();
@@ -52,8 +53,7 @@ $(document).ready(function() {
 
   function categoryStatusCheck(data){
     if (data.status == 'ok') {
-      $('#category_form').dialog('destroy');
-      $('#category_form').remove();
+      closeCategoryDialog();
       window.location = '/categories';
     } else {
       alertCreate('Category cannot be a descendant of itself!');
@@ -65,19 +65,9 @@ $(document).ready(function() {
     return name_input.val() != '';
   }
 
-  function fetchCategoryFormContent(id){
+  function fetchCategoryFormContent(id, url){
     $.ajax({
-      url: '/categories/new',
-      data: { id: id },
-      success: function(data){
-        $('#category_form').html(data);
-      }
-    });
-  }
-
-  function fetchUpdateCategoryContent(id){
-    $.ajax({
-      url: '/categories/' + id + '/edit',
+      url: '/categories/' + url,
       data: { id: id },
       success: function(data){
         $('#category_form').html(data);

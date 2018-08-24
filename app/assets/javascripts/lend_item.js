@@ -2,24 +2,18 @@ $(document).ready(function() {
   $(document).on('click','.lend_item', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    $(document.body).append('<div id="rent_form">No content</div>');
+    $(document.body).append('<div id="rent_form"></div>');
     $('#rent_form').dialog({
       modal: true,
-      open: function(){
+      open: function() {
+        addStylesToDialog();
         fetchRentFormContent(id);
       },
-      close: function(){
-        $(this).dialog('destroy');
-        $(this).remove();
-      }
+      close: addStylesToDialog
     });
-    addStylesToDialog();
   });
 
-  $(document).on('click','form#save_rent_item #close', function(){
-    $('#rent_form').dialog('destroy');
-    $('#rent_form').remove();
-  });
+  $(document).on('click','form#save_rent_item #close', closeRentItemDialog);
 
   $(document).on('submit','form#save_rent_item', function(e) {
     e.preventDefault();
@@ -38,28 +32,32 @@ $(document).ready(function() {
       url: $(form).attr('action'),
       data: data,
       dataType: "JSON"
-    }).success(function(data){
+    }).success(function(data) {
       if (data.status == 'ok') {
-        $('#rent_form').dialog('destroy');
-        $('#rent_form').remove();
+        closeRentItemDialog();
         window.location = '/items';
       }
     });
     return false;
   });
 
-  function validateRentForm(form){
+  function validateRentForm(form) {
     var name_input = $(form).find('#rent_item_tenant_attributes_name');
     return name_input.val() != '';
   }
 
-    function fetchRentFormContent(id){
-      $.ajax({
-        url: '/rent_items/rent_form',
-        data: { id: id},
-        success: function(data){
-          $('#rent_form').html(data);
-        }
-      });
-    }
+  function closeRentItemDialog() {
+    $('#rent_form').dialog('destroy');
+    $('#rent_form').remove();
+  }
+
+  function fetchRentFormContent(id) {
+    $.ajax({
+      url: '/rent_items/rent_form',
+      data: { id: id},
+      success: function(data){
+        $('#rent_form').html(data);
+      }
+    });
+  }
 });

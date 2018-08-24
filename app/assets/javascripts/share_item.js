@@ -4,19 +4,22 @@ $(document).ready(function() {
     var id = $(this).attr('data-id');
     $(document.body).append('<div id="share_form"></div>');
     $('#share_form').dialog({
-      open: function(){
+      open: function() {
+        addStylesToDialog();
         fetchShareFormContent(id);
-      }
+      },
+      close: closeShareItemDialog
     });
-    addStylesToDialog();
   });
 
-  $(document).on('click','#close', function(){
+  $(document).on('click','#close', closeShareItemDialog);
+
+  function closeShareItemDialog() {
     $('#share_form').dialog('destroy');
     $('#share_form').remove();
-  });
+  }
 
-  function fetchShareFormContent(id){
+  function fetchShareFormContent(id) {
     $.ajax({
       url: '/generate_link',
       data: { id: id},

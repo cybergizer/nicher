@@ -2,34 +2,30 @@ $(document).ready(function() {
   $(document).on('click','#new_niche', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    createNicheDialog(fetchNicheFormContent, id);
+    url = 'new'
+    createNicheDialog(id, url);
   });
 
   $(document).on('click','.edit_niche_button', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    createNicheDialog(fetchUpdateNicheContent, id);
+    url = id + '/edit'
+    createNicheDialog(id, url);
   });
 
-  function createNicheDialog(fetchMethod, id){
-    $(document.body).append('<div id="niche_form">No content</div>');
+  function createNicheDialog(id, url){
+    $(document.body).append('<div id="niche_form"></div>');
     $('#niche_form').dialog({
       modal: true,
       open: function(){
-        fetchMethod(id);
+        addStylesToDialog();
+        fetchNicheFormContent(id, url);
       },
-      close: function(){
-        $(this).dialog('destroy');
-        $(this).remove();     
-      }
+      close: closeNicheDialog
     });
-    addStylesToDialog();
   }
 
-  $(document).on('click','form#save_niche #close', function(){
-    $('#niche_form').dialog('destroy');
-    $('#niche_form').remove();
-  });
+  $(document).on('click','form#save_niche #close', closeNicheDialog);
 
   $(document).on('click','form#save_niche button[type="submit"]', function(e) {
     e.preventDefault();
@@ -50,10 +46,14 @@ $(document).ready(function() {
     return false;
   });
 
+  function closeNicheDialog() {
+    $('#niche_form').dialog('destroy');
+    $('#niche_form').remove();
+  }
+
   function nicheStatusCheck(data){
     if (data.status == 'ok') {
-      $('#niche_form').dialog('destroy');
-      $('#niche_form').remove();
+      closeNicheDialog();
       window.location = '/niches';
     } else {
       alertCreate('Niche cannot be a descendant of itself!');
@@ -65,19 +65,9 @@ $(document).ready(function() {
     return name_input.val() != '';
   }
 
-  function fetchNicheFormContent(id){
+  function fetchNicheFormContent(id, url){
     $.ajax({
-      url: '/niches/new',
-      data: { id: id },
-      success: function(data){
-        $('#niche_form').html(data);
-      }
-    });
-  }
-
-  function fetchUpdateNicheContent(id){
-    $.ajax({
-      url: '/niches/' + id + '/edit',
+      url: '/niches/' + url,
       data: { id: id },
       success: function(data){
         $('#niche_form').html(data);
