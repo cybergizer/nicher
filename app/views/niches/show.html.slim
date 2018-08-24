@@ -1,42 +1,20 @@
 p#notice
   = notice
-p
-  strong
-    | Name:
-  = @niche.name
-h1
-  | Items
-table.table
-  thead
-    tr
-      th
-        | Title
-      th
-        | Description
-      th[colspan="3"]
-  tbody
-    - @niche.items.each do |item|
-      tr
-        td
-          = item.title
-        td
-          = item.description
-        td
-          = link_to 'Show', item
-        td
-          = link_to 'Edit', edit_item_path(item)
-        td
-          = link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
-    - @niche.rent_items.each do |rent_item|
-      tr
-        td
-          = rent_item.item.title
-        td
-          = rent_item.item.description
-        td
-          = link_to 'Show', rent_item
-        td
-          = link_to 'Edit', edit_rent_item_path(rent_item)
-= link_to 'Edit', nil, class: 'edit_niche_button', data: { id: @niche.id }
-|  | 
-= link_to 'Back', niches_path
+.row.clearfix
+  .col-lg-12.col-md-12.col-sm-12.col-xs-12
+    .card
+      .header
+        h2
+          = @niche.name
+      .body.table-responsive
+        table.table.table-striped
+          thead
+            tr
+              th = 'Title'
+              th = 'Description'
+              th = 'Category'
+              th = 'Created On'
+              th colspan="3"
+          tbody
+            = render partial: 'items/item_table', collection: @niche.items, as: :item
+            = render partial: 'items/shared_item_table', collection: @niche.rent_items, as: :borrowed_item
