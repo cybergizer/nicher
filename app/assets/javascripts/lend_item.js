@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $(document).on('click','.lend_item', function(e) {
+  $(document).on('click', '.lend_item', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
     $(document.body).append('<div id="rent_form"></div>');
@@ -14,13 +14,13 @@ $(document).ready(function() {
     });
   });
 
-  $(document).on('click','form#save_rent_item #close', closeRentItemDialog);
+  $(document).on('click', 'form#save_rent_item #close', closeRentItemDialog);
 
   $(document).on('submit','form#save_rent_item', function(e) {
     e.preventDefault();
   });
 
-  $(document).on('click','form#save_rent_item button[type="submit"]', function(e) {
+  $(document).on('click', 'form#save_rent_item button[type="submit"]', function(e) {
     e.preventDefault();
     var form = $(this).parents('form#save_rent_item');
     var data = $(form).serialize();
@@ -55,8 +55,8 @@ $(document).ready(function() {
   function fetchRentFormContent(id) {
     $.ajax({
       url: '/rent_items/rent_form',
-      data: { id: id},
-      success: function(data){
+      data: { id: id },
+      success: function(data) {
         $('#rent_form').html(data);
       }
     });

@@ -1,9 +1,8 @@
 $(document).ready(function() {
-  $(document).on('click','#new_niche', function(e) {
+  $(document).on('click', '#new_niche', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    url = 'new';
-    createNicheDialog(id, url);
+    createNicheDialog(id, 'new');
   });
 
   $(document).on('click','.edit_niche_button', function(e) {
@@ -26,9 +25,13 @@ $(document).ready(function() {
     });
   }
 
-  $(document).on('click','form#save_niche #close', closeNicheDialog);
+  $(document).on('submit','form#save_niche', function(e) {
+    e.preventDefault();
+  });
 
-  $(document).on('click','form#save_niche button[type="submit"]', function(e) {
+  $(document).on('click', 'form#save_niche #close', closeNicheDialog);
+
+  $(document).on('click', 'form#save_niche button[type="submit"]', function(e) {
     e.preventDefault();
     var form = $(this).parents('form#save_niche');
     var data = $(form).serialize();
@@ -41,7 +44,7 @@ $(document).ready(function() {
       url: $(form).attr('action'),
       data: data,
       dataType: "JSON"
-    }).success(function(data){
+    }).success(function(data) {
       nicheStatusCheck(data);
     });
     return false;
@@ -52,7 +55,7 @@ $(document).ready(function() {
     $('#niche_form').remove();
   }
 
-  function nicheStatusCheck(data){
+  function nicheStatusCheck(data) {
     if (data.status == 'ok') {
       closeNicheDialog();
       window.location = '/niches';
@@ -61,16 +64,16 @@ $(document).ready(function() {
     }
   }
 
-  function validateNicheForm(form){
+  function validateNicheForm(form) {
     var name_input = $(form).find('#niche_name');
     return name_input.val() != '';
   }
 
-  function fetchNicheFormContent(id, url){
+  function fetchNicheFormContent(id, url) {
     $.ajax({
       url: '/niches/' + url,
       data: { id: id },
-      success: function(data){
+      success: function(data) {
         $('#niche_form').html(data);
       }
     });
