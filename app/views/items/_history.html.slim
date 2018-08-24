@@ -11,5 +11,5 @@ tr
         = history.rent_item.tenant.first_name
         br/
         = history.rent_item.tenant.email
-    td = history.rent_item.created_at.strftime '%e %b %Y %k:%M'
-    td = history.rent_item.deleted_at.strftime '%e %b %Y %k:%M'
+    td = history.borrowed_at
+    td = history.returned_at
