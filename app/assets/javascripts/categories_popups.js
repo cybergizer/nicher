@@ -2,20 +2,21 @@ $(document).ready(function() {
   $(document).on('click','#new_category', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    url = 'new'
+    url = 'new';
     createCategoryDialog(id, url);
   });
 
   $(document).on('click','.edit_category_button', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    url = id + '/edit'
+    url = id + '/edit';
     createCategoryDialog(id, url);
   });
 
   function createCategoryDialog(id, url){
     $(document.body).append('<div id="category_form"></div>');
     $('#category_form').dialog({
+      title: 'Category',
       modal: true,
       open: function(){
         addStylesToDialog();
@@ -51,7 +52,7 @@ $(document).ready(function() {
     return false;
   });
 
-  function categoryStatusCheck(data){
+  function categoryStatusCheck(data) {
     if (data.status == 'ok') {
       closeCategoryDialog();
       window.location = '/categories';
@@ -60,12 +61,12 @@ $(document).ready(function() {
     }
   }
 
-  function validateCategoryForm(form){
+  function validateCategoryForm(form) {
     var name_input = $(form).find('#category_name');
     return name_input.val() != '';
   }
 
-  function fetchCategoryFormContent(id, url){
+  function fetchCategoryFormContent(id, url) {
     $.ajax({
       url: '/categories/' + url,
       data: { id: id },

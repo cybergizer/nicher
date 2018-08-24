@@ -1,25 +1,20 @@
-.card
-  .header
-    h2
-      | Rent your Item
-  .body
-    = form_for(@rent_item, :html=>{ :id=>'save_rent_item', :multipart => true}, url: rent_rent_items_path(id: @rent_item.item.id)) do |form|
-      = form.fields_for :tenant, @rent_item.tenant do |tenant|
-        #error_explanation
-        = tenant.label :name
-        .form-group
-          .form-line
-            = tenant.text_field :name, class: 'form-control'
-        = tenant.label :email
-        .form-group
-          .form-line  
-            = tenant.email_field :email, class: 'form-control'
-        = tenant.label :phone_number
-        .form-group
-          .form-line
-            = tenant.telephone_field :phone_number, class: 'form-control'
-      br
-      .button-demo
-        button#close.btn.btn-danger.waves-effect
-          | Cancel    
-        = form.button 'Rent', type: :submit, class: 'btn btn-primary waves-effect'
+= form_for(@rent_item, :html=>{ :id=>'save_rent_item', :multipart => true}, url: rent_rent_items_path(id: @rent_item.item.id)) do |form|
+  = form.fields_for :tenant, @rent_item.tenant do |tenant|
+    #error_explanation
+    = tenant.label :name
+    .form-group
+      .form-line
+        = tenant.text_field :name, class: 'form-control'
+    = tenant.label :email
+    .form-group
+      .form-line  
+        = tenant.email_field :email, class: 'form-control'
+    = tenant.label :phone_number
+    .form-group
+      .form-line
+        = tenant.telephone_field :phone_number, class: 'form-control'
+  br
+  .button-demo
+    button#close.btn.btn-danger.waves-effect
+      | Cancel    
+    = form.button 'Rent', type: :submit, class: 'btn btn-primary waves-effect'

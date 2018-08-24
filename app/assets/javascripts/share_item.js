@@ -4,6 +4,8 @@ $(document).ready(function() {
     var id = $(this).attr('data-id');
     $(document.body).append('<div id="share_form"></div>');
     $('#share_form').dialog({
+      title: 'Share Item',
+      modal: true,
       open: function() {
         addStylesToDialog();
         fetchShareFormContent(id);

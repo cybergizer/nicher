@@ -2,20 +2,21 @@ $(document).ready(function() {
   $(document).on('click','#new_niche', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    url = 'new'
+    url = 'new';
     createNicheDialog(id, url);
   });
 
   $(document).on('click','.edit_niche_button', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    url = id + '/edit'
+    url = id + '/edit';
     createNicheDialog(id, url);
   });
 
   function createNicheDialog(id, url){
     $(document.body).append('<div id="niche_form"></div>');
     $('#niche_form').dialog({
+      title: 'Niche',
       modal: true,
       open: function(){
         addStylesToDialog();

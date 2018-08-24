@@ -4,6 +4,7 @@ $(document).ready(function() {
     var id = $(this).data('id');
     $(document.body).append('<div id="rent_form"></div>');
     $('#rent_form').dialog({
+      title: 'Rent your Item',
       modal: true,
       open: function() {
         addStylesToDialog();
