@@ -5,3 +5,5 @@
 section.main_page_content
   .row.clearfix
     = render partial: 'card', collection: @items, as: :item
+  - unless current_user.pending_requests.empty?
+    = current_user.pending_requests.count

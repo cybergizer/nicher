@@ -17,7 +17,7 @@ class Item < ApplicationRecord
 
   has_many :item_histories, dependent: :destroy
 
-  belongs_to :free_item_request
+  belongs_to :free_item_request, optional: true
 
   def self.search(search)
     return all unless search

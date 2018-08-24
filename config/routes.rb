@@ -21,6 +21,11 @@ Rails.application.routes.draw do
       post :move
     end
   end
+  resources :free_item_requests do
+    collection do
+      get :new
+    end
+  end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
   resources :users
