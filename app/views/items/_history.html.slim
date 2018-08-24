@@ -1,0 +1,15 @@
+tr
+  - if history.rent_item
+    - if history.rent_item.tenant.class == Contact
+      td
+        = history.rent_item.tenant.name
+        - if history.rent_item.tenant.email
+          br/
+          = history.rent_item.tenant.email
+    - else
+      td
+        = history.rent_item.tenant.first_name
+        br/
+        = history.rent_item.tenant.email
+    td = history.borrowed_at
+    td = history.returned_at

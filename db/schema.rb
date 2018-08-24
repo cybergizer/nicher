@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_21_084217) do
+ActiveRecord::Schema.define(version: 2018_08_21_165610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,13 +33,12 @@ ActiveRecord::Schema.define(version: 2018_08_21_084217) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "identities", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "provider"
-    t.string "uid"
+  create_table "item_histories", force: :cascade do |t|
+    t.bigint "item_id"
+    t.integer "rent_item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_identities_on_user_id"
+    t.index ["item_id"], name: "index_item_histories_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -77,17 +76,10 @@ ActiveRecord::Schema.define(version: 2018_08_21_084217) do
     t.string "tenant_type"
     t.bigint "niche_id"
     t.bigint "category_id"
+    t.datetime "deleted_at"
     t.index ["category_id"], name: "index_rent_items_on_category_id"
+    t.index ["deleted_at"], name: "index_rent_items_on_deleted_at"
     t.index ["niche_id"], name: "index_rent_items_on_niche_id"
-  end
-
-  create_table "shared_items", force: :cascade do |t|
-    t.bigint "item_id"
-    t.string "token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "expiration"
-    t.index ["item_id"], name: "index_shared_items_on_item_id"
   end
 
   create_table "shared_items", force: :cascade do |t|
@@ -106,7 +98,6 @@ ActiveRecord::Schema.define(version: 2018_08_21_084217) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "avatar"
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
@@ -126,7 +117,6 @@ ActiveRecord::Schema.define(version: 2018_08_21_084217) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
     t.string "first_name"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -144,15 +134,13 @@ ActiveRecord::Schema.define(version: 2018_08_21_084217) do
   end
 
   add_foreign_key "categories", "users"
-  add_foreign_key "identities", "users"
+  add_foreign_key "item_histories", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "niches"
   add_foreign_key "items", "rent_items"
   add_foreign_key "items", "users"
   add_foreign_key "niches", "users"
-
   add_foreign_key "rent_items", "categories"
   add_foreign_key "rent_items", "niches"
-
   add_foreign_key "shared_items", "items"
 end

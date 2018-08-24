@@ -1,6 +1,8 @@
 class RentItem < ApplicationRecord
   PARAMS = %i[niche_id category_id].freeze
 
+  acts_as_paranoid
+
   has_one :item, dependent: :nullify
   belongs_to :owner, polymorphic: true
   belongs_to :tenant, polymorphic: true
@@ -12,7 +14,15 @@ class RentItem < ApplicationRecord
 
   delegate :title, to: :item
 
+  after_save :create_history
+
   def tenant_attributes=(attributes)
     self.tenant = Contact.create(attributes)
+  end
+
+  private
+
+  def create_history
+    ItemHistory.create(item: item, rent_item_id: id) if item.valid?
   end
 end

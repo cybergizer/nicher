@@ -11,3 +11,20 @@ p
 = link_to 'Edit', edit_item_path(@item)
 | \
 = link_to 'Back', items_path
+
+- unless @item.item_histories.empty?
+  .row.clearfix
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .card
+        .header
+          h2
+            | HISTORY OF RENTING
+        .body.table-responsive
+          table.table.table-striped
+            thead
+              tr
+                th been to
+                th lent
+                th returned
+            tbody
+              = render partial: 'history', collection: @item.item_histories, as: :history

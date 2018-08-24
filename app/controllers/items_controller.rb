@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   include ApplicationConcern
 
   before_action :set_item, only: %i[show edit update destroy]
+  before_action :set_paper_trail_whodunnit
   before_action :set_items, only: %i[index]
   helper_method :sort_column, :sort_direction
 

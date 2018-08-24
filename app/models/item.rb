@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   PARAMS = %i[title description niche_id category_id].freeze
+  has_paper_trail
 
   has_one :shared_item, dependent: :destroy
 
@@ -11,6 +12,8 @@ class Item < ApplicationRecord
   belongs_to :rent_item, optional: true
 
   validates :title, presence: true
+
+  has_many :item_histories, dependent: :destroy
 
   def self.search(search)
     return all unless search
