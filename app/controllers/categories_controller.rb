@@ -2,7 +2,6 @@ class CategoriesController < ApplicationController
   include ApplicationConcern
 
   before_action :set_category, only: %i[show edit update destroy]
-  skip_before_action :verify_authenticity_token, only: %i[move]
 
   def index
     @categories = current_user.categories.roots

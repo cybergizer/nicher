@@ -38,6 +38,6 @@ p
             = link_to 'Show', rent_item
           td
             = link_to 'Edit', edit_rent_item_path(rent_item)
-= link_to 'Edit', nil, class: 'edit_category_button', data: { id: category.id }
+= link_to 'Edit', nil, class: 'edit_category_button', data: { id: @category.id }
 |  |
 = link_to 'Back', categories_path

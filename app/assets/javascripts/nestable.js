@@ -33,7 +33,7 @@ $(document).ready(function () {
     $.ajax({
       method: "POST",
       url: url + "/move",
-      data: { id: currentItem, parent_id: itemParent },
+      data: { authenticity_token: $('[name="csrf-token"]')[0].content, id: currentItem, parent_id: itemParent },
       success: function(e) {
         $("#notice").text("Successful move of element!").show();
       }

@@ -2,7 +2,6 @@ class NichesController < ApplicationController
   include ApplicationConcern
 
   before_action :set_niche, only: %i[show edit update destroy]
-  skip_before_action :verify_authenticity_token, only: %i[move]
 
   # GET /locations
   # GET /locations.json
