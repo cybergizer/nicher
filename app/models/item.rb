@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   PARAMS = %i[title description free niche_id category_id].freeze
 
   has_paper_trail
+  acts_as_paranoid
 
   has_one :shared_item, dependent: :destroy
 

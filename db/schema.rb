@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_24_104832) do
+ActiveRecord::Schema.define(version: 2018_08_24_111115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,9 @@ ActiveRecord::Schema.define(version: 2018_08_24_104832) do
     t.bigint "niche_id"
     t.bigint "rent_item_id"
     t.boolean "free"
+    t.datetime "deleted_at"
     t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["deleted_at"], name: "index_items_on_deleted_at"
     t.index ["niche_id"], name: "index_items_on_niche_id"
     t.index ["rent_item_id"], name: "index_items_on_rent_item_id"
     t.index ["user_id"], name: "index_items_on_user_id"
@@ -87,6 +89,15 @@ ActiveRecord::Schema.define(version: 2018_08_24_104832) do
     t.index ["category_id"], name: "index_rent_items_on_category_id"
     t.index ["deleted_at"], name: "index_rent_items_on_deleted_at"
     t.index ["niche_id"], name: "index_rent_items_on_niche_id"
+  end
+
+  create_table "shared_items", force: :cascade do |t|
+    t.bigint "item_id"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "expiration"
+    t.index ["item_id"], name: "index_shared_items_on_item_id"
   end
 
   create_table "user_profiles", force: :cascade do |t|
