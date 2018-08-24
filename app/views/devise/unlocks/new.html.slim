@@ -1,8 +1,8 @@
 h2 Resend unlock instructions
 = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
-  - if devise_error_messages! != ''
+  - if devise_error_messages != ''
     .alert.alert-danger
-      = devise_error_messages!.html_safe
+      = devise_error_messages.html_safe
   .input-group
     span.input-group-addon
       i.material-icons person
