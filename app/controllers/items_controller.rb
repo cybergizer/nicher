@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = set_resource
+    @item = Item.find_by(id: params[:id], user: current_user, rent_item_id: nil)
   end
 
   def item_params

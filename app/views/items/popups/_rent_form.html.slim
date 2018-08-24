@@ -3,7 +3,7 @@
     h2
       | Rent your Item
   .body
-    = form_for(@rent_item, :html=>{ :id=>'save_rent_item', :multipart => true}, url: rent_path(id: @rent_item.item.id)) do |form|
+    = form_for(@rent_item, :html=>{ :id=>'save_rent_item', :multipart => true}, url: rent_rent_items_path(id: @rent_item.item.id)) do |form|
       = form.fields_for :tenant, @rent_item.tenant do |tenant|
         #error_explanation
         = tenant.label :name

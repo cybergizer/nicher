@@ -1,0 +1,12 @@
+<li class='dd-item <%= collapsed_class(object) %>' data-id='<%= object.id %>' data-parent='<%= object.parent_id %>'>
+  <div class = 'dd-handle'>
+    <%= link_to object.name, object, class: 'dd-nodrag' %>
+    <div class = 'service-links'>
+      <a class='edit_category_button dd-nodrag edit-link' data-id='<%= object.id %>'>
+        <i class='material-icons'>edit</i>
+      </a>
+      <%= link_to category_path(object.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dd-nodrag' do %>
+        <i class='material-icons col-red'>delete</i>
+      <% end %>
+    </div>
+  </div>

@@ -5,6 +5,7 @@ RSpec.describe NichesController, type: :controller do
 
   let(:user) { subject.current_user }
   let(:niche) { create(:niche, user: user) }
+  let(:parent_niche) { create(:new_niche, user: user) }
   let(:valid_attributes) { attributes_for(:niche).merge(user_id: user.id) }
   let(:invalid_attributes) { attributes_for(:invalid_niche) }
 
@@ -136,16 +137,27 @@ RSpec.describe NichesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested category' do
+    it 'destroys the requested niche' do
       niche = create(:niche, user: user)
       expect {
         delete :destroy, params: { id: niche }
       }.to change(Niche, :count).by(-1)
     end
 
-    it 'redirects to the categories list' do
+    it 'redirects to the niches list' do
       delete :destroy, params: { id: niche }
       expect(response).to redirect_to(niches_url)
+    end
+  end
+
+  describe 'POST #move' do
+    before do
+      post :move, params: { id: niche.id, parent_id: parent_niche.id }
+    end
+
+    it 'change parent for niche' do
+      niche.reload
+      expect(niche.parent).to eq(parent_niche)
     end
   end
 end

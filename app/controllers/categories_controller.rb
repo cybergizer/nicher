@@ -11,10 +11,12 @@ class CategoriesController < ApplicationController
 
   def new
     @category = current_user.categories.build
+    @categories = current_user.categories
     render partial: 'categories/form'
   end
 
   def edit
+    @categories = current_user.categories - [@category]
     render partial: 'categories/form'
   end
 
@@ -38,6 +40,13 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     redirect_to categories_url, notice: 'Category was successfully destroyed.'
+  end
+
+  def move
+    category = current_user.categories.find_by!(id: params[:id])
+    parent = current_user.categories.find_by(id: params[:parent_id])
+    category.parent = parent
+    category.save
   end
 
   private

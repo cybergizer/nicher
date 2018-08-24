@@ -6,7 +6,7 @@ module ApplicationConcern
   end
 
   def set_resource
-    model_name.find(params[:id])
+    model_name.find_by!(id: params[:id], user: current_user)
   end
 
   def model_params(model)

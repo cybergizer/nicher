@@ -1,0 +1,13 @@
+p#notice= notice
+p
+  strong Title:
+  = @rent_item.item.title
+p
+  strong Description:
+  = @rent_item.item.description
+p
+  strong Category:
+  = @rent_item.category&.name
+= link_to 'Edit', edit_rent_item_path(@rent_item)
+| \
+= link_to 'Back', items_path

@@ -1,0 +1,17 @@
+= form_with(model: rent_item, local: true) do |form|
+  - if rent_item.errors.any?
+    #error_explanation
+      h2
+        = pluralize(rent_item.errors.count, "error")
+        | prohibited this item from being saved:
+      ul
+        - rent_item.errors.full_messages.each do |message|
+          li= message
+  .form-group
+    = form.label :niche_id
+    = form.collection_select :niche_id, current_user.niches,:id,:name, include_blank: true
+  .form-group
+    = form.label :category_id
+    = form.collection_select(:category_id, current_user.categories, :id, :name, :include_blank => "Please select")
+  .actions
+    = form.submit

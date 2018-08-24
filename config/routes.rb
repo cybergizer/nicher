@@ -1,15 +1,25 @@
 Rails.application.routes.draw do
-  resources :niches
+  resources :niches do
+    collection do
+      post :move
+    end
+  end
   resources :items
-
-  get 'rent_form', controller: 'rent_items'
-  post 'rent', action: :rent, controller: 'rent_items'
-  delete 'repay', controller: 'rent_items'
 
   get 'generate_link', action: :generate_link, controller: 'shared_items'
   get 'share', action: :share, controller: 'shared_items'
-
-  resources :categories
+  resources :rent_items, only: %i[show edit update] do
+    collection do 
+      get 'rent_form'
+      post 'rent'
+      delete 'repay'
+    end
+  end
+  resources :categories do
+    collection do
+      post :move
+    end
+  end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
   resources :users

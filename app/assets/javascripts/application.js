@@ -21,4 +21,5 @@
 //= require sweetalert
 //= require alert
 //= require dialog
+//= require jquery.nestable
 //= require_tree .
