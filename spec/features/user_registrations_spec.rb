@@ -8,7 +8,6 @@ describe 'User registration' do
   before :each do
     visit new_user_registration_path
 
-    fill_in 'user_first_name', with: user_email
     fill_in 'user_email', with: user_email
     fill_in 'user_password', with: user_password
     fill_in 'user_password_confirmation', with: user_password

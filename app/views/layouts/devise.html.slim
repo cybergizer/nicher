@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    = csrf_meta_tags
+    = csp_meta_tag
+    title NICHER+R
+    link href="favicon.ico" rel="icon" type="image/x-icon" /
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons', media: 'all', 'data-turbolinks-track': 'reload'
+  body.login-page.ls-closed.bg-cyan
+    .login-box
+    .logo
+      h1
+        |NICHER+R
+    .card
+      .body
+        .panel
+          = yield
+  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'

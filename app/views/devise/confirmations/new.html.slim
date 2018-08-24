@@ -1,15 +1,13 @@
-.container
-  .login-form
-    .main-div
-      .panel
-        h2 Resend confirmation instructions
-        = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-          .alert.alert-danger
-            = devise_error_messages!
-          .field
-            = f.label :email
-            br/
-            = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
-          .actions
-            = f.submit "Resend confirmation instructions", :class => "btn btn-primary"
-        = render "devise/shared/links"
+h2 Resend confirmation instructions
+= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+  - if devise_error_messages != ''
+    .alert.alert-danger
+      = devise_error_messages.html_safe
+  .input-group
+    span.input-group-addon
+      i.material-icons person
+    .form-line
+      = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control'
+  .actions
+    = f.submit "Resend confirmation instructions", class: "btn btn-block bg-pink waves-effect"
+= render "devise/shared/links"
