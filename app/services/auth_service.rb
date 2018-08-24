@@ -15,6 +15,7 @@ class AuthService
     @user = user_select(identity)
     @user = user_create unless @user.present?
     identity.add_reference_to(@user)
+    @user.create_user_profile(first_name: name_from_auth)
     @user
   end
 
@@ -32,7 +33,6 @@ class AuthService
   def fill_user_fields
     email = email_from_auth
     {
-      first_name: @auth.extra.raw_info.name,
       email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{@auth.uid}-#{@auth.provider}.com",
       password: Devise.friendly_token[0, 20]
     }
@@ -40,5 +40,9 @@ class AuthService
 
   def email_from_auth
     @auth.info.email || @auth.extra.raw_info.email
+  end
+
+  def name_from_auth
+    @auth.info.name || @auth.info.nickname
   end
 end

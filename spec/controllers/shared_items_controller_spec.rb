@@ -61,7 +61,7 @@ RSpec.describe SharedItemsController, type: :controller do
       it 'redirects to the items' do
         expect(subject).to have_http_status(:redirect)
         expect(subject).to redirect_to(items_path)
-        expect(flash[:notice]).to match(/You've rent #{item.title} from #{item.user.full_name}\./)
+        expect(flash[:notice]).to match(/You've rent #{item.title} from #{item.user.first_name}\./)
       end
     end
 

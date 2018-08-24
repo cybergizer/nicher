@@ -1,7 +1,6 @@
 require 'rails_helper';
 
 describe 'User registration' do
-  let(:first_name) { 'test' }
   let(:user_email) { 'test@gmail.com'  }
   let(:user_password) { 'password'  }
 

@@ -16,7 +16,7 @@ class User < ApplicationRecord
   TEMP_EMAIL_PREFIX = 'change@me'.freeze
   TEMP_EMAIL_REGEX = /\Achange@me/
 
-  delegate :full_name, to: :user_profile
+  delegate :first_name, to: :user_profile
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable

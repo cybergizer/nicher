@@ -1,9 +1,13 @@
 = form_for current_user do |form|
   = form.fields_for :user_profile do |ff|
     .form-group
-      = ff.label :full_name
+      = ff.label :first_name
       br/
-      = ff.text_field :full_name
+      = ff.text_field :first_name
+    .form-group
+      = ff.label :last_name
+      br/
+      = ff.text_field :last_name
     .form-group
       = ff.label :city
       br/

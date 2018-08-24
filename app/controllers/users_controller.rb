@@ -5,16 +5,12 @@ class UsersController < ApplicationController
   include ApplicationConcern
   before_action :set_user_profile, only: %i[show update]
 
-  def show
-    @user_profile
-  end
+  def show; end
 
-  def edit
-    current_user.build_user_profile unless current_user.user_profile
-  end
+  def edit; end
 
   def update
-    if @user_profile.update(user_params[:user_profile_attributes])
+    if @user_profile.update(profile_params[:user_profile_attributes])
       redirect_to current_user, notice: 'Your profile was successfully updated.'
     else
       render :edit
@@ -56,7 +52,7 @@ class UsersController < ApplicationController
     @user_profile = UserProfile.find_or_create_by(user_id: current_user.id)
   end
 
-  def user_profile_params
+  def profile_params
     model_params(:user)
   end
 end
