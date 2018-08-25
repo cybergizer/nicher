@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   resources :items
 
+  get 'filter_notifications', action: :index, controller: 'free_item_requests'
   get 'generate_link', action: :generate_link, controller: 'shared_items'
   get 'share', action: :share, controller: 'shared_items'
   resources :rent_items, only: %i[show edit update] do
