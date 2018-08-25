@@ -10,7 +10,7 @@ $(document).ready(function() {
         addStylesToDialog();
         fetchRentFormContent(id);
       },
-      close: addStylesToDialog
+      close: closeRentItemDialog
     });
   });
 
