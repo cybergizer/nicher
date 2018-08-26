@@ -25,7 +25,7 @@ $(document).ready(function() {
     });
   }
 
-  $(document).on('submit','form#save_category', function(e) {
+  $(document).on('submit', 'form#save_category', function(e) {
     e.preventDefault();
   });
 

@@ -16,7 +16,7 @@ $(document).ready(function() {
 
   $(document).on('click', 'form#save_rent_item #close', closeRentItemDialog);
 
-  $(document).on('submit','form#save_rent_item', function(e) {
+  $(document).on('submit', 'form#save_rent_item', function(e) {
     e.preventDefault();
   });
 

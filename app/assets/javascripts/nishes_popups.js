@@ -5,7 +5,7 @@ $(document).ready(function() {
     createNicheDialog(id, 'new');
   });
 
-  $(document).on('click','.edit_niche_button', function(e) {
+  $(document).on('click', '.edit_niche_button', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
     url = id + '/edit';
@@ -17,7 +17,7 @@ $(document).ready(function() {
     $('#niche_form').dialog({
       title: 'Niche',
       modal: true,
-      open: function(){
+      open: function() {
         addStylesToDialog();
         fetchNicheFormContent(id, url);
       },
@@ -25,7 +25,7 @@ $(document).ready(function() {
     });
   }
 
-  $(document).on('submit','form#save_niche', function(e) {
+  $(document).on('submit', 'form#save_niche', function(e) {
     e.preventDefault();
   });
 
