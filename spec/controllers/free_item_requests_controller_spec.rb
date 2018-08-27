@@ -27,7 +27,7 @@ RSpec.describe FreeItemRequestsController, type: :controller do
     end
 
     it 'softly destroys request' do
-      expect { subject }.to change(FreeItemRequest, :count).by(0)
+      expect { subject }.to change(FreeItemRequest.only_deleted, :count).by(1)
     end
   end
 end
