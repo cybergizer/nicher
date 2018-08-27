@@ -4,6 +4,10 @@
   .form-group
     .form-line
       = form.text_field :name, class: 'form-control'
+  = form.label :url
+  .form-group
+    .form-line
+      = form.text_field :url, class: 'form-control'
   = form.label :parent
   .form-group
     .form-line
@@ -11,5 +15,5 @@
   br
   .button-demo
     button#close.btn.btn-danger.waves-effect
-      | Cancel    
+      | Cancel
     = form.button 'Save', type: :submit, class: 'btn btn-primary waves-effect'

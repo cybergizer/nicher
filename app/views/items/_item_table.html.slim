@@ -11,3 +11,8 @@ tr
     i.material-icons edit
   td= link_to item, method: :delete, data: { confirm: 'Are you sure?' } do
     i.material-icons.col-red delete
+  - if item.niche.url
+    td= link_to nil, class: 'highlight', data: { id: item.niche_id } do
+      i.material-icons.col-orange lightbulb_outline
+  - else
+    td
