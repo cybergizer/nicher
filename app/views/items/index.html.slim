@@ -13,9 +13,9 @@
           thead
             tr
               th = sort_link 'title'
-              th = 'Description'
-              th = 'Category'
-              th = sort_link 'created_at', 'Created On'
+              th.hidden-xs.hidden-sm = 'Description'
+              th.hidden-xs.hidden-sm = 'Category'
+              th.hidden-xs.hidden-sm = sort_link 'created_at', 'Created On'
               th colspan="3"
           tbody
             = render partial: 'item_table', collection: @items, as: :item
