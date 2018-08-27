@@ -41,7 +41,7 @@ $(document).ready(function() {
     var form = $(this).parents('form#save_category');
     var data = $(form).serialize();
     if (!validateCategoryForm(form)) {
-      alertCreate('Please input name for category!');
+      alertCreate('Please input name for category!', '#error_explanation', 'warning', 10000);
       return;
     }
     $.ajax({
@@ -60,7 +60,7 @@ $(document).ready(function() {
       closeCategoryDialog();
       window.location = '/categories';
     } else {
-      alertCreate('Category cannot be a descendant of itself!');
+      alertCreate('Category cannot be a descendant of itself!', '#error_explanation', 'warning', 10000);
     }
   }
 

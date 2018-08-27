@@ -1,7 +1,7 @@
 class NichesController < ApplicationController
   include ApplicationConcern
 
-  before_action :set_niche, only: %i[show edit update destroy]
+  before_action :set_niche, only: %i[show edit update destroy highlight]
 
   # GET /locations
   # GET /locations.json
@@ -59,6 +59,15 @@ class NichesController < ApplicationController
     parent = current_user.niches.find_by(id: params[:parent_id])
     niche.parent = parent
     niche.save
+  end
+
+  def highlight
+    url = @niche.url
+    params = {}
+    Net::HTTP.post_form(URI.parse(url), params)
+    render json: { status: 'ok' }
+  rescue StandardError
+    render json: { status: 'error' }
   end
 
   private

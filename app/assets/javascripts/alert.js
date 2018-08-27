@@ -1,3 +1,3 @@
-function alertCreate(alertMessage) {
-  $('#error_explanation').addClass('alert alert-warning').html(alertMessage).fadeIn().fadeOut(10000);
+function alertCreate(alertMessage, selector, statusAlert, delay) {
+  $(selector).addClass('alert alert-' + statusAlert).html(alertMessage).fadeIn().fadeOut(delay);
 }

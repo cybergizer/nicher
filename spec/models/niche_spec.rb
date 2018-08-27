@@ -5,6 +5,7 @@ RSpec.describe Niche, type: :model do
   subject { create(:niche, user: user) }
   let(:niche) { create(:niche, user: user)  }
   it "is valid with valid attributes" do
+    subject.url = 'http://nicher.space'
     expect(subject).to be_valid
   end
 
@@ -15,6 +16,11 @@ RSpec.describe Niche, type: :model do
 
   it "is not valid without an user" do
     subject.user_id = nil
+    expect(subject).to_not be_valid
+  end
+
+  it "is not valid with invalid url" do
+    subject.url = 'invalid/url'
     expect(subject).to_not be_valid
   end
 
