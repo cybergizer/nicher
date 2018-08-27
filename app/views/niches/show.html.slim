@@ -4,8 +4,13 @@ p#notice
   .col-lg-12.col-md-12.col-sm-12.col-xs-12
     .card
       .header
-        h2
-          = @niche.name
+        ol.breadcrumb.breadcrumb-bg-cyan
+          li
+            a[href=niches_path]
+              | Niches
+          = breadcrumb_output(@niche).html_safe
+          li.active
+            = @niche.name
       .body.table-responsive
         table.table.table-striped
           thead
