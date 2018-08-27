@@ -1,0 +1,12 @@
+{
+  "provider": "facebook",
+  "uid": "10209738170170964",
+  "info": {
+    "email": "test_user@mail.ru", "name": "Henadzi Simonovich"
+  },
+  "extra": {
+    "raw_info": {
+      "name": "Henadzi Simonovich", "email": "test_user@mail.ru", "id": "10209738170170964"
+    }
+  }
+}

@@ -9,8 +9,7 @@ RSpec.describe OmniauthCallbacksController, type: :controller do
 
   describe "#github" do
     it "returns http success" do
-      mock_auth_hash[:github]
-      request.env['omniauth.auth'] = to_recursive_ostruct(OmniAuth.config.mock_auth[:github])
+      request.env['omniauth.auth'] = mock_auth[:'github']
       get :github
       expect(response).to redirect_to(finish_signup_path(subject.current_user.id))
     end
@@ -18,8 +17,7 @@ RSpec.describe OmniauthCallbacksController, type: :controller do
 
   describe "#facebook" do
     it "returns http success" do
-      mock_auth_hash[:facebook]
-      request.env['omniauth.auth'] = to_recursive_ostruct(OmniAuth.config.mock_auth[:facebook])
+      request.env['omniauth.auth'] = mock_auth[:'facebook']
       get :facebook
       expect(response).to redirect_to(root_url)
     end
@@ -27,8 +25,7 @@ RSpec.describe OmniauthCallbacksController, type: :controller do
 
   describe "#vkontakte" do
     it "returns http success" do
-      mock_auth_hash[:vkontakte]
-      request.env['omniauth.auth'] = to_recursive_ostruct(OmniAuth.config.mock_auth[:vkontakte])
+      request.env['omniauth.auth'] = mock_auth[:'vkontakte']
       get :vkontakte
       expect(response).to redirect_to(finish_signup_path(subject.current_user.id))
     end
@@ -36,8 +33,7 @@ RSpec.describe OmniauthCallbacksController, type: :controller do
 
   describe "#yandex" do
     it "returns http success" do
-      mock_auth_hash[:yandex]
-      request.env['omniauth.auth'] = to_recursive_ostruct(OmniAuth.config.mock_auth[:yandex])
+      request.env['omniauth.auth'] = mock_auth[:'yandex']
       get :yandex
       expect(response).to redirect_to(root_url)
     end
@@ -45,8 +41,7 @@ RSpec.describe OmniauthCallbacksController, type: :controller do
 
   describe '#google_oauth2' do
     it 'returns http success' do
-      mock_auth_hash[:google_oauth2]
-      request.env['omniauth.auth'] = to_recursive_ostruct(OmniAuth.config.mock_auth[:google_oauth2])
+      request.env['omniauth.auth'] = mock_auth[:'google_oauth2']
       get :google_oauth2
       expect(response).to redirect_to(root_url)
     end

@@ -34,8 +34,7 @@ RSpec.describe User, type: :model do
   end
 
   it "is valid with valid oauth attributes" do
-    mock_auth_hash[:yandex]
-    auth = to_recursive_ostruct(OmniAuth.config.mock_auth[:yandex])
+    auth = mock_auth[:'yandex']
     user = AuthService.new(auth, signed_in_resource = nil).find_for_oauth
     expect(user).to be_valid
   end

@@ -1,0 +1,20 @@
+{
+  "provider": "yandex",
+  "uid": "1130000015191778",
+  "info": {
+    "nickname": "test_user@tut.by", "email": "test_user@tut.by", "name": "Геннадий Батькович"
+  },
+  "extra": {
+    "raw_info": {
+      "first_name": "Геннадий",
+      "last_name": "Батькович",
+      "display_name": "test_user@tut.by",
+      "emails": ["test_user@tut.by"],
+      "default_email": "test_user@tut.by",
+      "real_name": "Геннадий Батькович",
+      "login": "test_user@tut.by",
+      "sex": "male",
+      "id": "1130000015191778"
+    }
+  }
+}

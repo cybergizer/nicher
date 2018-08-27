@@ -159,8 +159,8 @@ ActiveRecord::Schema.define(version: 2018_08_27_074930) do
   end
 
   add_foreign_key "categories", "users"
-  add_foreign_key "item_histories", "items"
   add_foreign_key "identities", "users"
+  add_foreign_key "item_histories", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "free_item_requests"
   add_foreign_key "items", "niches"
