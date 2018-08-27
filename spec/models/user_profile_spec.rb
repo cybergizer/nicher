@@ -24,5 +24,6 @@ RSpec.describe UserProfile, type: :model do
     expect(user.user_profile.first_name).to eq('Alex')
     expect(user.user_profile.city).to eq('Minsk')
     expect(user.user_profile.description).to eq('test')
+    expect(user.user_profile.full_name).to eq('Alex')
   end
 end

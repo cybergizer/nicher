@@ -1,12 +1,22 @@
-<<<<<<< 9422bdebe15765ced526cb5d3e74411d497fecaa
 h2 Sign up
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   - if devise_error_messages != ''
     .alert.alert-danger
       = devise_error_messages.html_safe
+  = f.fields_for :user_profile do |ff|
+    .input-group
+      span.input-group-addon
+        i.material-icons person
+      .form-line
+        = ff.text_field :first_name, autofocus: true, class: 'form-control'
+    .input-group
+      span.input-group-addon
+        i.material-icons person
+      .form-line
+        = ff.text_field :last_name, autofocus: true, class: 'form-control'
   .input-group
     span.input-group-addon
-      i.material-icons person
+      i.material-icons email
     .form-line
       = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
   .input-group
@@ -25,40 +35,3 @@ h2 Sign up
   .actions
     = f.submit "Sign up", class: "btn btn-block bg-pink waves-effect"
 = render "devise/shared/links"
-=======
-.container
-  .login-form
-    .main-div
-      .panel
-        h2 Sign up
-        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-          .alert.alert-danger
-            = devise_error_messages!
-          = f.fields_for :user_profile do |ff|
-            .field
-              = ff.label :first_name
-              br/
-              = ff.text_field :first_name, autofocus: true
-            .field
-              = ff.label :last_name
-              br/
-              = ff.text_field :last_name, autofocus: true
-          .field
-            = f.label :email
-            br/
-            = f.email_field :email, autofocus: true, autocomplete: "email"
-          .field
-            = f.label :password
-            - if @minimum_password_length
-              em
-                | (#{@minimum_password_length} characters minimum)
-            br/
-            = f.password_field :password, autocomplete: "off"
-          .field
-            = f.label :password_confirmation
-            br/
-            = f.password_field :password_confirmation, autocomplete: "off"
-          .actions
-            = f.submit "Sign up", :class => "btn btn-primary"
-        = render "devise/shared/links"
->>>>>>> Rewrite method to create UserProfile

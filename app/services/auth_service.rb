@@ -11,15 +11,18 @@ class AuthService
   end
 
   def find_for_oauth
-    identity = Identity.find_for_oauth(@auth)
     @user = user_select(identity)
     @user = user_create unless @user.present?
     identity.add_reference_to(@user)
-    @user.create_user_profile(first_name: name_from_auth)
+    @user.create_user_profile(first_name: name_from_auth) unless @user.user_profile.present?
     @user
   end
 
   private
+
+  def identity
+    Identity.find_for_oauth(@auth)
+  end
 
   def user_select(identity)
     @signed_in_resource || identity.user
@@ -43,6 +46,10 @@ class AuthService
   end
 
   def name_from_auth
-    @auth.info.name || @auth.info.nickname
+    auth_info.name || auth_info.nickname
+  end
+
+  def auth_info
+    @auth.info
   end
 end

@@ -10,7 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
-<<<<<<< 1971d8dc0f1d29ab907fa83c969281d4a7422f7b
  *= require waves
  *= require jquery-ui
  *= require themes/theme-blue
@@ -18,7 +17,6 @@
  *= require nestable
  *= require sass-random-color
  *= require jquery-ui/datepicker
- *= require_tree .
  *= require_self
  */
 
@@ -28,3 +26,5 @@
 @import "500";
 @import "404";
 @import "timeline";
+@import "user_profile";
+@import "settings";

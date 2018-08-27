@@ -1,7 +1,23 @@
-a href='/' Go to Home
-br/
-br/
-- if devise_mapping.omniauthable?
-  - resource_class.omniauth_providers.each do |provider|
-    = link_to "Attach to #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider)
-    br/
+link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /
+
+.card
+  .header
+    h2
+      | Settings
+  .body
+    .settings
+      = link_to omniauth_authorize_path(resource_name, 'facebook'), class: 'btn btn-social bg-indigo' do
+        i.fa.fa-facebook
+        span.span-social Attach to Facebook
+      = link_to omniauth_authorize_path(resource_name, 'github'), class: 'btn btn-social bg-black' do
+        i.fa.fa-github
+        span.span-social Attach to GitHub
+      = link_to omniauth_authorize_path(resource_name, 'vkontakte'), class: 'btn btn-social bg-blue' do
+        i.fa.fa-vk
+        span.span-social Attach to VKontakte
+      = link_to omniauth_authorize_path(resource_name, 'yandex'), class: 'btn btn-social bg-red' do
+        i.fa.fa-yahoo
+        span.span-social Attach to Yandex
+      = link_to omniauth_authorize_path(resource_name, 'google_oauth2'), class: 'btn btn-social bg-blue-grey' do
+        i.fa.fa-google
+        span.span-social Attach to Google

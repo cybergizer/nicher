@@ -14,12 +14,27 @@
   height: 300px;
 }
 
-.avatar {
-  width: 250px;
-  height: 250px;
-}
-
 .span-file-input {
   display: none;
 }
 
+.profile-info {
+  h3 {
+    display: flex;
+    margin-top: 0px;
+
+    span {
+      flex: 1;
+    }
+  }
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#pre-load {
+  height: 250px;
+  width: 250px;
+}

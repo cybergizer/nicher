@@ -8,13 +8,13 @@
         .col-xs-12.col-sm-4
           .avatar-center
             figure.figure-avatar
-              img.img-circle.img-responsive[src=current_user.user_profile.avatar.thumb.url width='250' heigth='250' id='pre-load']
+              img.img-circle.img-responsive[src=current_user.user_profile.avatar.thumb.url id='pre-load']
                 .form-group.form-content-center
                   label.btn.btn-primary
                     i.material-icons publish
                     span UPLOAD
                     span.span-file-input
-                      = ff.file_field :avatar, required: true, id: 'imgInp'
+                      = ff.file_field :avatar, id: 'imgInp'
                       br/
                       = ff.hidden_field :avatar_cache
         .col-xs-12.col-sm-8
