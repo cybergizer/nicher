@@ -1,20 +1,15 @@
-.card
-  .header
-    h2
-      | Niche
-  .body
-    = form_for(@niche, html: { id: 'save_niche', multipart: true }) do |form|
-      #error_explanation
-      = form.label :name
-      .form-group
-        .form-line
-          = form.text_field :name, class: 'form-control'
-      = form.label :parent
-      .form-group
-        .form-line
-          = form.collection_select(:parent_id, @niches, :id, :name, { include_blank: 'None' }, { class: "bootstrap-select form-control show-tick" })
-      br
-      .button-demo
-        button#close.btn.btn-danger.waves-light
-          | Cancel    
-        = form.button 'Save', type: :submit, class: 'btn btn-primary waves-light'
+= form_for(@niche, html: { id: 'save_niche', multipart: true }) do |form|
+  #error_explanation
+  = form.label :name
+  .form-group
+    .form-line
+      = form.text_field :name, class: 'form-control'
+  = form.label :parent
+  .form-group
+    .form-line
+      = form.collection_select(:parent_id, @niches, :id, :name, { include_blank: 'None' }, { class: "bootstrap-select form-control show-tick" })
+  br
+  .button-demo
+    button#close.btn.btn-danger.waves-effect
+      | Cancel    
+    = form.button 'Save', type: :submit, class: 'btn btn-primary waves-effect'
