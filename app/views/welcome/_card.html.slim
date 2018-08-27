@@ -4,14 +4,15 @@
       h2 =item.title
       small =item.description
       ul.header-dropdown.m-r-0
-        - unless item.rent_item
-          - if !current_user.items.exists?(id: item.id) && item.free_item_request.nil?
-            li
-              = link_to new_free_item_request_path(item_id: item.id), data: { confirm: "Are you sure you want to take this item?" } do
-                i.material-icons pan_tool
-          - if item.free_item_request && current_user.items.exists?(id: item.id)
-            li
-              = link_to free_item_request_path(item.free_item_request, id: item.free_item_request.id, item_id: item.id), method: :delete, data: { confirm: 'Are you sure you want to give away this item?' } do
-                i.material-icons notifications_active
+        - if user_session
+          - unless item.rent_item
+            - if !current_user.items.exists?(id: item.id) && item.free_item_request.nil?
+              li
+                = link_to new_request_path(item_id: item.id), method: :post, data: { confirm: "Are you sure you want to take this item?" } do
+                  i.material-icons pan_tool
+            - if item.free_item_request && current_user.items.exists?(id: item.id)
+              li
+                = link_to give_away_path(id: item.free_item_request.id, item_id: item.id), method: :post, data: { confirm: 'Are you sure you want to give away this item?' } do
+                  i.material-icons notifications_active
     .body
       | photo
