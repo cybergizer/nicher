@@ -42,12 +42,8 @@ RSpec.describe ItemsController, type: :controller do
     end
 
     context 'with invalid params' do
-      before do
-        get :show, params: { id: 0 }
-      end
-
       it 'returns http success' do
-        expect(response.status).to eq(404)
+        expect { get :show, params: { id: 0 } }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
   end
