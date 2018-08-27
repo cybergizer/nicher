@@ -10,4 +10,8 @@ RSpec.describe FreeItemRequest, type: :model do
     subject.item = nil
     expect(subject).to_not be_valid
   end
+
+  it "is valid with item" do
+    expect(subject).to be_valid
+  end
 end

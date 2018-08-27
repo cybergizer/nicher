@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  has_many :sending_requests, class_name: 'FreeItemRequest', foreign_key: 'potential_owner_id', dependent: :destroy
+  has_many :sent_requests, class_name: 'FreeItemRequest', foreign_key: 'potential_owner_id', dependent: :destroy
   has_many :pending_requests, class_name: 'FreeItemRequest', foreign_key: 'actual_owner_id', dependent: :destroy
 
   devise :database_authenticatable, :registerable,

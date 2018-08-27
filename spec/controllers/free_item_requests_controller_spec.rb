@@ -4,13 +4,13 @@ RSpec.describe FreeItemRequestsController, type: :controller do
   let(:user_actual) { create(:user) }
   let(:user_potential) { create(:user) }
   let(:item) { create(:item, user: user_actual) }
-  let(:request) { create(:free_item_request, item: item, actual_owner: item.user, potential_owner: user_potential) }
+  let(:request) { create(:free_item_request, item: item, actual_owner: user_actual, potential_owner: user_potential) }
   before do
     sign_in user_potential
   end
 
   describe 'post #new' do
-    let(:free_params) { { item_id: item.id, actual_owner_id: item.user.id, potential_owner_id: user_potential.id } }
+    let(:free_params) { { item_id: item.id, actual_owner_id: user_actual.id, potential_owner_id: user_potential.id } }
     subject { post :new,  params: free_params }
 
     it 'creates a new request' do

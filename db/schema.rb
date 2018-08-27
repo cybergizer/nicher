@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_074930) do
     t.bigint "category_id"
     t.bigint "niche_id"
     t.bigint "rent_item_id"
-    t.boolean "free"
+    t.boolean "free", default: false
     t.datetime "deleted_at"
     t.bigint "free_item_request_id"
     t.index ["category_id"], name: "index_items_on_category_id"

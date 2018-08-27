@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   PARAMS = %i[title description free niche_id category_id].freeze
+  scope :free, -> { where(free: true) }
 
   has_paper_trail
   acts_as_paranoid
