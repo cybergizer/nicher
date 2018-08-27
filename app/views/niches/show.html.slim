@@ -7,7 +7,8 @@ p#notice
         ol.breadcrumb.breadcrumb-bg-cyan
           li
             a[href=niches_path]
-              | Niches
+              i.material-icons dns
+              span Niches
           = breadcrumb_output(@niche).html_safe
           li.active
             = @niche.name

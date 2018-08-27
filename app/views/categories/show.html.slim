@@ -7,7 +7,8 @@ p#notice
         ol.breadcrumb.breadcrumb-bg-cyan
           li
             a[href=categories_path]
-              | Categories
+              i.material-icons loyalty
+              span Categories
           = breadcrumb_output(@category).html_safe
           li.active
             = @category.name
