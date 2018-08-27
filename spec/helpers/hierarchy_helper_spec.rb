@@ -18,4 +18,13 @@ describe HierarchyHelper do
       expect(text).to have_content(children_niche.name)
     end
   end
+
+  describe "#breadcrumb_output" do
+    it "returns the valid html with children" do
+      niche.add(children_niche)
+      text = breadcrumb_output(children_niche)
+      expect(text).to have_content(niche.name)
+      expect(text).to have_content(children_niche.name)
+    end
+  end
 end

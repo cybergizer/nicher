@@ -10,6 +10,12 @@ module HierarchyHelper
     end
   end
 
+  def breadcrumb_output(object)
+    object.ancestors.each_with_object('') do |ancestry, output|
+      output << "<li><a href=#{ancestry.id}>#{ancestry.name}</a></li>"
+    end
+  end
+
   private
 
   def children_output(children, output, template)
