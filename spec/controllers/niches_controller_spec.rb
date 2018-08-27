@@ -203,12 +203,24 @@ RSpec.describe NichesController, type: :controller do
   end
 
   describe 'Get #highlight' do
-    let(:niche) { create(:niche, user: user, url: 'https://www.google.com/') }
+    context 'when valid url' do
+      let(:niche) { create(:niche, user: user, url: 'https://www.google.com/') }
 
-    it 'return http success' do
-      get :highlight, params: { id: niche.id }
-      expect(response_to_json).to eq('status' => 'ok')
-      expect(response).to have_http_status(:success)
+      it 'return http success' do
+        get :highlight, params: { id: niche.id }
+        expect(response_to_json).to eq('status' => 'ok')
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context 'when invalid url' do
+      let(:niche) { create(:niche, user: user, url: 'http://vdfs.com/') }
+
+      it 'return http success' do
+        get :highlight, params: { id: niche.id }
+        expect(response_to_json).to eq('status' => 'error')
+        expect(response).to have_http_status(:success)
+      end
     end
   end
 end

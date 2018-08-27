@@ -8,6 +8,8 @@ $(document).ready(function() {
       success: function(data) {
         if (data.status == 'ok') {
           alertCreate("Highlighted!", '#notice', 'success', 5000);
+        } else {
+          alertCreate("Invalid url!", '#notice', 'warning', 5000);
         }
       }
     });

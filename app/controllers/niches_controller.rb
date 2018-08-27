@@ -66,6 +66,8 @@ class NichesController < ApplicationController
     params = {}
     Net::HTTP.post_form(URI.parse(url), params)
     render json: { status: 'ok' }
+  rescue StandardError
+    render json: { status: 'error' }
   end
 
   private
