@@ -19,7 +19,7 @@
               th colspan="3"
           tbody
             = render partial: 'item_table', collection: @items, as: :item
-        = will_paginate @items
+        = will_paginate(@items, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination-lg', previous_label: '<-', next_label: '->')
 = link_to 'New Item', new_item_path, class: 'btn btn-default'
 br/
 br/
