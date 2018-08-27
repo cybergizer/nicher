@@ -23,20 +23,32 @@ RSpec.describe ItemsController, type: :controller do
   end
 
   describe 'GET #show' do
-    before do
-      get :show, params: { id: item }
+    context 'with valid params' do
+      before do
+        get :show, params: { id: item }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'assigns the requested item to @item' do
+        expect(assigns(:item)).to eq(item)
+      end
+
+      it "renders the #show view" do
+        expect(response).to render_template :show
+      end
     end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(:success)
-    end
+    context 'with invalid params' do
+      before do
+        get :show, params: { id: 0 }
+      end
 
-    it 'assigns the requested item to @item' do
-      expect(assigns(:item)).to eq(item)
-    end
-
-    it "renders the #show view" do
-      expect(response).to render_template :show
+      it 'returns http success' do
+        expect(response.status).to eq(404)
+      end
     end
   end
 
