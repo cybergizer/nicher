@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       post :move
     end
   end
+  match "/404", to: 'errors#not_found', via: :all
+  match "/500", to: 'errors#internal_server_error', via: :all
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', sessions: 'users/sessions', registrations: 'users/registrations' }
   resources :users
