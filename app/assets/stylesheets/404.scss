@@ -1,0 +1,36 @@
+@font-face {
+  font-family:'QanelasBold';
+  src:url(asset-path('fonts/QanelasBold.eot'));
+}
+
+.four-zero-four {
+  width: 100%;
+  text-align: center;
+  color: black;
+  font-family: 'QanelasBold';
+  font-weight: bold;
+  margin: 5% auto;
+  .four-zero-four-container {
+    .error-code {
+      font-size: 160px;
+    }
+    .error-message {
+      #logo {
+        display: block;
+        padding: 0 0 0 25px;
+        span {
+          display: inline-block;
+          font-size: 15em;
+        }
+        .letter {
+          transform: rotate(30deg);
+          transform-origin: bottom center;
+          line-height: 15rem;
+        }
+      }
+    }
+    .button-place {
+      margin-top: 32px;
+    }
+  }
+}

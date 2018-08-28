@@ -1,0 +1,70 @@
+@font-face {
+  font-family:'QanelasBold';
+  src:url(asset-path('fonts/QanelasBold.eot'));
+}
+
+.five-zero-zero {
+  width: 100%;
+  text-align: center;
+  color: black;
+  font-family: 'QanelasBold';
+  font-weight: bold;
+  margin: 5% auto;
+  .five-zero-zero-container {
+    .error-code {
+      font-size: 160px;
+    }
+    .error-message {
+      #logo {
+        display: block;
+        padding: 0 0 0 25px;
+        span {
+          display: inline-block;
+          font-size: 15em;
+        }
+        .letter {
+          transform: rotate(30deg);
+          transform-origin: bottom center;
+          line-height: 15rem;
+        }
+        .letter {
+          animation: falling 1s 2s forwards;
+          transform-origin: bottom center;
+        }
+      }
+    }
+    .button-place {
+      margin-top: 32px;
+    }
+  }
+}
+
+@keyframes falling {
+  20% {
+    transform: rotate(200deg);
+  }
+
+  40% {
+    transform: rotate(240deg);
+  }
+  
+  54% {
+    transform: rotate(150deg);
+  }
+  
+  66% {
+    transform: rotate(200deg);
+  }
+  
+  78% {
+    transform: rotate(175deg);
+  }
+  
+  80%, 85% {
+    transform: rotate(180deg);
+  }
+  
+  100% {
+    transform: rotate(180deg);
+  }
+}
