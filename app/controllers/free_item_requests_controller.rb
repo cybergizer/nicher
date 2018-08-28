@@ -1,5 +1,5 @@
 class FreeItemRequestsController < ApplicationController
-  before_action :assign_variable
+  before_action :find_free_item
 
   def new
     @request = FreeItemRequest.create(item: @item, actual_owner: @item.user, potential_owner: current_user)
@@ -18,7 +18,7 @@ class FreeItemRequestsController < ApplicationController
     @requests = current_user.pending_requests
   end
 
-  def assign_variable
+  def find_free_item
     @item = Item.find_by_id(params[:item_id])
   end
 end
