@@ -97,3 +97,27 @@
     border-bottom-color: #ddd;
   }
 }
+
+.timeline > li > .fa {
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  line-height: 30px;
+  position: absolute;
+  color: #666;
+  background: #d2d6de;
+  border-radius: 50%;
+  text-align: center;
+  left: 18px;
+  top: 0;
+}
+
+.fa {
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.bg-red, .bg-yellow, .bg-pink, .bg-amber, .bg-grey, .bg-green, .bg-cyan, .bg-teal, .bg-lime, .bg-purple {
+  color: #fff !important;
+}

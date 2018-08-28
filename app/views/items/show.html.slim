@@ -1,3 +1,5 @@
+link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /
+
 p#notice= notice
 p
   strong Title:
@@ -15,103 +17,110 @@ p
 = link_to 'Edit', edit_item_path(@item)
 | \
 = link_to 'Back', items_path
-
-- unless @item.item_histories.empty?
-  .row.clearfix
-    .col-lg-12.col-md-12.col-sm-12.col-xs-12
-      .card
-        .header
-          h2
-            | HISTORY OF RENTING
-        .body.table-responsive
-          table.table.table-striped
-            thead
-              tr
-                th been to
-                th lent
-                th returned
-            tbody
-              = render partial: 'history', collection: @item.item_histories, as: :history
-ul.timeline
-  - @item.audits.reverse_each do |audit|
-    li.time-label
-      span.bg-red = audit.created_at.strftime '%-d %b. %Y'
-    - if audit.audited_changes['title']
-      li
-        i.fa.fa-envelope.bg-blue
-        .timeline-item
-          span.time
-            i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
-          h3.timeline-header
-            a Title changed
-          .timeline-body
-            p
-              b = audit.audited_changes['title'].first
-              = ' to '
-              b = audit.audited_changes['title'].last
-              = '.'
-    - if audit.audited_changes['niche_id']
-      li
-        i.fa.fa-envelope.bg-blue
-        .timeline-item
-          span.time
-            i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
-          h3.timeline-header
-            a  Niche changed
-          .timeline-body
-            p
-              - if audit.audited_changes['niche_id'].first.nil?
-                = 'Nowhere'
-              - else
-                b = Niche.find(audit.audited_changes['niche_id'].first).name
-              = ' to '
-              - unless audit.audited_changes['niche_id'].last.nil?
-                b = Niche.find(audit.audited_changes['niche_id'].last).name
-              = '.'
-    - if audit.audited_changes['category_id']
-      li
-        i.fa.fa-envelope.bg-blue
-        .timeline-item
-          span.time
-            i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
-          h3.timeline-header
-            a Category changed
-          .timeline-body
-            p
-              - unless audit.audited_changes['category_id'].first.nil?
-                b = Category.find(audit.audited_changes['category_id'].first).name
-              = ' to '
-              b = Category.find(audit.audited_changes['category_id'].last).name
-              = '.'
-    - if audit.audited_changes['description']
-      li
-        i.fa.fa-envelope.bg-blue
-        .timeline-item
-          span.time
-            i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
-          h3.timeline-header
-            a  Description changed
-          .timeline-body
-            p
-              b = audit.audited_changes['description'].first
-              = ' to '
-              b = audit.audited_changes['description'].last
-              = '.'
-    - if audit.audited_changes['rent_item_id']
-      li
-        i.fa.fa-envelope.bg-blue
-        .timeline-item
-          span.time
-            i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
-          h3.timeline-header
-            a  RENT _ ITEM changed
-          .timeline-body
-            p
-              - unless audit.audited_changes['rent_item_id'].first.nil?
-                = audit.audited_changes['description'].first
-              = ' to '
-              - unless audit.audited_changes['rent_item_id'].last.nil?
-                = audit.audited_changes['rent_item_id'].last
-              = '.'
-  li
-    i.fa.fa-envelope.bg-grey
+- if @item.audits.count > 0
+  ul.timeline
+    - @item.audits.reverse_each do |audit|
+      - unless audit.audited_changes['niche_id'] && audit.audited_changes['niche_id'].last.nil?
+        - unless audit.audited_changes['rent_item_id'] && @item.item_histories.where(rent_item_id: audit.audited_changes['rent_item_id'].last).first.rent_item.nil?
+          li.time-label
+            span.bg-red = audit.created_at.strftime '%-d %b. %Y'
+          - if audit.audited_changes['title']
+            li
+              i.fa.fa-edit.bg-purple
+              .timeline-item
+                span.time
+                  i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+                h3.timeline-header Title changed
+                .timeline-body
+                  p
+                    b = audit.audited_changes['title'].first
+                    = ' to '
+                    b = audit.audited_changes['title'].last
+                    = '.'
+          - if audit.audited_changes['niche_id']
+            li
+              i.fa.fa-cubes.bg-pink
+              .timeline-item
+                span.time
+                  i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+                h3.timeline-header Niche changed
+                .timeline-body
+                  p
+                    - if audit.audited_changes['niche_id'].first.nil?
+                      = 'Nowhere'
+                    - else
+                      b = Niche.find(audit.audited_changes['niche_id'].first).name
+                    = ' to '
+                    b = Niche.find(audit.audited_changes['niche_id'].last).name
+                    = '.'
+          - if audit.audited_changes['category_id']
+            li
+              i.fa.fa-tag.bg-lime
+              .timeline-item
+                span.time
+                  i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+                h3.timeline-header Category changed
+                .timeline-body
+                  p
+                    - unless audit.audited_changes['category_id'].first.nil?
+                      b = Category.find(audit.audited_changes['category_id'].first).name
+                    = ' to '
+                    b = Category.find(audit.audited_changes['category_id'].last).name
+                    = '.'
+          - if audit.audited_changes['description']
+            li
+              i.fa.fa-list-alt.bg-teal
+              .timeline-item
+                span.time
+                  i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+                h3.timeline-header Description changed
+                .timeline-body
+                  p
+                    b = audit.audited_changes['description'].first
+                    = ' to '
+                    b = audit.audited_changes['description'].last
+                    = '.'
+          - if audit.audited_changes['rent_item_id']
+            li
+              i.fa.fa-exchange.bg-amber
+              .timeline-item
+                span.time
+                  i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+                h3.timeline-header Has been borrowed
+                .timeline-body
+                  p
+                    - @item.item_histories.each do |history|
+                      - if history.rent_item && history.rent_item_id == audit.audited_changes['rent_item_id'].last
+                        p
+                          = 'Been to: '
+                          - if history.rent_item.tenant.class == Contact
+                            b = history.rent_item.tenant.name
+                            = ','
+                            br
+                            - if history.rent_item.tenant.email.nil?
+                              = 'email: '
+                              b = history.rent_item.tenant.email
+                          - else
+                            b = history.rent_item.tenant.first_name
+                            = ','
+                            br
+                            = 'email: '
+                            b = history.rent_item.tenant.email
+                            br
+                          = ' from '
+                          b = history.borrowed_at
+                          = ' to '
+                          b = history.returned_at
+                          = '.'
+          - if audit.audited_changes['free']
+            li
+              i.fa.fa-gift.bg-cyan
+              .timeline-item
+                span.time
+                  i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+                - if audit.audited_changes['free'].last
+                  h3.timeline-header Became free
+                - else
+                  h3.timeline-header Became not free
+    li
+      i.fa.fa-clock-o.bg-grey
