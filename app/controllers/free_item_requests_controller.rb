@@ -7,7 +7,7 @@ class FreeItemRequestsController < ApplicationController
   end
 
   def give_away
-    @request = FreeItemRequest.find_by_id(params[:id])
+    @request = FreeItemRequest.find(params[:id])
     Item.create(title: @item.title, description: @item.description, user: @request.potential_owner, free: false)
     @item.destroy
     @request.destroy
@@ -19,6 +19,6 @@ class FreeItemRequestsController < ApplicationController
   end
 
   def set_free_item
-    @item = Item.find(id: params[:item_id])
+    @item = Item.find(params[:item_id])
   end
 end
