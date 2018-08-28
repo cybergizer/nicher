@@ -26,7 +26,7 @@ RSpec.describe ItemHistory, type: :model do
     it 'finds deleted rent_item' do
       rent_item.destroy
       result = subject.returned_at
-      expect(result).to eq(subject.rent_item.deleted_at.strftime '%e %b %Y %k:%M')
+      expect(result).to eq(subject.rent_item.deleted_at.strftime '%e %b. %Y')
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.describe ItemHistory, type: :model do
     it 'finds deleted rent_item' do
       rent_item.destroy
       result = subject.borrowed_at
-      expect(result).to eq(subject.rent_item.created_at.strftime '%e %b %Y %k:%M')
+      expect(result).to eq(subject.rent_item.created_at.strftime '%e %b. %Y')
     end
   end
 end
