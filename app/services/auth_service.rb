@@ -14,7 +14,7 @@ class AuthService
     identity = Identity.find_for_oauth(@auth)
     @user = user_select(identity)
     @user = user_create unless @user.present?
-    identity.add_identity(@user)
+    identity.add_reference_to(@user)
     @user
   end
 

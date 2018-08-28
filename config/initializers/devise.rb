@@ -285,5 +285,4 @@ Devise.setup do |config|
   config.omniauth :vkontakte,     ENV['VKONTAKTE_KEY'],    ENV['VKONTAKTE_SECRET']
   config.omniauth :yandex,        ENV['YANDEX_API'],       ENV['YANDEX_KEY']
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
-  # config.omniauth :gplus, ENV['GPLUS_KEY'], ENV['GPLUS_SECRET']
 end

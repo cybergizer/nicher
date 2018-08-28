@@ -32,10 +32,4 @@ RSpec.describe User, type: :model do
     expect(user.niches.size).to eq 0
     expect(user.niches).not_to be_nil
   end
-
-  it "is valid with valid oauth attributes" do
-    auth = mock_auth[:'yandex']
-    user = AuthService.new(auth, signed_in_resource = nil).find_for_oauth
-    expect(user).to be_valid
-  end
 end

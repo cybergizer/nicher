@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Identity, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
+  let(:identity) { Identity.find_for_oauth(OpenStruct.new({'uid': 'user_uid', 'provider': 'provider_name'})) }
+
   it "is valid with valid attributes" do
-    identity = Identity.find_for_oauth(OpenStruct.new({'uid': 'user_uid', 'provider': 'provider_name'}))
     expect(identity.uid.size).to eq 8
     expect(identity.uid).not_to be_nil
     expect(identity.provider.size).to eq 13
