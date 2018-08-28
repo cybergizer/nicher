@@ -8,9 +8,7 @@ class ItemsController < ApplicationController
 
   def index; end
 
-  def show
-    @versions = @item.versions.map(&:reify)[1..-1]
-  end
+  def show; end
 
   def new
     @item = current_user.items.build

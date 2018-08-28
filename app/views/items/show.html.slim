@@ -32,32 +32,86 @@ p
                 th returned
             tbody
               = render partial: 'history', collection: @item.item_histories, as: :history
-
-- @versions.each do |v|
-  - if v.title != @item.title
-    = v.title
-  br
-  - if v.niche.name != @item.niche.name
-    = v.niche.name
-  br
-
 ul.timeline
-  /! timeline time label
-  li.time-label
-    span.bg-red
-      | 10 Feb. 2014
-  /! /.timeline-label
-  /! timeline item
+  - @item.audits.reverse_each do |audit|
+    li.time-label
+      span.bg-red = audit.created_at.strftime '%-d %b. %Y'
+    - if audit.audited_changes['title']
+      li
+        i.fa.fa-envelope.bg-blue
+        .timeline-item
+          span.time
+            i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+          h3.timeline-header
+            a Title changed
+          .timeline-body
+            p
+              b = audit.audited_changes['title'].first
+              = ' to '
+              b = audit.audited_changes['title'].last
+              = '.'
+    - if audit.audited_changes['niche_id']
+      li
+        i.fa.fa-envelope.bg-blue
+        .timeline-item
+          span.time
+            i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+          h3.timeline-header
+            a  Niche changed
+          .timeline-body
+            p
+              - if audit.audited_changes['niche_id'].first.nil?
+                = 'Nowhere'
+              - else
+                b = Niche.find(audit.audited_changes['niche_id'].first).name
+              = ' to '
+              - unless audit.audited_changes['niche_id'].last.nil?
+                b = Niche.find(audit.audited_changes['niche_id'].last).name
+              = '.'
+    - if audit.audited_changes['category_id']
+      li
+        i.fa.fa-envelope.bg-blue
+        .timeline-item
+          span.time
+            i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+          h3.timeline-header
+            a Category changed
+          .timeline-body
+            p
+              - unless audit.audited_changes['category_id'].first.nil?
+                b = Category.find(audit.audited_changes['category_id'].first).name
+              = ' to '
+              b = Category.find(audit.audited_changes['category_id'].last).name
+              = '.'
+    - if audit.audited_changes['description']
+      li
+        i.fa.fa-envelope.bg-blue
+        .timeline-item
+          span.time
+            i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+          h3.timeline-header
+            a  Description changed
+          .timeline-body
+            p
+              b = audit.audited_changes['description'].first
+              = ' to '
+              b = audit.audited_changes['description'].last
+              = '.'
+    - if audit.audited_changes['rent_item_id']
+      li
+        i.fa.fa-envelope.bg-blue
+        .timeline-item
+          span.time
+            i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+          h3.timeline-header
+            a  RENT _ ITEM changed
+          .timeline-body
+            p
+              - unless audit.audited_changes['rent_item_id'].first.nil?
+                = audit.audited_changes['description'].first
+              = ' to '
+              - unless audit.audited_changes['rent_item_id'].last.nil?
+                = audit.audited_changes['rent_item_id'].last
+              = '.'
   li
-    /! timeline icon
-    i.fa.fa-envelope.bg-blue
-    .timeline-item
-      span.time
-        i.fa.fa-clock-o
-        | 12:05
-      h3.timeline-header
-        a href="#"  Support Team
-      .timeline-body
-        | Content goes here
-      .timeline-footer
-        a.btn.btn-primary.btn-xs ...
+    i.fa.fa-envelope.bg-grey
