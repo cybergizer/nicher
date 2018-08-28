@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_074930) do
+ActiveRecord::Schema.define(version: 2018_08_28_093448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,14 +42,6 @@ ActiveRecord::Schema.define(version: 2018_08_27_074930) do
     t.index ["deleted_at"], name: "index_free_item_requests_on_deleted_at"
   end
 
-  create_table "item_histories", force: :cascade do |t|
-    t.bigint "item_id"
-    t.integer "rent_item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_item_histories_on_item_id"
-  end
-
   create_table "identities", force: :cascade do |t|
     t.bigint "user_id"
     t.string "provider"
@@ -57,6 +49,14 @@ ActiveRecord::Schema.define(version: 2018_08_27_074930) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_identities_on_user_id"
+  end
+
+  create_table "item_histories", force: :cascade do |t|
+    t.bigint "item_id"
+    t.integer "rent_item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_histories_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -141,8 +141,8 @@ ActiveRecord::Schema.define(version: 2018_08_27_074930) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
     t.string "first_name"
+    t.string "unconfirmed_email"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include DeviseConcern
-  before_action :set_user, only: :finish_signup
+  before_action :set_user, only: %i[finish_signup destroy]
 
   def show
     @user_profile = user_profile

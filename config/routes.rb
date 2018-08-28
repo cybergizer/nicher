@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', sessions: 'users/sessions' }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', sessions: 'users/sessions', registrations: 'users/registrations' }
   # devise_for :users, :controllers => { :confirmations => 'omniauth_callbacks' }
   resources :users
   match '/users/:id/finish_signup' => 'users#finish_signup', via: %i[get patch], :as => :finish_signup
