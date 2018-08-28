@@ -9,6 +9,10 @@ nav.navbar.navbar-fixed-top
         li
           a.js-search data-close="true" href="javascript:void(0);"
             i.material-icons search
+        - if user_session && !current_user.pending_requests.empty?
+          li
+            = link_to filter_notifications_path do
+              i.material-icons notifications_active
         - unless user_session
           li
             = link_to new_user_session_path

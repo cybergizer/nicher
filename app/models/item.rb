@@ -1,6 +1,9 @@
 class Item < ApplicationRecord
-  PARAMS = %i[title description niche_id category_id].freeze
+  PARAMS = %i[title description free niche_id category_id].freeze
+  scope :free, -> { where(free: true) }
+
   has_paper_trail
+  acts_as_paranoid
 
   has_one :shared_item, dependent: :destroy
 
@@ -14,6 +17,8 @@ class Item < ApplicationRecord
   validates :title, presence: true
 
   has_many :item_histories, dependent: :destroy
+
+  belongs_to :free_item_request, optional: true
 
   def self.search(search)
     return all unless search
