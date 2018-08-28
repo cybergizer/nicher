@@ -4,6 +4,7 @@ class Item < ApplicationRecord
 
   has_paper_trail
   acts_as_paranoid
+  audited on: :update
 
   has_one :shared_item, dependent: :destroy
 

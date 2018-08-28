@@ -32,3 +32,32 @@ p
                 th returned
             tbody
               = render partial: 'history', collection: @item.item_histories, as: :history
+
+- @versions.each do |v|
+  - if v.title != @item.title
+    = v.title
+  br
+  - if v.niche.name != @item.niche.name
+    = v.niche.name
+  br
+
+ul.timeline
+  /! timeline time label
+  li.time-label
+    span.bg-red
+      | 10 Feb. 2014
+  /! /.timeline-label
+  /! timeline item
+  li
+    /! timeline icon
+    i.fa.fa-envelope.bg-blue
+    .timeline-item
+      span.time
+        i.fa.fa-clock-o
+        | 12:05
+      h3.timeline-header
+        a href="#"  Support Team
+      .timeline-body
+        | Content goes here
+      .timeline-footer
+        a.btn.btn-primary.btn-xs ...

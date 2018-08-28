@@ -47,6 +47,8 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'paranoia', '~> 2.2'
 gem 'paper_trail'
+gem "audited", "~> 4.7"
+
 group :development, :test do
   gem 'pry'
   gem 'bullet'
