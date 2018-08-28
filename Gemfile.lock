@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: f966b5512b4348c2f87e8b63732a59b627987769
+  revision: 7090802aa012c1fd57927fe2eefe2677787af3ec
   branch: master
   specs:
     faker (1.9.1)
@@ -81,6 +81,7 @@ GEM
     bullet (5.7.6)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11.0)
+    cancancan (2.2.0)
     capybara (3.6.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -329,6 +330,7 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rolify (5.2.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.1)
@@ -435,6 +437,7 @@ DEPENDENCIES
   bootstrap-will_paginate
   brakeman
   bullet
+  cancancan
   capybara (>= 2.15, < 4.0)
   carrierwave
   chromedriver-helper
@@ -468,6 +471,7 @@ DEPENDENCIES
   rails-controller-testing
   rails_admin
   reek (>= 5.0)
+  rolify
   rspec-rails
   rubocop (~> 0.54.0)
   sass-rails (~> 5.0)

@@ -15,6 +15,16 @@ User.create(
   confirmed_at: Date.today
 )
 
+puts 'Create Admin'
+admin = User.create(
+  first_name: 'admin',
+  email: 'root@admin',
+  password: 'password',
+  password_confirmation: 'password',
+  confirmed_at: Date.today
+)
+admin.add_role 'admin'
+
 UserProfile.destroy_all
 user1 = User.first
 user1.sign_in_count = 2
