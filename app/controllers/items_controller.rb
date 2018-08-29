@@ -62,8 +62,12 @@ class ItemsController < ApplicationController
   end
 
   def set_items
-    @items = current_user.items.order("#{sort_column} #{sort_direction}")
-                         .paginate(page: params[:page], per_page: 3).where(rent_item_id: nil)
+    begin
+      @items = current_user.items.order("#{sort_column} #{sort_direction}")
+                           .paginate(page: params[:page], per_page: 3).where(rent_item_id: nil)
+    rescue ArgumentError
+      raise ActiveRecord::RecordNotFound
+    end
     @lend_items = current_user.lend_items
     @borrowed_items = current_user.borrowed_items
   end

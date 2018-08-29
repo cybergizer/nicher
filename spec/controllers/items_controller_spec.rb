@@ -9,16 +9,24 @@ RSpec.describe ItemsController, type: :controller do
   let(:invalid_attributes) { attributes_for(:invalid_item) }
 
   describe 'GET #index' do
-    before do
-      get :index
+    context 'with valid params' do
+      before do
+        get :index, params: { page: '1' }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'renders the :index view' do
+        expect(response).to render_template :index
+      end
     end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(:success)
-    end
-
-    it 'renders the :index view' do
-      expect(response).to render_template :index
+    context 'with invalid params' do
+      it 'raises the provided exception' do
+        expect { get :index, params: { page: 'invalid_page' } }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
   end
 
