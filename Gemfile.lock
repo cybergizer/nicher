@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: 86a9fcf5c1867fcbac9750925e0b3820570613b8
+  revision: f966b5512b4348c2f87e8b63732a59b627987769
   branch: master
   specs:
     faker (1.9.1)
@@ -76,11 +76,10 @@ GEM
       will_paginate
     brakeman (4.3.1)
     builder (3.2.3)
-    capybara (3.6.0)
     bullet (5.7.6)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11.0)
-    capybara (3.5.1)
+    capybara (3.6.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -228,7 +227,7 @@ GEM
       activerecord (>= 4.0, < 5.3)
     parser (2.5.1.2)
       ast (~> 2.4.0)
-    pg (1.1.0)
+    pg (1.1.2)
     powerpack (0.1.2)
     pry (0.11.3)
       coderay (~> 1.1.0)
