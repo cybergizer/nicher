@@ -1,4 +1,12 @@
 Rails.application.configure do
+  config.after_initialize do
+      Bullet.enable        = true
+      Bullet.alert         = true
+      Bullet.bullet_logger = true
+      Bullet.console       = true
+      Bullet.rails_logger  = true
+      Bullet.add_footer    = true
+  end  
   config.cache_classes = false
 
   # Do not eager load code on boot.
