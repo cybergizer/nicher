@@ -2,7 +2,8 @@ nav.navbar.navbar-fixed-top
   .container-fluid
     .navbar-header
       a.navbar-toggle.collapsed aria-expanded="false" data-target="#navbar-collapse" data-toggle="collapse" href="javascript:void(0);"
-      a.bars href="javascript:void(0);"
+      - if user_session
+        a.bars href="javascript:void(0);"
       a.navbar-brand  NICHER+R
     #navbar-collapse.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
