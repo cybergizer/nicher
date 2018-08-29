@@ -42,18 +42,6 @@ ActiveRecord::Schema.define(version: 2018_08_29_100104) do
     t.index ["deleted_at"], name: "index_free_item_requests_on_deleted_at"
   end
 
-  create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
-    t.string "slug", null: false
-    t.integer "sluggable_id", null: false
-    t.string "sluggable_type", limit: 50
-    t.string "scope"
-    t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
-  end
-
   create_table "identities", force: :cascade do |t|
     t.bigint "user_id"
     t.string "provider"
@@ -98,9 +86,7 @@ ActiveRecord::Schema.define(version: 2018_08_29_100104) do
     t.bigint "user_id"
     t.string "ancestry"
     t.string "url"
-    t.string "slug"
     t.index ["ancestry"], name: "index_niches_on_ancestry"
-    t.index ["slug"], name: "index_niches_on_slug", unique: true
     t.index ["user_id"], name: "index_niches_on_user_id"
   end
 
