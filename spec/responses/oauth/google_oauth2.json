@@ -1,0 +1,31 @@
+{
+  "provider": "google_oauth2",
+  "uid": "118093278763232643707",
+  "info": {
+    "name": "Shizuku Tsukishima",
+    "email": "test_user@gmail.com",
+    "first_name": "Shizuku",
+    "last_name": "Tsukishima"
+  },
+  "extra": {
+    "id_info": {
+      "email": "test_user@gmail.com",
+      "email_verified": true,
+      "at_hash": "16Zz8cBkzBYh2aIcKJAHaw",
+      "exp": 1534401382,
+      "iss": "accounts.google.com",
+      "iat": 1534397782
+    },
+    "raw_info": {
+      "kind": "plus#personOpenIdConnect",
+      "gender": "male",
+      "name": "Shizuku Tsukishima",
+      "given_name": "Shizuku",
+      "family_name": "Tsukishima",
+      "email": "test_user@gmail.com",
+      "email_verified": "true",
+      "locale": "ru"
+    }
+  }
+}
+

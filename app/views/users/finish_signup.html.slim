@@ -1,0 +1,14 @@
+h2 Adding Email
+p Please enter your email address
+= form_for(current_user, as: 'user', url: finish_signup_path(current_user), html: { role: 'form'}) do |f|
+  - if @show_errors && current_user.errors.any?
+    - current_user.errors.full_messages.each do |msg|
+      .alert.alert-danger
+        = msg
+  .input-group
+    span.input-group-addon
+      i.material-icons person
+    .form-line
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'example@me.com', value: ''
+  .actions
+    = f.submit 'Continue', class:'btn btn-block bg-pink waves-effect'

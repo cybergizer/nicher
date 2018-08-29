@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_074930) do
+ActiveRecord::Schema.define(version: 2018_08_28_093448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 2018_08_27_074930) do
     t.integer "actual_owner_id"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_free_item_requests_on_deleted_at"
+  end
+
+  create_table "identities", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "provider"
+    t.string "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
   create_table "item_histories", force: :cascade do |t|
@@ -133,6 +142,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_074930) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "first_name"
+    t.string "unconfirmed_email"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -149,6 +159,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_074930) do
   end
 
   add_foreign_key "categories", "users"
+  add_foreign_key "identities", "users"
   add_foreign_key "item_histories", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "free_item_requests"

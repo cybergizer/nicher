@@ -1,0 +1,21 @@
+{
+  "provider": "vkontakte",
+  "uid": "5858320",
+  "info": {
+    "name": "Геннадий Симонович",
+    "nickname": "gsimon",
+    "email": null,
+    "first_name": "Геннадий",
+    "last_name": "Симонович"
+  },
+  "extra": {
+    "raw_info": {
+      "id": 5858320,
+      "first_name": "Геннадий",
+      "last_name": "Симонович",
+      "sex": 2,
+      "nickname": "gsimon",
+      "screen_name": "gsimonovich"
+    }
+  }
+}
