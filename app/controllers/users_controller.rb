@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include DeviseConcern
+  layout 'devise', only: :finish_signup
   before_action :set_user, only: %i[finish_signup destroy]
 
   def show
