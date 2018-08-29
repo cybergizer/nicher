@@ -49,6 +49,9 @@ gem 'paranoia', '~> 2.2'
 gem 'paper_trail'
 group :development, :test do
   gem 'pry'
+  gem 'bullet'
+  gem 'brakeman'
+  gem 'rack-mini-profiler', require: false
 end
 
 source 'https://rails-assets.org' do
@@ -58,8 +61,6 @@ end
 gem 'sweetalert-rails'
 
 group :development do
-  gem 'bullet'
-  gem 'brakeman'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
