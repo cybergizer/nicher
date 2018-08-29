@@ -1,0 +1,11 @@
+.col-lg-3.col-md-3.col-sm-6.col-xs-12
+  .card
+    .header.bg
+      h2 = request.item.title
+      small = request.item.description
+      ul.header-dropdown.m-r-0
+        li
+          = link_to give_away_path(id: request.id, item_id: request.item.id), method: :post, data: { confirm: 'Are you sure you want to give away this item?' } do
+            i.material-icons notifications_active
+    .body
+      | photo

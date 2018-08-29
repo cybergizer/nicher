@@ -1,5 +1,8 @@
 tr
   td= link_to item.title, item
+  td
+    - if item.free
+      i.material-icons card_giftcard
   td.hidden-xs.hidden-sm= item.description
   td.hidden-xs.hidden-sm= item.category&.name
   td.hidden-xs.hidden-sm= item.display_created_at

@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 2018_08_27_081530) do
     t.string "slug"
   end
 
+  create_table "free_item_requests", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "potential_owner_id"
+    t.integer "actual_owner_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_free_item_requests_on_deleted_at"
+  end
+
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -65,7 +74,12 @@ ActiveRecord::Schema.define(version: 2018_08_27_081530) do
     t.bigint "niche_id"
     t.bigint "rent_item_id"
     t.string "slug"
+    t.boolean "free", default: false
+    t.datetime "deleted_at"
+    t.bigint "free_item_request_id"
     t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["deleted_at"], name: "index_items_on_deleted_at"
+    t.index ["free_item_request_id"], name: "index_items_on_free_item_request_id"
     t.index ["niche_id"], name: "index_items_on_niche_id"
     t.index ["rent_item_id"], name: "index_items_on_rent_item_id"
     t.index ["user_id"], name: "index_items_on_user_id"
@@ -154,6 +168,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_081530) do
   add_foreign_key "categories", "users"
   add_foreign_key "item_histories", "items"
   add_foreign_key "items", "categories"
+  add_foreign_key "items", "free_item_requests"
   add_foreign_key "items", "niches"
   add_foreign_key "items", "rent_items"
   add_foreign_key "items", "users"
