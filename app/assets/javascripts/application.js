@@ -12,14 +12,20 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery
 //= require jquery-ui
 //= require bootstrap-sprockets
 //= require adminbsb-materialdesign
 //= require waves
 //= require sweetalert
+//= require jquery.nestable
 //= require alert
 //= require dialog
-//= require jquery.nestable
-//= require_tree .
+//= require cable
+//= require categories_popups
+//= require highlight
+//= require lend_item
+//= require nestable
+//= require nishes_popups
+//= require not_found
+//= require share_item
