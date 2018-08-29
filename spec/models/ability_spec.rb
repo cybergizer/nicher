@@ -9,9 +9,10 @@ RSpec.describe Ability, type: :model do
       expect(ability).to be_able_to(:read, :all)
     end
   end
+
   describe "as admin" do
+    let(:user) { create(:user) }
     it "can manage all" do
-      user = User.create(email: 'test@example.com', password: 'password123', password_confirmation: 'password123')
       user.add_role 'admin'
       ability = Ability.new(user)
       expect(ability).to be_able_to(:manage, :all)
