@@ -29,9 +29,9 @@ ul.timeline
                   - if audit.audited_changes['niche_id'].first.nil?
                     = 'Nowhere'
                   - else
-                    b = Niche.find(audit.audited_changes['niche_id'].first).name
+                    b = search_for_first_niche(audit).name
                   = ' to '
-                  b = Niche.find(audit.audited_changes['niche_id'].last).name
+                  b = search_for_last_niche(audit).name
                   = '.'
         - if audit.audited_changes['category_id']
           li
@@ -43,9 +43,9 @@ ul.timeline
               .timeline-body
                 p
                   - unless audit.audited_changes['category_id'].first.nil?
-                    b = Category.find(audit.audited_changes['category_id'].first).name
+                    b = search_for_first_category(audit).name
                   = ' to '
-                  b = Category.find(audit.audited_changes['category_id'].last).name
+                  b = search_for_last_category(audit).name
                   = '.'
         - if audit.audited_changes['description']
           li
