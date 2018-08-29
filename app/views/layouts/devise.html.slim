@@ -6,7 +6,7 @@ html
     = csrf_meta_tags
     = csp_meta_tag
     title NICHER+R
-    link href="favicon.ico" rel="icon" type="image/x-icon" /
+    link href="<%= image_path("favicon.ico") %>" rel="shortcut icon"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons', media: 'all', 'data-turbolinks-track': 'reload'
