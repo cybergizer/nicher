@@ -18,29 +18,29 @@ describe ItemsHelper do
   end
 
   describe "#search_for_last_niche" do
-  it "returns first niche from" do
-    item.niche = niche_new
-    item.save
-    audit = item.audits.first
-    expect(search_for_last_niche(audit)).to eq(Niche.find(audit.audited_changes['niche_id'].last))
+    it "returns first niche from" do
+      item.niche = niche_new
+      item.save
+      audit = item.audits.first
+      expect(search_for_last_niche(audit)).to eq(Niche.find(audit.audited_changes['niche_id'].last))
+    end
   end
-end
 
   describe "#search_for_first_category" do
-  it "returns first niche from" do
-    item.category = category_new
-    item.save
-    audit = item.audits.first
-    expect(search_for_first_category(audit)).to eq(Category.find(audit.audited_changes['category_id'].first))
+    it "returns first niche from" do
+      item.category = category_new
+      item.save
+      audit = item.audits.first
+      expect(search_for_first_category(audit)).to eq(Category.find(audit.audited_changes['category_id'].first))
+    end
   end
-end
 
   describe "#search_for_last_category" do
-  it "returns first niche from" do
-    item.category = category_new
-    item.save
-    audit = item.audits.first
-    expect(search_for_last_category(audit)).to eq(Category.find(audit.audited_changes['category_id'].last))
+    it "returns first niche from" do
+      item.category = category_new
+      item.save
+      audit = item.audits.first
+      expect(search_for_last_category(audit)).to eq(Category.find(audit.audited_changes['category_id'].last))
+    end
   end
-end
 end

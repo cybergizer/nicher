@@ -42,10 +42,13 @@ ul.timeline
               h3.timeline-header Category changed
               .timeline-body
                 p
-                  - unless audit.audited_changes['category_id'].first.nil?
-                    b = search_for_first_category(audit).name
-                  = ' to '
-                  b = search_for_last_category(audit).name
+                  - if audit.audited_changes['category_id'].last.nil?
+                    = 'Deleted category'
+                  - else
+                    - unless audit.audited_changes['category_id'].first.nil?
+                      b = search_for_first_category(audit).name
+                    = ' to '
+                    b = search_for_last_category(audit).name
                   = '.'
         - if audit.audited_changes['description']
           li
@@ -56,9 +59,12 @@ ul.timeline
               h3.timeline-header Description changed
               .timeline-body
                 p
-                  b = audit.audited_changes['description'].first
-                  = ' to '
-                  b = audit.audited_changes['description'].last
+                  - if audit.audited_changes['description'].last == ""
+                    = 'Deleted description'
+                  - else
+                    b = audit.audited_changes['description'].first
+                    = ' to '
+                    b = audit.audited_changes['description'].last
                   = '.'
         - if audit.audited_changes['rent_item_id']
           li
