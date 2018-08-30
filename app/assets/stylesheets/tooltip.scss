@@ -1,9 +1,9 @@
 .tooltip {
   position: relative;
-  opacity: 1;
   display: inline-block;
+  opacity: 1;
+  z-index: auto !important;
   .tooltiptext {
-    opacity: 1;
     visibility: hidden;
     position: absolute;
     width: 120px;
