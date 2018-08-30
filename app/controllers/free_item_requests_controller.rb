@@ -1,5 +1,5 @@
 class FreeItemRequestsController < ApplicationController
-  before_action :set_free_item
+  before_action :set_free_item, only: %i[give_away new]
   before_action :set_request, only: :give_away
 
   def new
@@ -17,6 +17,8 @@ class FreeItemRequestsController < ApplicationController
   def filter_notifications
     @requests = current_user.pending_requests
   end
+
+  private
 
   def set_free_item
     @item = Item.find(params[:item_id])
