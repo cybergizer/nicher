@@ -7,10 +7,10 @@ class ItemHistory < ApplicationRecord
   end
 
   def returned_at
-    rent_item.deleted_at.strftime '%e %b %Y %k:%M'
+    rent_item.deleted_at.strftime '%e %b. %Y'
   end
 
   def borrowed_at
-    rent_item.created_at.strftime '%e %b %Y %k:%M'
+    rent_item.created_at.strftime '%e %b. %Y'
   end
 end
