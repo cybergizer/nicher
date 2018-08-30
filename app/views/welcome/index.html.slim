@@ -7,9 +7,11 @@
     = render partial: 'card', collection: @items, as: :item
 - else
   .main_welcome
+    #welcome.page
+      #text
+        h1
+          | “One can never have enough socks.”
+      = image_tag 'photo_2018-08-28_10-57-50.jpg', height: '100', width: '300', id: 'image'
     .page
-      h1
-        | HELLO
-    .page
-      .row.clearfix
+      #free-items.row.clearfix
         = render partial: 'card', collection: @items, as: :item

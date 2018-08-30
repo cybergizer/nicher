@@ -17,7 +17,6 @@
  *= require nestable
  *= require sass-random-color
  *= require jquery-ui/datepicker
- *= require onepage-scroll
  *= require_self
  */
 
@@ -30,3 +29,4 @@
 @import "user_profile";
 @import "settings";
 @import "tooltip";
+@import "onepage-scroll"
