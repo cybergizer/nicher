@@ -62,6 +62,7 @@ end
 source 'https://rails-assets.org' do
   gem 'rails-assets-adminbsb-materialdesign'
   gem 'rails-assets-waves'
+  gem 'rails-assets-onepage-scroll'
 end
 gem 'sweetalert-rails'
 

@@ -19,6 +19,7 @@
 //= require waves
 //= require sweetalert
 //= require jquery.nestable
+//= require onepage-scroll
 //= require alert
 //= require dialog
 //= require cable
@@ -30,3 +31,4 @@
 //= require not_found
 //= require share_item
 //= require user_profile
+//= require scroll-page

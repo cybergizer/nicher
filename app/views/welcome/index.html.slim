@@ -1,4 +1,15 @@
-section.main_page_content
+- if notice
+  div.alert.alert-success
+    strong
+      = notice
+- if user_session
   .row.clearfix
     = render partial: 'card', collection: @items, as: :item
-
+- else
+  .main_welcome
+    .page
+      h1
+        | HELLO
+    .page
+      .row.clearfix
+        = render partial: 'card', collection: @items, as: :item
