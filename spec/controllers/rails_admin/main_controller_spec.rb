@@ -12,7 +12,6 @@ RSpec.describe RailsAdmin::MainController, type: :controller do
 
     it 'redirects to root path' do
       get :dashboard
-#binding.pry
       expect(response).to redirect_to(request.path)
       expect(flash[:alert]).to match(/You are not authorized to access this page: \//)
     end
