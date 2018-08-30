@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_093448) do
+ActiveRecord::Schema.define(version: 2018_08_29_100104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2018_08_28_093448) do
     t.datetime "updated_at", null: false
     t.string "ancestry"
     t.bigint "user_id"
-    t.string "slug"
     t.index ["ancestry"], name: "index_categories_on_ancestry"
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
@@ -32,7 +31,6 @@ ActiveRecord::Schema.define(version: 2018_08_28_093448) do
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug"
   end
 
   create_table "free_item_requests", force: :cascade do |t|
@@ -70,7 +68,6 @@ ActiveRecord::Schema.define(version: 2018_08_28_093448) do
     t.bigint "category_id"
     t.bigint "niche_id"
     t.bigint "rent_item_id"
-    t.string "slug"
     t.boolean "free", default: false
     t.datetime "deleted_at"
     t.bigint "free_item_request_id"
@@ -88,7 +85,6 @@ ActiveRecord::Schema.define(version: 2018_08_28_093448) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.string "ancestry"
-    t.string "slug"
     t.string "url"
     t.index ["ancestry"], name: "index_niches_on_ancestry"
     t.index ["user_id"], name: "index_niches_on_user_id"
@@ -105,7 +101,6 @@ ActiveRecord::Schema.define(version: 2018_08_28_093448) do
     t.bigint "niche_id"
     t.bigint "category_id"
     t.datetime "deleted_at"
-    t.string "slug"
     t.index ["category_id"], name: "index_rent_items_on_category_id"
     t.index ["deleted_at"], name: "index_rent_items_on_deleted_at"
     t.index ["niche_id"], name: "index_rent_items_on_niche_id"

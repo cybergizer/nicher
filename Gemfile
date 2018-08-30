@@ -49,6 +49,9 @@ gem 'paranoia', '~> 2.2'
 gem 'paper_trail'
 group :development, :test do
   gem 'pry'
+  gem 'bullet'
+  gem 'brakeman'
+  gem 'rack-mini-profiler', require: false
 end
 
 source 'https://rails-assets.org' do

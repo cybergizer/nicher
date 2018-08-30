@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   before_action :set_item, only: %i[show edit update destroy]
   before_action :set_paper_trail_whodunnit
-  before_action :set_items, only: %i[index]
+  before_action :set_all_items, only: %i[index]
   helper_method :sort_column, :sort_direction
 
   def index; end
@@ -61,10 +61,14 @@ class ItemsController < ApplicationController
     model_params(:item)
   end
 
-  def set_items
-    @items = current_user.items.order("#{sort_column} #{sort_direction}")
+  def set_all_items
+    set_user_items
+    @lend_items = current_user.lend_items.includes(:item)
+    @borrowed_items = current_user.borrowed_items.includes(:item)
+  end
+
+  def set_user_items
+    @items = current_user.items.includes(:category, :niche).order("#{sort_column} #{sort_direction}")
                          .paginate(page: params[:page], per_page: 3).where(rent_item_id: nil)
-    @lend_items = current_user.lend_items
-    @borrowed_items = current_user.borrowed_items
   end
 end

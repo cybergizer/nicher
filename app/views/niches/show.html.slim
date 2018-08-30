@@ -22,5 +22,5 @@ p#notice
               th.hidden-xs.hidden-sm = 'Created On'
               th colspan="3"
           tbody
-            = render partial: 'items/item_table', collection: @niche.items, as: :item
+            = render partial: 'items/item_table', collection: @items, as: :item
             = render partial: 'items/shared_item_table', collection: @niche.rent_items, as: :borrowed_item

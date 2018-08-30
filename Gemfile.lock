@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: 86a9fcf5c1867fcbac9750925e0b3820570613b8
+  revision: f966b5512b4348c2f87e8b63732a59b627987769
   branch: master
   specs:
     faker (1.9.1)
@@ -74,7 +74,11 @@ GEM
       sass (>= 3.3.4)
     bootstrap-will_paginate (1.0.0)
       will_paginate
+    brakeman (4.3.1)
     builder (3.2.3)
+    bullet (5.7.6)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11.0)
     capybara (3.6.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -223,7 +227,7 @@ GEM
       activerecord (>= 4.0, < 5.3)
     parser (2.5.1.2)
       ast (~> 2.4.0)
-    pg (1.1.0)
+    pg (1.1.2)
     powerpack (0.1.2)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -231,6 +235,8 @@ GEM
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.5)
+    rack-mini-profiler (1.0.0)
+      rack (>= 1.2.0)
     rack-pjax (1.0.0)
       nokogiri (~> 1.5)
       rack (>= 1.1)
@@ -370,6 +376,7 @@ GEM
     uglifier (4.1.18)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.4.0)
+    uniform_notifier (1.11.0)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -397,6 +404,8 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap-sass (~> 3.3, >= 3.3.7)
   bootstrap-will_paginate
+  brakeman
+  bullet
   capybara (>= 2.15, < 4.0)
   chromedriver-helper
   coffee-rails (~> 4.2)
@@ -419,6 +428,7 @@ DEPENDENCIES
   pg
   pry
   puma (~> 3.11)
+  rack-mini-profiler
   rails (~> 5.2.1)
   rails-assets-adminbsb-materialdesign!
   rails-assets-waves!
