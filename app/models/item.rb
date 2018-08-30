@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  PARAMS = [:title, :description, :tree, :niche_id, :category_id, { attachments: [] }].freeze
+  PARAMS = [:title, :description, :free, :niche_id, :category_id, { attachments: [] }].freeze
   LIMIT_OF_ATTACHMENTS = 5
   scope :free, -> { where(free: true) }
 
