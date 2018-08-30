@@ -2,7 +2,7 @@
   .header.profile-header
     h4
       | #{@user_profile.full_name}
-    = link_to edit_user_path, class: 'btn btn-primary' do
+    = link_to edit_user_path, class: 'btn btn-primary waves-effect' do
         i.material-icons edit
   .body
     .row
@@ -34,6 +34,3 @@
         | Description:
       p
         | #{@user_profile.description}
-
-
-

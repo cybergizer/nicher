@@ -3,7 +3,7 @@ module Users
     before_action :configure_permitted_parameters, only: %i[create]
 
     def new
-      build_resource({})
+      build_resource
       resource.build_user_profile
       respond_with resource
     end

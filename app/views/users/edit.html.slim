@@ -10,7 +10,7 @@
             figure.figure-avatar
               img.img-circle.img-responsive[src=current_user.user_profile.avatar.thumb.url id='pre-load']
                 .form-group.form-content-center
-                  label.btn.btn-primary
+                  label.btn.btn-primary.waves-effect
                     i.material-icons publish
                     span UPLOAD
                     span.span-file-input
@@ -68,6 +68,6 @@
             .form-line
               = ff.text_field :description, class: 'form-control'
         .actions
-          = ff.button type: :submit, class: 'btn btn-primary'
+          = ff.button type: :submit, class: 'btn btn-primary waves-effect'
             i.material-icons save
             span SAVE
