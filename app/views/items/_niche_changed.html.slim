@@ -1,0 +1,15 @@
+li
+  i.fa.fa-cubes.bg-pink
+  .timeline-item
+    span.time
+      i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+    h3.timeline-header Niche changed
+    .timeline-body
+      p
+        - if audit.audited_changes['niche_id'].first.nil?
+          = 'Nowhere'
+        - else
+          b = search_for_first_niche(audit).name
+        = ' to '
+        b = search_for_last_niche(audit).name
+        = '.'

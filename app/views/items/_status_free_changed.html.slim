@@ -1,0 +1,9 @@
+li
+  i.fa.fa-gift.bg-cyan
+  .timeline-item
+    span.time
+      i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
+    - if audit.audited_changes['free'].last
+      h3.timeline-header Became free
+    - else
+      h3.timeline-header Became not free
