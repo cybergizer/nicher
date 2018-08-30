@@ -3,9 +3,20 @@ h2 Sign up
   - if devise_error_messages != ''
     .alert.alert-danger
       = devise_error_messages.html_safe
+  = f.fields_for :user_profile do |ff|
+    .input-group
+      span.input-group-addon
+        i.material-icons person
+      .form-line
+        = ff.text_field :first_name, autofocus: true, class: 'form-control'
+    .input-group
+      span.input-group-addon
+        i.material-icons person
+      .form-line
+        = ff.text_field :last_name, autofocus: true, class: 'form-control'
   .input-group
     span.input-group-addon
-      i.material-icons person
+      i.material-icons email
     .form-line
       = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
   .input-group

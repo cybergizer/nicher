@@ -2,17 +2,15 @@ class UsersController < ApplicationController
   include DeviseConcern
   layout 'devise', only: :finish_signup
   before_action :set_user, only: %i[finish_signup destroy]
+  include ApplicationConcern
+  before_action :set_user_profile, only: %i[show update]
 
-  def show
-    @user_profile = user_profile
-  end
+  def show; end
 
-  def edit
-    current_user.build_user_profile unless current_user.user_profile
-  end
+  def edit; end
 
   def update
-    if current_user.update(user_profile_params)
+    if @user_profile.update(profile_params[:user_profile_attributes])
       redirect_to current_user, notice: 'Your profile was successfully updated.'
     else
       render :edit
@@ -23,7 +21,7 @@ class UsersController < ApplicationController
     return unless request.patch? && params[:user]
     if @user.update(user_params)
       sign_in(@user, bypass: true)
-      redirect_to new_user_session_url, notice: 'Your profile was successfully updated.'
+      redirect_to new_user_session_url
     else
       @show_errors = true
     end
@@ -50,11 +48,11 @@ class UsersController < ApplicationController
     params.require(:user).permit(accessible)
   end
 
-  def user_profile
-    current_user.user_profile
+  def set_user_profile
+    @user_profile = UserProfile.find_or_create_by(user_id: current_user.id)
   end
 
-  def user_profile_params
-    params.require(:user).permit(user_profile_attributes: %i(full_name city description))
+  def profile_params
+    model_params(:user)
   end
 end

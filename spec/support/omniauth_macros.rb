@@ -1,7 +1,7 @@
 module OmniauthMacros
   def mock_auth
     @mock_hash ||= json_responses.inject({}) do |sum, (filename, content)|
-      sum[filename] = to_recursive_ostruct(content)     
+      sum[filename] = to_recursive_ostruct(content)
       sum
     end
   end
@@ -11,8 +11,8 @@ module OmniauthMacros
       memo[key] = val.is_a?(Hash) ? to_recursive_ostruct(val) : val
     end)
   end
-	
+
   def json_responses
-    @json_responses ||= FileReader.new(OAUTH_RESPONSES_PATH).files_hash  
+    @json_responses ||= FileReader.new(OAUTH_RESPONSES_PATH).files_hash
   end
 end

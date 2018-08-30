@@ -4,7 +4,6 @@ FactoryBot.define do
   end
 
   factory :user do
-    first_name 'test'
     email
     password "password"
     password_confirmation "password"

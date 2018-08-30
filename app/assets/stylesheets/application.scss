@@ -16,6 +16,7 @@
  *= require login
  *= require nestable
  *= require sass-random-color
+ *= require jquery-ui/datepicker
  *= require_self
  */
 
@@ -25,3 +26,5 @@
 @import "500";
 @import "404";
 @import "timeline";
+@import "user_profile";
+@import "settings";

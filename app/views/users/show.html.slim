@@ -1,17 +1,36 @@
-p#notice
-  = notice
-p
-  strong
-    | Name:
-  = @user_profile.full_name
-p
-  strong
-    | City:
-  = @user_profile.city
-p
-  strong
-    | Description:
-  = @user_profile.description
-= link_to 'Edit', edit_user_path
-|  |
-= link_to 'Back', items_path
+.card
+  .header.profile-header
+    h4
+      | #{@user_profile.full_name}
+    = link_to edit_user_path, class: 'btn btn-primary waves-effect' do
+        i.material-icons edit
+  .body
+    .row
+      .col-xs-12.col-sm-4
+        .avatar-center
+          figure.figure.avatar
+            img.img-circle.img-responsive[src=@user_profile.avatar.thumb.url]
+      .col-xs-12.col-sm-8
+        .profile-info
+          h3
+            span.label.bg-blue
+              | About me
+          ul.list-group
+          - if @user_profile.city?
+            li.list-group-item
+              | City: #{@user_profile.city}
+          - if @user_profile.sex?
+            li.list-group-item
+              | Sex: #{@user_profile.sex}
+          - if @user_profile.birthday?
+            li.list-group-item
+              | Birthday: #{@user_profile.birthday}
+          - if @user_profile.phone?
+            li.list-group-item
+              | Phone: #{@user_profile.phone}
+    .row
+    - if @user_profile.description?
+      h4
+        | Description:
+      p
+        | #{@user_profile.description}

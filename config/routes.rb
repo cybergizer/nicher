@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   match "/404", to: 'errors#not_found', via: :all
   match "/500", to: 'errors#internal_server_error', via: :all
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', sessions: 'users/sessions', registrations: 'users/registrations' }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'users/registrations' }
   resources :users
   match '/users/:id/finish_signup' => 'users#finish_signup', via: %i[get patch], :as => :finish_signup
   match '/users/:id/settings' => 'users#settings', via: %i[get patch], :as => :settings

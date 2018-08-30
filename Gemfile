@@ -31,7 +31,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'file_validators'
+gem 'fog-aws'
+gem 'mini_magick'
+gem 'carrierwave'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -47,6 +50,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'paranoia', '~> 2.2'
 gem 'audited', '~> 4.7'
+gem 'date_validator'
 
 group :development, :test do
   gem 'pry'

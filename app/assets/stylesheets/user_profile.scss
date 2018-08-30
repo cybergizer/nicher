@@ -1,0 +1,40 @@
+.avatar-center {
+  display: flex;
+  justify-content: center;
+}
+
+.form-content-center {
+  margin-top: 3px;
+  display: flex;
+  justify-content: center;
+}
+
+.figure-avatar {
+  width: 250px;
+  height: 300px;
+}
+
+.span-file-input {
+  display: none;
+}
+
+.profile-info {
+  h3 {
+    display: flex;
+    margin-top: 0px;
+
+    span {
+      flex: 1;
+    }
+  }
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#pre-load {
+  height: 250px;
+  width: 250px;
+}

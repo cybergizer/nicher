@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  PARAMS = [{ user_profile_attributes: %i(first_name last_name city description
+                                          avatar avatar_cache sex phone birthday) }].freeze
   has_many :items, dependent: :destroy
   has_many :niches, dependent: :delete_all
   has_many :categories, dependent: :destroy
@@ -15,7 +17,7 @@ class User < ApplicationRecord
   TEMP_EMAIL_PREFIX = 'change@me'.freeze
   TEMP_EMAIL_REGEX = /\Achange@me/
 
-  delegate :full_name, to: :user_profile
+  delegate :first_name, to: :user_profile
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable

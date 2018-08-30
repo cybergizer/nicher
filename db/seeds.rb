@@ -2,7 +2,6 @@ puts 'Create users'
 
 User.destroy_all
 User.create(
-  first_name: 'Vadim',
   email: 'test@mail.ru',
   password: 'password',
   password_confirmation: 'password',
@@ -10,7 +9,6 @@ User.create(
 )
 
 User.create(
-  first_name: 'Sasha',
   email: 'test2@mail.ru',
   password: 'password',
   password_confirmation: 'password',
@@ -24,8 +22,8 @@ user1.save
 user2 = User.first
 user2.sign_in_count = 2
 user2.save
-UserProfile.create(full_name: 'Vadim', city: 'Minsk', description: 'I am from Gomel', user: User.first)
-UserProfile.create(full_name: 'Sasha', city: 'Minsk', description: 'I am from Luninetz', user: User.last)
+UserProfile.create(first_name: 'Vadim', city: 'Minsk', description: 'I am from Gomel', user: User.first)
+UserProfile.create(first_name: 'Sasha', city: 'Minsk', description: 'I am from Luninetz', user: User.last)
 
 puts 'Create categories'
 

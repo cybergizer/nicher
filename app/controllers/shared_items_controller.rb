@@ -19,7 +19,7 @@ class SharedItemsController < ApplicationController
       item = @shared_item.item
       RentItem.create(item: item, owner: item.user, tenant: current_user)
       @shared_item.destroy
-      redirect_to items_url, notice: "You've rent #{item.title} from #{item.user.full_name}."
+      redirect_to items_url, notice: "You've rent #{item.title} from #{item.user.first_name}."
     else
       redirect_to items_url, notice: 'Invalid Link.'
     end

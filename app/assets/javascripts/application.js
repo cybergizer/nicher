@@ -29,3 +29,4 @@
 //= require nishes_popups
 //= require not_found
 //= require share_item
+//= require user_profile
