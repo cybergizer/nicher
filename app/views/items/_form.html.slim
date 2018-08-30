@@ -22,5 +22,8 @@
 	.form-group
     = form.check_box :free
     = form.label :free
+  .form-group
+    = form.label :attachments
+    = form.file_field :attachments, multiple: true
   .actions
     = form.submit
