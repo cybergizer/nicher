@@ -8,4 +8,10 @@
           = link_to give_away_path(id: request.id, item_id: request.item.id), method: :post, data: { confirm: 'Are you sure you want to give away this item?' } do
             i.material-icons notifications_active
     .body
-      | photo
+      - unless request.item.attachments.empty?
+        .avatar-center
+          .rounded
+            img.img-responsive[src=request.item.attachments.first.list_size.url]
+      - if current_user&.items&.exists?(id: request.item.id) && request.item.niche
+        = 'niche: '
+        = request.item.niche&.name
