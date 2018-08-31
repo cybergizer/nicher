@@ -3,6 +3,6 @@
     td= lend_item.title
     td
       .tooltip
-        = link_to repay_rent_items_path(id: lend_item.id), method: :delete, data: { confirm: 'Are you sure that it was returned?' } do
+        = link_to '#', data: { target: "modal", toggle: "modal", id: lend_item.id }, class: 'returnitem' do
           i.material-icons keyboard_return
         .tooltiptext Mark as returned

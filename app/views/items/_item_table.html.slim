@@ -25,7 +25,7 @@ tr
       .tooltiptext Edit item
   td
     .tooltip
-      = link_to item, method: :delete, data: { confirm: 'Are you sure?' } do
+      = link_to '#', data: { toggle: "modal", id: item.id, target: "#modal" }, class: 'deleteitem' do
         i.material-icons.col-red delete
       .tooltiptext Delete item
   - if item.niche&.url
