@@ -24,5 +24,7 @@
                     = render partial: 'rent_item_changed', locals: {audit: audit}
                   - if audit.audited_changes['free']
                     = render partial: 'status_free_changed', locals: {audit: audit}
+                  - if audit.audited_changes['attachments']
+                    = render partial: 'photo_changed', locals: {audit: audit}
             li
               i.fa.fa-clock-o.bg-grey
