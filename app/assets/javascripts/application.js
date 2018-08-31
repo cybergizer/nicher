@@ -32,3 +32,4 @@
 //= require share_item
 //= require user_profile
 //= require scroll-page
+//= require confirm

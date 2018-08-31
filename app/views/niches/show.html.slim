@@ -22,3 +22,5 @@
           tbody
             = render partial: 'items/item_table', collection: @items, as: :item
             = render partial: 'items/shared_item_table', collection: @niche.rent_items, as: :borrowed_item
+
+= render partial: 'templates/modal'

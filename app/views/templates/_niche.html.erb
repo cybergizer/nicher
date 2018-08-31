@@ -5,7 +5,7 @@
       <a class='edit_niche_button dd-nodrag edit-link', data-id='<%= object.id %>' >
         <i class='material-icons'>edit</i>
       </a>
-      <%= link_to niche_path(object.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dd-nodrag' do %>
+      <%= link_to '#', data: { target: "#modal", toggle: "modal", id: object.id }, class: 'deleteniche dd-nodrag' do %>
         <i class='material-icons col-red'>delete</i>
       <% end %>
     </div>

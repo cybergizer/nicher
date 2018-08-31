@@ -8,3 +8,19 @@
         ol.dd-list
           = hierarchy_output(@categories, template: 'category').html_safe
     = link_to 'New Category', nil, id: 'new_category', class: 'btn btn-primary waves-effect'
+
+#deletecategoryModal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="myModalLabel"]
+  .modal-dialog[role="document"]
+    .modal-content.modal-col-red
+      .modal-header
+        button.close[type="button" data-dismiss="modal" aria-label="Close"]
+          span[aria-hidden="true"]
+            | ×
+        h4#myModalLabel.modal-title
+          | Delete Confirmation
+      .modal-body
+        |  Are you sure about deleting this category?
+      .modal-footer
+        = link_to "Yes", '/', method: :delete, class: 'btn btn-link waves-effect', id: 'deletecategorylink'
+        = link_to "No", "javascript:void(0)", 'data-dismiss': "modal", class: 'btn btn-link waves-effect'
+= render partial: 'templates/modal'
