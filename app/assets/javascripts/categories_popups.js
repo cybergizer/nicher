@@ -60,7 +60,7 @@ $(document).ready(function() {
       closeCategoryDialog();
       window.location = '/categories';
     } else {
-      alertCreate('Category cannot be a descendant of itself!', '#error_explanation', 'warning', 10000);
+      alertCreate(data.status, '#error_explanation', 'warning', 10000);
     }
   }
 
