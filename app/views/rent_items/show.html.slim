@@ -1,12 +1,24 @@
-p
-  strong Title:
-  = @rent_item.item.title
-p
-  strong Description:
-  = @rent_item.item.description
-p
-  strong Category:
-  = @rent_item.category&.name
-= link_to 'Edit', edit_rent_item_path(@rent_item)
-| \
-= link_to 'Back', items_path
+.row.claerfix
+  .col-xs-12.col-sm-12.col-md-12.col-lg-12
+    .card
+      .header
+        h2
+          = @rent_item.item.title
+      .body
+        .row.clearfix
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            - if @rent_item.item.attachments.any?
+              = render partial: 'items/slider', locals: { item: @rent_item.item }
+            - else
+              = image_tag('page_size_image.png', style: 'width:450px;height:300px;')
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            .text-left
+            h2 Category
+            p
+              = @rent_item.category&.name
+            h2 Niche
+            p
+              = @rent_item.niche&.name
+            .buttons
+              = link_to 'Edit', edit_rent_item_path(@rent_item), class: 'btn bg-blue-grey btn-lg'
+              = link_to 'Back', items_path, class: 'btn bg-blue-grey btn-lg'

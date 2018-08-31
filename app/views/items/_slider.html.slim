@@ -1,10 +1,10 @@
 #myCarousel.carousel.slide data-ride="carousel"
   /! Indicators
   ol.carousel-indicators
-    = indicators(@item.attachments).html_safe
+    = indicators(item.attachments).html_safe
   /! Wrapper for slides
   .carousel-inner
-    = slides(@item.attachments).html_safe
+    = slides(item.attachments).html_safe
   /! Left and right controls
   a.left.carousel-control data-slide="prev" href="#myCarousel"
     span.glyphicon.glyphicon-chevron-left
