@@ -3,7 +3,7 @@ require 'spec_helper'
 
 RSpec.describe AvatarUploader, type: :uploader do
   include CarrierWave::Test::Matchers
-  let(:user_profile) { FactoryBot.build(:user_profile) }
+  let(:user_profile) { build(:user_profile) }
   let(:uploader) { AvatarUploader.new(user_profile, :avatar) }
 
   describe 'with a test url' do

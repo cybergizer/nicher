@@ -3,13 +3,13 @@ require 'spec_helper'
 
 RSpec.describe ImageUploader, type: :uploader do
   include CarrierWave::Test::Matchers
-  let(:item) { FactoryBot.build(:item)  }
-  let(:uploader) { ImageUploader.new(item, attachments: [])  }
+  let(:item) { build(:item) }
+  let(:uploader) { ImageUploader.new(item, attachments: []) }
 
   describe 'with a test url' do
     before do
       ImageUploader.enable_processing = true
-      File.open(File.join(Rails.root,'spec/fixtures/files/avatar.jpg')) { |f| uploader.store!(f)  }
+      File.open(File.join(Rails.root,'spec/fixtures/files/avatar.jpg')) { |f| uploader.store!(f) }
     end
 
     context 'the versions' do
