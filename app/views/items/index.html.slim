@@ -22,7 +22,7 @@
         = will_paginate(@items, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination-lg', previous_label: '<-', next_label: '->')
 br/
 br/
-- if @lend_items.any?
+- if @lend_items.present?
   .row.clearfix
     .col-lg-12.col-md-12.col-sm-12.col-xs-12
       .card
@@ -39,7 +39,7 @@ br/
               = render partial: 'lend_item_table', collection: @lend_items, as: :lend_item
 br/
 br/
-- if @borrowed_items.any?
+- if @borrowed_items.present?
   .row.clearfix
     .col-lg-12.col-md-12.col-sm-12.col-xs-12
       .card
