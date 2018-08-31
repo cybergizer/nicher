@@ -14,7 +14,7 @@ class RentItem < ApplicationRecord
 
   delegate :title, to: :item
 
-  after_save :create_history
+  after_create :create_history
 
   def tenant_attributes=(attributes)
     self.tenant = Contact.create(attributes)

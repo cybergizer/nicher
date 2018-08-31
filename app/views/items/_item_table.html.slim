@@ -2,18 +2,32 @@ tr
   td= link_to item.title, item
   td
     - if item.free
-      i.material-icons card_giftcard
+      .tooltip
+        i.material-icons card_giftcard
+        .tooltiptext This item is free
   td.hidden-xs.hidden-sm= item.description
   td.hidden-xs.hidden-sm= item.category&.name
   td.hidden-xs.hidden-sm= item.display_created_at
-  td= link_to nil, class: 'lend_item', data: { id: item.id } do
-    i.material-icons swap_horiz
-  td= link_to nil, class: 'share_item', data: { id: item.id } do
-    i.material-icons share
-  td.hidden-xs.hidden-sm= link_to edit_item_path(item) do
-    i.material-icons edit
-  td= link_to item, method: :delete, data: { confirm: 'Are you sure?' } do
-    i.material-icons.col-red delete
+  td
+    .tooltip
+      = link_to nil, class: 'lend_item', data: { id: item.id } do
+        i.material-icons swap_horiz
+      .tooltiptext Click to lend this item to contact
+  td
+    .tooltip
+      = link_to nil, class: 'share_item', data: { id: item.id } do
+        i.material-icons share
+      .tooltiptext Click to generate link to lend item
+  td.hidden-xs.hidden-sm
+    .tooltip
+      = link_to edit_item_path(item) do
+        i.material-icons edit
+      .tooltiptext Edit item
+  td
+    .tooltip
+      = link_to item, method: :delete, data: { confirm: 'Are you sure?' } do
+        i.material-icons.col-red delete
+      .tooltiptext Delete item
   - if item.niche&.url
     td= link_to nil, class: 'highlight', data: { id: item.niche_id } do
       i.material-icons.col-orange lightbulb_outline

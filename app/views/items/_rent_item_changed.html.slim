@@ -8,24 +8,23 @@ li
       p
         - @item.item_histories.each do |history|
           - if history.rent_item && history.rent_item_id == audit.audited_changes['rent_item_id'].last
-            p
-              = 'Been to: '
-              - if history.rent_item.tenant.class == Contact
-                b = history.rent_item.tenant.name
-                = ','
-                br
-                - if history.rent_item.tenant.email.nil?
-                  = 'email: '
-                  b = history.rent_item.tenant.email
-              - else
-                b = history.rent_item.tenant.first_name
-                = ','
-                br
+            = 'Been to: '
+            - if history.rent_item.tenant.class == Contact
+              b = history.rent_item.tenant.name
+              = ','
+              br
+              - if history.rent_item.tenant.email.nil?
                 = 'email: '
                 b = history.rent_item.tenant.email
-                br
-              = ' from '
-              b = history.borrowed_at
-              = ' to '
-              b = history.returned_at
-              = '.'
+            - else
+              b = history.rent_item.tenant.user_profile.first_name
+              = ','
+              br
+              = 'email: '
+              b = history.rent_item.tenant.email
+              br
+            = ' from '
+            b = history.borrowed_at
+            = ' to '
+            b = history.returned_at
+            = '.'
