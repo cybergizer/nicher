@@ -22,34 +22,36 @@
         = will_paginate(@items, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination-lg', previous_label: '<-', next_label: '->')
 br/
 br/
-.row.clearfix
-  .col-lg-12.col-md-12.col-sm-12.col-xs-12
-    .card
-      .header
-        h2
-          | LENT ITEMS
-      .body.table-responsive
-        table.table.table-striped
-          thead
-            tr
-              th = 'Title'
-              th colspan="3"
-          tbody
-            = render partial: 'lend_item_table', collection: @lend_items, as: :lend_item
+- if @lend_items.any?
+  .row.clearfix
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .card
+        .header
+          h2
+            | LENT ITEMS
+        .body.table-responsive
+          table.table.table-striped
+            thead
+              tr
+                th = 'Title'
+                th colspan="3"
+            tbody
+              = render partial: 'lend_item_table', collection: @lend_items, as: :lend_item
 br/
 br/
-.row.clearfix
-  .col-lg-12.col-md-12.col-sm-12.col-xs-12
-    .card
-      .header
-        h2
-          | BORROWED ITEMS
-      .body.table-responsive
-        table.table.table-striped
-          thead
-            tr
-              th = 'Title'
-              th colspan="3"
-          tbody
-            = render partial: 'shared_item_table', collection: @borrowed_items, as: :borrowed_item
+- if @borrowed_items.any?
+  .row.clearfix
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .card
+        .header
+          h2
+            | BORROWED ITEMS
+        .body.table-responsive
+          table.table.table-striped
+            thead
+              tr
+                th = 'Title'
+                th colspan="3"
+            tbody
+              = render partial: 'shared_item_table', collection: @borrowed_items, as: :borrowed_item
 = render partial: 'templates/modal'
