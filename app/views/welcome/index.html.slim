@@ -1,4 +1,16 @@
-section.main_page_content
+- if notice
+  div.alert.alert-success
+    strong
+      = notice
+- if user_session
   .row.clearfix
     = render partial: 'card', collection: @items, as: :item
-
+- else
+  .main_welcome
+    #welcome.page
+      h1#text
+        | “One can never have enough socks.”
+      = image_tag 'photo_2018-08-28_10-57-50.jpg', height: '100', width: '300', id: 'image'
+    .page
+      #free-items.row.clearfix
+        = render partial: 'card', collection: @items, as: :item
