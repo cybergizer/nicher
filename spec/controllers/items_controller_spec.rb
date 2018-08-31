@@ -25,7 +25,7 @@ RSpec.describe ItemsController, type: :controller do
   describe 'GET #show' do
     context 'with valid params' do
       before do
-        get :show, params: { id: item }
+        get :show, params: { id: item, user_id: user.id }
       end
 
       it 'returns http success' do
