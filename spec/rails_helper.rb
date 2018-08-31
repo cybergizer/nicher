@@ -45,10 +45,9 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.after(:all) do
-    if Rails.env.test?
-      FileUtils.rm_rf(Dir["#{Rails.root}/items/[^.]*"])
-      FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads/[^.]*"])
-    end
+    return unless Rails.env.test?
+    FileUtils.rm_rf(Dir["#{Rails.root}/items/[^.]*"])
+    FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads/[^.]*"])
   end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
