@@ -1,11 +1,14 @@
 .card
-  .header
-    h1
-      | Niches
+  .header.table-header
+    h2
+      span NICHES
+      .tooltip
+        = link_to nil, id: 'new_niche', class: 'btn-plus' do
+          i.material-icons.col-green control_point
+        .tooltiptext Create new niche
   .body
     .clearfix.m-b-20
       .dd.niches
         ol.dd-list
           = hierarchy_output(@niches).html_safe
-    = link_to 'New Niche', nil, id: 'new_niche', class: 'btn btn-primary waves-effect'
 = render partial: 'templates/modal'
