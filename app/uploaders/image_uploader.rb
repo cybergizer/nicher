@@ -6,7 +6,7 @@ class ImageUploader < ApplicationUploader
   end
 
   version :page_size do
-    process resize_to_fill: [300, 300]
+    process resize_to_fill: [600, 400]
   end
 
   version :list_size do

@@ -10,27 +10,10 @@ p#notice= notice
       .body
         .row.clearfix
           .col-xs-12.col-sm-6.col-md-6.col-lg-6
-            #myCarousel.carousel.slide data-ride="carousel"
-              /! Indicators
-              ol.carousel-indicators
-                li.active data-slide-to="0" data-target="#myCarousel"
-                li data-slide-to="1" data-target="#myCarousel"
-                li data-slide-to="2" data-target="#myCarousel"
-              /! Wrapper for slides
-              .carousel-inner
-                .item.active
-                  img alt=("Los Angeles") src="https://www.w3schools.com/bootstrap/la.jpg" style="width:100%;" /
-                .item
-                  img alt="Chicago" src="https://www.w3schools.com/bootstrap/chicago.jpg" style="width:100%;" /
-                .item
-                  img alt=("New york") src="https://www.w3schools.com/bootstrap/ny.jpg" style="width:100%;" /
-              /! Left and right controls
-              a.left.carousel-control data-slide="prev" href="#myCarousel"
-                span.glyphicon.glyphicon-chevron-left
-                span.sr-only Previous
-              a.right.carousel-control data-slide="next" href="#myCarousel"
-                span.glyphicon.glyphicon-chevron-right
-                span.sr-only Next
+            - if @item.attachments.any?
+              = render 'slider'
+            - else
+              = image_tag('page_size_image.png', style: 'width:450px;height:300px;')
           .col-xs-12.col-sm-6.col-md-6.col-lg-6
             .text-left
               h2 Description
