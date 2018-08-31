@@ -62,7 +62,7 @@ $(document).ready(function() {
       closeNicheDialog();
       window.location = '/niches';
     } else {
-      alertCreate('Niche cannot be a descendant of itself!', '#error_explanation', 'warning', 10000);
+      alertCreate(data.status, '#error_explanation', 'warning', 10000);
     }
   }
 

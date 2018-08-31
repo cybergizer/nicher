@@ -33,7 +33,7 @@ class NichesController < ApplicationController
     if @niche.save
       render json: { status: 'ok' }
     else
-      render json: { status: 'error' }
+      render json: { status: @niche.errors.to_a.join('base') }
     end
   end
 
@@ -43,7 +43,7 @@ class NichesController < ApplicationController
     if @niche.update(processed_params)
       render json: { status: 'ok' }
     else
-      render json: { status: 'error' }
+      render json: { status: @niche.errors.to_a.join('base') }
     end
   end
 

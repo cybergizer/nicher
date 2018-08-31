@@ -9,5 +9,5 @@ class Category < ActiveRecord::Base
   has_ancestry
 
   validates :name, presence: true
-  validates :name, length: { in: 3..15 }
+  validates :name, length: { in: 3..80 }
 end

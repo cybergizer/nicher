@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
     if @category.save
       render json: { status: 'ok' }
     else
-      render json: { status: 'error' }
+      render json: { status: @category.errors.to_a.join('base') }
     end
   end
 
@@ -33,7 +33,7 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       render json: { status: 'ok' }
     else
-      render json: { status: 'error' }
+      render json: { status: @category.errors.to_a.join('base') }
     end
   end
 
