@@ -94,9 +94,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Rails Admin panel
 gem 'rails_admin'
 
+# Add oauth authorization
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'omniauth-yandex'
 gem 'omniauth-google-oauth2'
+
+# Add roles
+gem 'cancancan'
+gem 'rolify'

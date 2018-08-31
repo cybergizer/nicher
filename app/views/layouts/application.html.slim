@@ -33,6 +33,14 @@ html
           = render partial: "shared/footer"
         section.content
           .container-fluid
+            - if notice
+              div.alert.alert-success
+                strong
+                  = notice
+            - if alert
+              div.alert.alert-danger
+                strong
+                  = alert
             = yield
     - else
       section.main_page_content

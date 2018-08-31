@@ -15,15 +15,29 @@ User.create(
   confirmed_at: Date.today
 )
 
+puts 'Create admin'
+admin = User.create(
+  first_name: 'admin',
+  email: 'root@admin',
+  password: 'password',
+  password_confirmation: 'password',
+  confirmed_at: Date.today
+)
+admin.add_role 'admin'
+admin.sign_in_count = 2
+admin.save
+
 UserProfile.destroy_all
 user1 = User.first
 user1.sign_in_count = 2
 user1.save
-user2 = User.first
+user2 = User.find(2)
 user2.sign_in_count = 2
 user2.save
-UserProfile.create(first_name: 'Vadim', city: 'Minsk', description: 'I am from Gomel', user: User.first)
-UserProfile.create(first_name: 'Sasha', city: 'Minsk', description: 'I am from Luninetz', user: User.last)
+
+UserProfile.create(full_name: 'Vadim', city: 'Minsk', description: 'I am from Gomel', user: user1)
+UserProfile.create(full_name: 'Sasha', city: 'Minsk', description: 'I am from Luninetz', user: user2)
+UserProfile.create(full_name: 'admin', city: 'Minsk', description: 'I am from Molodechno', user: admin)
 
 puts 'Create categories'
 

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  rolify
+
   PARAMS = [{ user_profile_attributes: %i(first_name last_name city description
                                           avatar avatar_cache sex phone birthday) }].freeze
   has_many :items, dependent: :destroy
