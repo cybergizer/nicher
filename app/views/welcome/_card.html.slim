@@ -5,17 +5,6 @@
         = link_to item_path(id: item.id, user_id: current_user.id) do
           h2 =item.title
         ul.header-dropdown.m-r-0
-          - unless item.free
-            li
-              .tooltip
-                = link_to edit_item_path(item) do
-                  i.material-icons edit
-                .tooltiptext Edit item
-            li
-              .tooltip
-                = link_to item, method: :delete, data: { confirm: 'Are you sure?' } do
-                  i.material-icons.col-red delete
-                .tooltiptext Delete item
           - unless item.rent_item
             - if !current_user.items.exists?(id: item.id) && item.free_item_request.nil?
               li
@@ -44,5 +33,8 @@
         .avatar-center
           .rounded
             img.img-responsive[src=item.attachments.first.list_size.url]
+      - if current_user&.items&.exists?(id: item.id) && item.niche
+        = 'niche: '
+        = item.niche&.name
 
 

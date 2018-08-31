@@ -54,11 +54,11 @@ class ItemsController < ApplicationController
   end
 
   def set_item_for_show
-    if current_user.id == params[:user_id].to_i
-      @item = Item.find_by!(id: params[:id], rent_item_id: nil)
-    else
-      @item = Item.find_by!(id: params[:id], rent_item_id: nil, free: true)
-    end
+    @item = if current_user.id == params[:user_id].to_i
+              Item.find_by!(id: params[:id], rent_item_id: nil)
+            else
+              Item.find_by!(id: params[:id], rent_item_id: nil, free: true)
+            end
   end
 
   def set_item
