@@ -1,19 +1,35 @@
 link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /
-p
-  strong Title:
-  = @item.title
-p
-  strong Description:
-  = @item.description
-p
-  strong Category:
-  = @item.category&.name
-p
-  strong
-  - if @item.free
-    strong THIS ITEM IS FREE
-= link_to 'Edit', edit_item_path(@item)
-| \
-= link_to 'Back', items_path
+
+.row.claerfix
+  .col-xs-12.col-sm-12.col-md-12.col-lg-12
+    .card
+      .header
+        h2
+          = @item.title
+      .body
+        .row.clearfix
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            - if @item.attachments.any?
+              = render partial: 'slider', locals: { item: @item }
+            - else
+              = image_tag('page_size_image.png', style: 'width:450px;height:300px;')
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            .text-left
+              h2 Description
+            p
+              = @item.description
+            h2 Category
+            p
+              = @item.category&.name
+            h2 Niche
+            p
+              = @item.niche&.name
+            p
+              strong
+              - if @item.free
+                strong THIS ITEM IS FREE
+            .buttons
+              = link_to 'Edit', edit_item_path(@item), class: 'btn bg-blue-grey btn-lg'
+              = link_to 'Back', items_path, class: 'btn bg-blue-grey btn-lg'
 - if @item.audits.count > 0
   = render 'timeline'

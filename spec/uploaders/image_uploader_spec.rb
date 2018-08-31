@@ -14,7 +14,7 @@ RSpec.describe ImageUploader, type: :uploader do
 
     context 'the versions' do
       it 'scales down a landscape image to be exactly 300 by 300 pixels' do
-        expect(uploader.page_size).to have_dimensions(300, 300)
+        expect(uploader.page_size).to have_dimensions(600, 400)
       end
 
       it 'scales down a landscape image to be exactly 250 by 250 pixels' do
