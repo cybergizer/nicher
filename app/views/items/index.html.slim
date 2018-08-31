@@ -1,22 +1,25 @@
 .row.clearfix
   .col-lg-12.col-md-12.col-sm-12.col-xs-12
     .card
-      .header
+      .header.table-header
         h2
-          | ITEMS
+          span ITEMS
+          .tooltip
+            = link_to new_item_path, class: 'btn-plus' do
+              i.material-icons.col-green control_point
+            .tooltiptext Create new item
       .body.table-responsive
         table.table.table-striped
           thead
             tr
               th = sort_link 'title'
               th colspan="1"
-              th.hidden-xs.hidden-sm = 'Description'
+              th.hidden-xs.hidden-sm = 'Niche'
               th.hidden-xs.hidden-sm = 'Category'
               th.hidden-xs.hidden-sm = sort_link 'created_at', 'Created On'
           tbody
             = render partial: 'item_table', collection: @items, as: :item
         = will_paginate(@items, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination-lg', previous_label: '<-', next_label: '->')
-= link_to 'New Item', new_item_path, class: 'btn btn-default'
 br/
 br/
 .row.clearfix
