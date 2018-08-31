@@ -12,7 +12,7 @@ link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.m
             - if @item.attachments.any?
               = render partial: 'slider', locals: { item: @item }
             - else
-              = image_tag('page_size_image.png', style: 'width:450px;height:300px;')
+              = image_tag('page_size_image.png', class: 'default-image')
           .col-xs-12.col-sm-6.col-md-6.col-lg-6
             .text-left
               h2 Description
