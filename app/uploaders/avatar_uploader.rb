@@ -12,4 +12,8 @@ class AvatarUploader < ApplicationUploader
   version :small do
     process resize_to_fill: [50, 50]
   end
+
+  def default_url
+    ActionController::Base.helpers.asset_path([version_name, URL].compact.join('_'))
+  end
 end
