@@ -22,14 +22,6 @@ RSpec.describe ImageUploader, type: :uploader do
       end
     end
 
-    it 'has the correct format' do
-      expect(uploader).to be_format('JPEG')
-    end
-
-    it 'has the correct size' do
-      expect(uploader.size).to be <= 1.megabyte
-    end
-
     after do
       ImageUploader.enable_processing = false
       uploader.remove!
