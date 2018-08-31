@@ -22,7 +22,7 @@ class Item < ApplicationRecord
   belongs_to :free_item_request, optional: true
 
   mount_uploaders :attachments, ImageUploader
-  validates :attachments, file_size: { less_than: 1.megabytes }
+  validates :attachments, file_size: { less_than: 10.megabytes }
   validate :images_count_validation
 
   def images_count_validation
