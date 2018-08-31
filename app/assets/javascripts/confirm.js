@@ -1,21 +1,21 @@
 $(document).ready(function() {
   $('.deleteitem').on('click', function() {
-    $('.modal-body').text('Are you shure about deleting this item?');
+    $('.modal-body').text('Are you sure about deleting this item?');
     $('#deletelink').attr('href', '/items/'+$(this).data('id'));
   });
 
   $('.returnitem').on('click', function() {
-    $('.modal-body').text('Are you shure it was returned?');
+    $('.modal-body').text('Are you sure it was returned?');
     $('#returnlink').attr('href', '/rent_items/repay?id='+$(this).data('id'));
   });
 
   $('.deleteniche').on('click', function() {
-    $('.modal-body').text('Are you shure about deleting this niche?');
+    $('.modal-body').text('Are you sure about deleting this niche?');
     $('#deletelink').attr('href', '/niches/'+$(this).data('id'));
   });
 
   $('.deletecategory').on('click', function() {
-    $('.modal-body').text('Are you shure about deleting this category?');
+    $('.modal-body').text('Are you sure about deleting this category?');
     $('#deletelink').attr('href', '/categories/'+$(this).data('id'));
   });
 });
