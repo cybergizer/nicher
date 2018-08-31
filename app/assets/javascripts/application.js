@@ -33,3 +33,4 @@
 //= require share_item
 //= require user_profile
 //= require confirm
+//= require timeline
