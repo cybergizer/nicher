@@ -1,29 +1,37 @@
 = form_with(model: item, local: true) do |form|
   - if item.errors.any?
-    #error_explanation
-      h2
-        = pluralize(item.errors.count, "error")
-        | prohibited this item from being saved:
+    #error_explanation.alert.alert-warning
       ul
         - item.errors.full_messages.each do |message|
           li= message
+  = form.label :title
   .form-group
-    = form.label :title
-    = form.text_field :title
+    .form-line
+      = form.text_field :title, class: 'form-control'
+  = form.label :description
   .form-group
-    = form.label :description
-    = form.text_area :description
+    .form-line
+      = form.text_area :description, class: 'form-control'
+  = form.label :niche_id
   .form-group
-    = form.label :niche_id
-    = form.collection_select :niche_id, current_user.niches,:id,:name, include_blank: true
+    .form-line
+      = form.collection_select(:niche_id, current_user.niches, :id, :name, { include_blank: true }, { class: "bootstrap-select form-control show-tick" })
+  = form.label :category_id
   .form-group
-    = form.label :category_id
-    = form.collection_select(:category_id, current_user.categories, :id, :name, include_blank: "Please select")
-	.form-group
-    = form.check_box :free
-    = form.label :free
-  .form-group
-    = form.label :attachments
-    = form.file_field :attachments, multiple: true
-  .actions
-    = form.submit
+    .form-line
+      = form.collection_select(:category_id, current_user.categories, :id, :name, { include_blank: "Please select" }, { class: "bootstrap-select form-control show-tick" })
+  = form.check_box :free
+  = form.label :free
+  br
+  = form.label :attachments
+  br
+  label.btn.btn-primary.waves-effect
+    i.material-icons publish
+    span ADD PHOTOS
+    span.span-file-input
+      = form.file_field :attachments, multiple: true
+  br
+  br
+  .button-demo
+    = form.button 'Save', type: :submit, class: 'btn btn-primary waves-effect'
+    = link_to 'Cancel', items_path, class: 'btn btn-danger waves-effect'

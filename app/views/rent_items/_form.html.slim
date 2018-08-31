@@ -1,17 +1,19 @@
 = form_with(model: rent_item, local: true) do |form|
   - if rent_item.errors.any?
-    #error_explanation
-      h2
-        = pluralize(rent_item.errors.count, "error")
-        | prohibited this item from being saved:
+    #error_explanation.alert.alert-warning
       ul
         - rent_item.errors.full_messages.each do |message|
           li= message
+  = form.label :niche_id
   .form-group
-    = form.label :niche_id
-    = form.collection_select :niche_id, current_user.niches,:id,:name, include_blank: true
+    .form-line
+      = form.collection_select(:niche_id, current_user.niches, :id, :name, { include_blank: true }, { class: "bootstrap-select form-control show-tick" })
+  = form.label :category_id
   .form-group
-    = form.label :category_id
-    = form.collection_select(:category_id, current_user.categories, :id, :name, :include_blank => "Please select")
-  .actions
-    = form.submit
+    .form-line
+      = form.collection_select(:category_id, current_user.categories, :id, :name, { include_blank: "Please select" }, { class: "bootstrap-select form-control show-tick" })
+  br
+  br
+  .button-demo
+    = form.button 'Save', type: :submit, class: 'btn btn-primary waves-effect'
+    = link_to 'Cancel', items_path, class: 'btn btn-danger waves-effect'

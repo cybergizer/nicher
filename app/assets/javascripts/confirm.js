@@ -6,7 +6,7 @@ $(document).ready(function() {
 
   $('.returnitem').on('click', function() {
     $('.modal-body').text('Are you sure it was returned?');
-    $('#returnlink').attr('href', '/rent_items/repay?id='+$(this).data('id'));
+    $('#deletelink').attr('href', '/rent_items/repay?id='+$(this).data('id'));
   });
 
   $('.deleteniche').on('click', function() {
