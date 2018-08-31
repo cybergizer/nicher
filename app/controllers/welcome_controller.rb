@@ -7,7 +7,12 @@ class WelcomeController < ApplicationController
   end
 
   def set_items
-    @items = Item.free.includes(:rent_item, :free_item_request, :niche)
-    @items = current_user.items.search(params[:search]).includes(:rent_item, :free_item_request, :niche) if params[:search]
+    @items = Item.free.includes(:rent_item, :free_item_request)
+    @items = current_user.items.search(params[:search]).includes(:rent_item, :free_item_request) if params[:search]
+  end
+
+  def show_free_item
+    @item = Item.free.find(params[:id])
+    render 'show_free_item'
   end
 end

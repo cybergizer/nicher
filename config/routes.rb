@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   end
   resources :items
 
+  post 'free_item', action: :show_free_item, controller: 'welcome'
+
   post 'new_request', action: :new, controller: 'free_item_requests'
   post 'give_away', action: :give_away, controller: 'free_item_requests'
   get 'filter_notifications', action: :filter_notifications, controller: 'free_item_requests'

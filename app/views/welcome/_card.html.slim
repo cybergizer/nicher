@@ -2,8 +2,12 @@
   .card
     - if user_session
       .header.bg
-        = link_to item_path(id: item.id, user_id: current_user.id) do
-          h2 =item.title
+        - if current_user.id != item.user_id
+          = link_to free_item_path(id: item.id), method: :post do
+            h2 =item.title
+        - else
+          = link_to item
+            h2 = item.title
         ul.header-dropdown.m-r-0
           - unless item.rent_item
             - if !current_user.items.exists?(id: item.id) && item.free_item_request.nil?

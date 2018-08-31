@@ -1,8 +1,7 @@
 class ItemsController < ApplicationController
   include ApplicationConcern
 
-  before_action :set_item, only: %i[edit update destroy]
-  before_action :set_item_for_show, only: %i[show]
+  before_action :set_item, only: %i[show edit update destroy]
   before_action :set_all_items, only: %i[index]
   helper_method :sort_column, :sort_direction
 
@@ -53,16 +52,8 @@ class ItemsController < ApplicationController
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
-  def set_item_for_show
-    @item = if current_user.id == params[:user_id].to_i
-              Item.find_by!(id: params[:id], rent_item_id: nil)
-            else
-              Item.find_by!(id: params[:id], rent_item_id: nil, free: true)
-            end
-  end
-
   def set_item
-    @item = Item.find_by!(id: params[:id], rent_item_id: nil, user_id: current_user.id)
+    @item = Item.find_by!(id: params[:id], user: current_user, rent_item_id: nil, user_id: current_user.id)
   end
 
   def item_params
