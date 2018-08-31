@@ -3,7 +3,7 @@ require 'spec_helper'
 
 RSpec.describe AvatarUploader, type: :uploader do
   include CarrierWave::Test::Matchers
-  let(:user_profile) { FactoryBot.build(:user_profile) }
+  let(:user_profile) { build(:user_profile) }
   let(:uploader) { AvatarUploader.new(user_profile, :avatar) }
 
   describe 'with a test url' do
@@ -20,14 +20,6 @@ RSpec.describe AvatarUploader, type: :uploader do
       it 'scales down a landscape image to be exactly 50 by 50 pixels' do
         expect(uploader.small).to have_dimensions(50, 50)
       end
-    end
-
-    it 'has the correct format' do
-      expect(uploader).to be_format('JPEG')
-    end
-
-    it 'has the correct size' do
-      expect(uploader.size).to be <= 1.megabyte # bytes
     end
 
     after do

@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
-  PARAMS = %i[title description free niche_id category_id].freeze
+  PARAMS = [:title, :description, :free, :niche_id, :category_id, { attachments: [] }].freeze
+  LIMIT_OF_ATTACHMENTS = 5
   scope :free, -> { where(free: true) }
 
   acts_as_paranoid
@@ -19,6 +20,14 @@ class Item < ApplicationRecord
   has_many :item_histories, dependent: :destroy
 
   belongs_to :free_item_request, optional: true
+
+  mount_uploaders :attachments, ImageUploader
+  validates :attachments, file_size: { less_than: 1.megabytes }
+  validate :images_count_validation
+
+  def images_count_validation
+    errors.add(:attachments, 'must not contain more than 5 files') if attachments.size > LIMIT_OF_ATTACHMENTS
+  end
 
   def self.search(search)
     return all unless search

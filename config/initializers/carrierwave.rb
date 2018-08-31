@@ -9,7 +9,7 @@ if Rails.env.test? || Rails.env.cucumber?
     config.enable_processing = false
   end
 
-  @avatar = AvatarUploader
+  @uploader = ApplicationUploader
 
   # use different dirs when testing
   CarrierWave::Uploader::Base.descendants.each do |klass|
