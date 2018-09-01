@@ -28,7 +28,7 @@ tr
       = link_to '#', data: { toggle: "modal", id: item.id, target: "#modal" }, class: 'deleteitem' do
         i.material-icons.col-red delete
       .tooltiptext Delete item
-  - if item.niche&.url
+  - if item.niche&.url.present?
     td= link_to nil, class: 'highlight', data: { id: item.niche_id } do
       i.material-icons.col-orange lightbulb_outline
   - else
