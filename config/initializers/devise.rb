@@ -281,8 +281,8 @@ Devise.setup do |config|
 
   # Social network providers
   config.omniauth :github,        ENV['GITHUB_API'],       ENV['GITHUB_KEY']
-  config.omniauth :facebook,      ENV['FACEBOOK_API'],     ENV['FACEBOOK_KEY']
+  # config.omniauth :facebook,      ENV['FACEBOOK_API'],     ENV['FACEBOOK_KEY']
   config.omniauth :vkontakte,     ENV['VKONTAKTE_KEY'],    ENV['VKONTAKTE_SECRET']
   config.omniauth :yandex,        ENV['YANDEX_API'],       ENV['YANDEX_KEY']
-  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+  # config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
 end
