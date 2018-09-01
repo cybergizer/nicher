@@ -15,13 +15,13 @@ RSpec.describe OmniauthCallbacksController, type: :controller do
     end
   end
 
-  describe "#facebook" do
-    it "returns http success" do
-      request.env['omniauth.auth'] = mock_auth[:'facebook']
-      get :facebook
-      expect(response).to redirect_to(root_url)
-    end
-  end
+  # describe "#facebook" do
+  #  it "returns http success" do
+  #    request.env['omniauth.auth'] = mock_auth[:'facebook']
+  #    get :facebook
+  #    expect(response).to redirect_to(root_url)
+  #  end
+  #end
 
   describe "#vkontakte" do
     it "returns http success" do
@@ -39,11 +39,11 @@ RSpec.describe OmniauthCallbacksController, type: :controller do
     end
   end
 
-  describe '#google_oauth2' do
-    it 'returns http success' do
-      request.env['omniauth.auth'] = mock_auth[:'google_oauth2']
-      get :google_oauth2
-      expect(response).to redirect_to(root_url)
-    end
-  end
+  # describe '#google_oauth2' do
+  #  it 'returns http success' do
+  #    request.env['omniauth.auth'] = mock_auth[:'google_oauth2']
+  #    get :google_oauth2
+  #    expect(response).to redirect_to(root_url)
+  #  end
+  #end
 end
