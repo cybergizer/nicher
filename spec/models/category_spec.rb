@@ -23,8 +23,6 @@ RSpec.describe Category, type: :model do
       expect(subject).to be_valid
       subject.name = 'Wr'
       expect(subject).to_not be_valid
-      subject.name = 'My favourite clothes'
-      expect(subject).to_not be_valid
     end
   end
 end
