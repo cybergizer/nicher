@@ -1,6 +1,6 @@
 .timeline {
   position: relative;
-  margin: 0 0 30px 0;
+  margin: 0 0 30px 20px;
   padding: 0;
   list-style: none;
   &:before {
@@ -120,4 +120,8 @@
 
 .bg-red, .bg-yellow, .bg-pink, .bg-amber, .bg-grey, .bg-green, .bg-cyan, .bg-teal, .bg-lime, .bg-purple {
   color: #fff !important;
+}
+
+.history-item {
+  background: #e9e9e9;
 }
