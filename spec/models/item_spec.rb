@@ -22,25 +22,11 @@ RSpec.describe Item, type: :model do
     end
   end
 
-  describe '#search' do
-    it 'finds the item' do
+  describe '#display_created_at' do
+    it 'displays time' do
       item = subject
-      result = Item.search('Watch').first
-      expect(result).to eq(item)
-    end
-
-    it 'assets all items if parameter not passed' do
-      item = subject
-      result = Item.search(nil)
-      expect(result).to eq(Item.all)
-    end
-
-    describe '#display_created_at' do
-      it 'displays time' do
-        item = subject
-        result = item.display_created_at
-        expect(result).to eq (item.created_at.strftime "%B %e, %Y")
-      end
+      result = item.display_created_at
+      expect(result).to eq (item.created_at.strftime "%B %e, %Y")
     end
   end
 end
