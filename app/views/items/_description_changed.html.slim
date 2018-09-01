@@ -3,7 +3,7 @@ li
   .timeline-item
     span.time
       i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
-    - if audit.audited_changes['description'].last == ""
+    - if audit.audited_changes['description'].last.blank?
       h3.timeline-header Description deleted
     - else
       h3.timeline-header Description changed
