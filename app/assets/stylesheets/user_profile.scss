@@ -5,13 +5,9 @@
 
 .form-content-center {
   margin-top: 3px;
+  margin-bottom: 3px;
   display: flex;
   justify-content: center;
-}
-
-.figure-avatar {
-  width: 250px;
-  height: 300px;
 }
 
 .span-file-input {
@@ -32,9 +28,4 @@
 .profile-header {
   display: flex;
   justify-content: space-between;
-}
-
-#pre-load {
-  height: 250px;
-  width: 250px;
 }
