@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
 
   def new
     @category = current_user.categories.build
-    @categories = current_user.categories
+    @categories = current_user.categories.reject(&:new_record?)
     render partial: 'categories/form'
   end
 

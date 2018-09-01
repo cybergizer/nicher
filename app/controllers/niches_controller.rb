@@ -16,7 +16,7 @@ class NichesController < ApplicationController
   # GET /locations/new
   def new
     @niche = current_user.niches.build
-    @niches = current_user.niches
+    @niches = current_user.niches.reject(&:new_record?)
     render partial: 'niches/form'
   end
 
