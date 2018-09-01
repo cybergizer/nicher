@@ -110,7 +110,7 @@ RSpec.describe CategoriesController, type: :controller do
       it "re-renders the new method" do
         post :create, params: { category: invalid_attributes }
         category = assigns(:category)
-        expect(response_to_json).to eq({ 'status' => 'error' })
+        expect(response_to_json).to eq({ 'status' => category.errors.to_a.join('base') })
       end
     end
   end
@@ -148,7 +148,8 @@ RSpec.describe CategoriesController, type: :controller do
       end
 
       it "re-renders the edit method " do
-        expect(response_to_json).to eq({ 'status' => 'error' })
+        category = assigns(:category)
+        expect(response_to_json).to eq({ 'status' => category.errors.to_a.join('base') })
       end
     end
   end

@@ -97,7 +97,7 @@ RSpec.describe NichesController, type: :controller do
           post :create, params: { niche: invalid_attributes }
           niche = assigns(:niche)
           expect(niche.errors.messages[:name]).to be_present
-          expect(response_to_json).to eq({ 'status' => 'error' })
+          expect(response_to_json).to eq({ 'status' => niche.errors.to_a.join('base') })
         end
       end
 
@@ -114,7 +114,7 @@ RSpec.describe NichesController, type: :controller do
           post :create, params: { niche: invalid_attributes }
           niche = assigns(:niche)
           expect(niche.errors.messages[:url]).to be_present
-          expect(response_to_json).to eq({ 'status' => 'error' })
+          expect(response_to_json).to eq({ 'status' => niche.errors.to_a.join('base') })
         end
       end
     end
@@ -152,7 +152,7 @@ RSpec.describe NichesController, type: :controller do
         it "re-renders the edit method " do
           niche = assigns(:niche)
           expect(niche.errors.messages[:name]).to be_present
-          expect(response_to_json).to eq({ 'status' => 'error' })
+          expect(response_to_json).to eq({ 'status' => niche.errors.to_a.join('base') })
         end
       end
 
@@ -171,7 +171,7 @@ RSpec.describe NichesController, type: :controller do
         it "re-renders the edit method " do
           niche = assigns(:niche)
           expect(niche.errors.messages[:url]).to be_present
-          expect(response_to_json).to eq({ 'status' => 'error' })
+          expect(response_to_json).to eq({ 'status' => niche.errors.to_a.join('base') })
         end
       end
     end
@@ -218,6 +218,7 @@ RSpec.describe NichesController, type: :controller do
 
       it 'return http success' do
         get :highlight, params: { id: niche.id }
+        niche = assigns(:niche)
         expect(response_to_json).to eq('status' => 'error')
         expect(response).to have_http_status(:success)
       end
