@@ -8,7 +8,8 @@ class FreeItemRequestsController < ApplicationController
   end
 
   def give_away
-    Item.create(title: @item.title, description: @item.description, user: @request.potential_owner, free: false)
+    Item.create(title: @item.title, description: @item.description, user: @request.potential_owner,
+                free: false, attachments: @item.attachments)
     @item.destroy
     @request.destroy
     redirect_to root_path, notice: "Congrats, you're a good person!"
