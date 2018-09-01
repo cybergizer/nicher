@@ -1,8 +1,18 @@
-p
-  strong Title:
-  = @item.title
-p
-  strong Description:
-  = @item.description
-
-= link_to 'Back', root_path
+.row.clearfix
+  .col-xs-12.col-sm-12.col-md-12.col-lg-12
+    .card
+      .header
+        h2
+          = @item.title
+      .body
+        .row.clearfix
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            - if @item.attachments.any?
+              = render partial: 'slider', locals: {item: @item}
+            - else
+              = image_tag('page_size_image.png', style: 'width:450px;height:300px;')
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            .text-left
+              h2 Description
+            .buttons
+              = link_to 'Back', root_path, class: 'btn bg-blue-grey btn-lg'
