@@ -1,10 +1,14 @@
 .col-lg-3.col-md-3.col-sm-6.col-xs-12
   .card
-    .header.bg
-      h2 =item.title
-      small =item.description
-      ul.header-dropdown.m-r-0
-        - if user_session
+    - if user_session
+      .header.bg
+        - if current_user.id != item.user_id
+          = link_to free_item_path(id: item.id), method: :post do
+            h2 = item.title
+        - else
+          = link_to item
+            h2 = item.title
+        ul.header-dropdown.m-r-0
           - unless item.rent_item
             - if !current_user.items.exists?(id: item.id) && item.free_item_request.nil?
               li
@@ -20,5 +24,19 @@
                   .tooltiptext
                     = item.free_item_request.potential_owner.user_profile.first_name
                     = ' wants to take this item, click to give away'
+    - else
+      .header.bg
+        = link_to item do
+          h2 = item.title
+        ul.header-dropdown.m-r-0
+          li
+            = link_to new_request_path(item_id: item.id), method: :post, data: { confirm: "Are you sure you want to take this item?" } do
+              i.material-icons pan_tool
     .body
-      | photo
+      - unless item.attachments.empty?
+        .avatar-center
+          .rounded
+            img.img-responsive[src=item.attachments.first.list_size.url]
+      - if current_user&.items&.exists?(id: item.id) && item.niche
+        = 'niche: '
+        = item.niche&.name

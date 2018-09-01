@@ -2,15 +2,15 @@ li
   i.fa.fa-tag.bg-lime
   .timeline-item
     span.time
-      i.fa.fa-clock-o = audit.created_at.strftime '%k:%M'
-    h3.timeline-header Category changed
-    .timeline-body
-      p
-        - if audit.audited_changes['category_id'].last.nil?
-          = 'Deleted category'
-        - else
+      i.fa.fa-clock-o = audit.created_at.strftime ('%k:%M')
+    - if audit.audited_changes['category_id'].last.nil?
+      h3.timeline-header Category deleted
+    - else
+      h3.timeline-header Category changed
+      .timeline-body
+        p
           - unless audit.audited_changes['category_id'].first.nil?
             b = search_for_first_category(audit).name
           = ' to '
           b = search_for_last_category(audit).name
-        = '.'
+          = '.'

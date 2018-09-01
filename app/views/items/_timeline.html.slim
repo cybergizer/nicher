@@ -13,16 +13,18 @@
                   li.time-label
                     span.bg-red = audit.created_at.strftime '%-d %b. %Y'
                   - if audit.audited_changes['title']
-                    = render partial: 'title_changed', locals: {audit: audit}
+                    = render partial: 'title_changed', locals: { audit: audit }
                   - if audit.audited_changes['niche_id']
-                    = render partial: 'niche_changed', locals: {audit: audit}
+                    = render partial: 'niche_changed', locals: { audit: audit }
                   - if audit.audited_changes['category_id']
-                    = render partial: 'category_changed', locals: {audit: audit}
+                    = render partial: 'category_changed', locals: { audit: audit }
                   - if audit.audited_changes['description']
-                    = render partial: 'description_changed', locals: {audit: audit}
+                    = render partial: 'description_changed', locals: { audit: audit }
                   - if audit.audited_changes['rent_item_id']
-                    = render partial: 'rent_item_changed', locals: {audit: audit}
+                    = render partial: 'rent_item_changed', locals: { audit: audit }
                   - if audit.audited_changes['free']
-                    = render partial: 'status_free_changed', locals: {audit: audit}
+                    = render partial: 'status_free_changed', locals: { audit: audit }
+                  - if audit.audited_changes['attachments']
+                    = render partial: 'photo_changed', locals: { audit: audit }
             li
               i.fa.fa-clock-o.bg-grey

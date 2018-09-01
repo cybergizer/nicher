@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.find_by!(id: params[:id], user: current_user, rent_item_id: nil)
+    @item = Item.find_by!(id: params[:id], user: current_user, rent_item_id: nil, user_id: current_user.id)
   end
 
   def item_params
