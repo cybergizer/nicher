@@ -8,7 +8,7 @@
         .row.clearfix
           .col-xs-12.col-sm-6.col-md-6.col-lg-6
             - if @item.attachments.any?
-              = render partial: 'slider', locals: {item: @item}
+              = render partial: 'items/slider', locals: {item: @item}
             - else
               = image_tag('page_size_image.png', style: 'width:450px;height:300px;')
           .col-xs-12.col-sm-6.col-md-6.col-lg-6
