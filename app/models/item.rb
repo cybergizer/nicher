@@ -3,6 +3,9 @@ class Item < ApplicationRecord
   LIMIT_OF_ATTACHMENTS = 5
   scope :free, -> { where(free: true) }
 
+  scope :for_user, ->(user) { where(user: user) }
+  scope :non_user, ->(user) { where.not(user: user) }
+  scope :search, ->(word) { where('title ilike ?', "%#{word}%") }
   acts_as_paranoid
   audited on: :update
 
@@ -27,11 +30,6 @@ class Item < ApplicationRecord
 
   def images_count_validation
     errors.add(:attachments, 'must not contain more than 5 files') if attachments.size > LIMIT_OF_ATTACHMENTS
-  end
-
-  def self.search(search)
-    return all unless search
-    where('title ilike ?', "%#{search}%")
   end
 
   def display_created_at
