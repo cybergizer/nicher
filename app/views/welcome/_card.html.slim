@@ -4,7 +4,7 @@
       .header.bg
         - if current_user.id != item.user_id
           = link_to free_item_path(id: item.id), method: :post do
-            h2 =item.title
+            h2 = item.title
         - else
           = link_to item
             h2 = item.title
@@ -27,7 +27,7 @@
     - else
       .header.bg
         = link_to item do
-          h2 =item.title
+          h2 = item.title
         ul.header-dropdown.m-r-0
           li
             = link_to new_request_path(item_id: item.id), method: :post, data: { confirm: "Are you sure you want to take this item?" } do
